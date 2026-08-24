@@ -1,3 +1,3 @@
 # Go_compiler
 
-For the Reykjavík university class "T-603-THYD - Compilers"
+For the Reykjavík University class "T-603-THYD - Compilers"
