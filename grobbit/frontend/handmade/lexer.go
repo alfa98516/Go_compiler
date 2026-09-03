@@ -129,57 +129,84 @@ func (lexer *Lexer) NextToken() Token {
 		return lexer.token
 	}
 	switch lexer.ch {
+	//TODO: IDENT, INT,, FLOAT, CHAR, STRING, break, case,
+	//chan, const, continue, default, defer, else,
+	//fallthrough, for, func, go, goto, if, import,
+	//interface, map, package, range, return, select,
+	//struct, switch, type, var
 	case '+':
+		//TODO: ++
 		if lexer.peekRuneIs(rune(TtOpAssign)) {
 			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
 		} else {
 			lexer.setToken(TtOpAdd)
 		}
 	case '-':
+		//TODO: -=,--
 		lexer.setToken(TtOpSub)
 	case '*':
-		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
+		//TODO: *=
+		lexer.setToken(TtOpMul)
 	case '/':
+		//TOOD: /=
 		lexer.setToken(TtOpDiv)
 	case '%':
-		if lexer.peekRuneIs(rune(TtOpBitXor)) {
-			lexer.setToken(TtOpBitAndNot, pair{'^', TtOpBitXor})
-		}
+		//TODO: %=
 		lexer.setToken(TtOpMod)
 	case '&':
+		//TODO: &^, &=, &^=, &&
 		lexer.setToken(TtOpBitAnd)
-	case '<':
-		lexer.setToken(TtOpLt)
-	case '>':
-		lexer.setToken(TtOpGt)
-	case '=':
-		lexer.setToken(TtOpAssign)
-	case '!':
-		lexer.setToken(TtOpNot)
 	case '|':
+		//TODO: |=, ||
 		lexer.setToken(TtOpBitOr)
 	case '^':
+		//TODO: ^=
 		lexer.setToken(TtOpBitXor)
+	case '<':
+		//TODO: <<, <<=, <=
+		lexer.setToken(TtOpLt)
+	case '>':
+		//TODO: >>, >>=, >=
+		lexer.setToken(TtOpGt)
+	case '=':
+		//TODO: ==
+		lexer.setToken(TtOpAssign)
+	case '!':
+		//TODO: !=
+		lexer.setToken(TtOpNot)
 	case '(':
+		//DONE
 		lexer.setToken(TtLParen)
 	case '[':
+		//DONE
 		lexer.setToken(TtLBracket)
 	case '{':
+		//DONE
 		lexer.setToken(TtLBrace)
 	case ',':
+		//DONE
 		lexer.setToken(TtComma)
 	case '.':
+		//TODO: ...
 		lexer.setToken(TtPeriod)
 	case ')':
+		//DONE
 		lexer.setToken(TtRParen)
 	case ']':
+		//DONE
 		lexer.setToken(TtRBracket)
 	case '}':
+		//DONE
 		lexer.setToken(TtRBrace)
 	case ';':
+		//DONE
 		lexer.setToken(TtSemicolon)
 	case ':':
+		//TODO: :=
 		lexer.setToken(TtColon)
+	case '~':
+		//DONE
+		lexer.setToken(TtTilde)
 	default:
 		lexer.setToken(TtUnknown)
 	}
