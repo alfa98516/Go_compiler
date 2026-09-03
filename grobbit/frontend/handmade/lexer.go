@@ -1,8 +1,9 @@
 package handmade
 
 import (
-	. "Grobbit/common"
 	"unicode"
+
+	. "Grobbit/common"
 )
 
 type Lexer struct {
@@ -117,7 +118,6 @@ func (lexer *Lexer) Init(src []byte, handler ErrorHandler) {
 
 // NextToken reads and returns the next token.
 func (lexer *Lexer) NextToken() Token {
-
 	// TODO: Modify the code in here.
 
 	for lexer.processWhiteSpaces() {
@@ -143,11 +143,36 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtOpDiv)
 	case '%':
 		lexer.setToken(TtOpMod)
-	case ''
+	case '&':
+		lexer.setToken(TtOpBitAnd)
+	case '<':
+		lexer.setToken(TtOpLt)
+	case '>':
+		lexer.setToken(TtOpGt)
+	case '=':
+		lexer.setToken(TtOpAssign)
+	case '!':
+		lexer.setToken(TtOpNot)
 	case '(':
 		lexer.setToken(TtLParen)
+	case '[':
+		lexer.setToken(TtLBracket)
+	case '{':
+		lexer.setToken(TtLBrace)
+	case ',':
+		lexer.setToken(TtComma)
+	case '.':
+		lexer.setToken(TtPeriod)
 	case ')':
 		lexer.setToken(TtRParen)
+	case ']':
+		lexer.setToken(TtRBracket)
+	case '}':
+		lexer.setToken(TtRBrace)
+	case ';':
+		lexer.setToken(TtSemicolon)
+	case ':':
+		lexer.setToken(TtColon)
 	default:
 		lexer.setToken(TtUnknown)
 	}
