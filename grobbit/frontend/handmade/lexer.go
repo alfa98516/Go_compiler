@@ -146,11 +146,17 @@ func (lexer *Lexer) NextToken() Token {
 		}
 	case '-':
 		// TODO: -=,--
+		if lexer.peekRuneIs(rune('=')) {
+			lexer.setToken(TtOpSub, pair{'=', TtOpSubAssign})
+		} else if lexer.peekRuneIs('-') {
+			lexer.setToken(TtOpSub, pair{'-', TtOpDec})
+		} else {
+			lexer.setToken(TtOpSub)
+		}
 		lexer.setToken(TtOpSub)
 	case '*':
 		if lexer.peekRuneIs(rune(TtOpAssign)) {
 			lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
-		} else if lexer.peekRuneIs(tt) {
 		}
 		lexer.setToken(TtOpMul)
 	case '/':
