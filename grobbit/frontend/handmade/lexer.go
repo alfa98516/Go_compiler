@@ -129,10 +129,25 @@ func (lexer *Lexer) NextToken() Token {
 		return lexer.token
 	}
 	switch lexer.ch {
-	case '(':
-		lexer.setToken(TtLParen)
+	case '+':
+		if lexer.peekRuneIs(rune(TtOpAssign)) {
+			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
+		} else {
+			lexer.setToken(TtOpAdd)
+		}
+	case '-':
+		lexer.setToken(TtOpSub)
 	case '*':
 		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
+	case '/':
+		lexer.setToken(TtOpDiv)
+	case '%':
+		lexer.setToken(TtOpMod)
+	case ''
+	case '(':
+		lexer.setToken(TtLParen)
+	case ')':
+		lexer.setToken(TtRParen)
 	default:
 		lexer.setToken(TtUnknown)
 	}
