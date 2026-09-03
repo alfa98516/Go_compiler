@@ -4,7 +4,6 @@ import (
 	"unicode"
 
 	. "Grobbit/common"
-	"unicode"
 )
 
 type Lexer struct {
@@ -76,6 +75,7 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 		lexer.token.PosEnd = lexer.pos
 	} else {
 		startCh, startPos := lexer.ch, lexer.pos
+		lexer.nextRune()
 		if !lexer.eoi {
 			for _, p := range pairs {
 				if lexer.ch == p.r {
@@ -151,14 +151,7 @@ func (lexer *Lexer) NextToken() Token {
 			lexer.setToken(TtOpSub)
 		}
 	case '*':
-<<<<<<< HEAD
-
 		lexer.setToken(TtOpMul)
-=======
-		//TODO: *=
-		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
-		//lexer.setToken(TtOpMul)
->>>>>>> 6def916f2afd05fe26c7c04fa222bfe85a42eadb
 	case '/':
 		// TODO: /= //
 		lexer.setToken(TtOpDiv)
@@ -218,7 +211,11 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtSemicolon)
 	case ':':
 		// TODO: :=
-		lexer.setToken(TtColon)
+		if lexer.peekRuneIs(rune('=')) {
+			lexer.setToken(TtColon, pair{'=', TtOpDefine})
+		} else {
+			lexer.setToken(TtColon)
+		}
 	case '~':
 		// DONE
 		lexer.setToken(TtTilde)
