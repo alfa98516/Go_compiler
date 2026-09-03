@@ -1,10 +1,8 @@
 package handmade
 
 import (
-	"fmt"
-	"unicode"
-
 	. "Grobbit/common"
+	"fmt"
 	"unicode"
 )
 
