@@ -5,6 +5,7 @@ import (
 	"unicode"
 
 	. "Grobbit/common"
+	"unicode"
 )
 
 type Lexer struct {
@@ -148,17 +149,15 @@ func (lexer *Lexer) NextToken() Token {
 		// TODO: -=,--
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpSub, pair{'=', TtOpSubAssign})
-		} else if lexer.peekRuneIs('-') {
+		} else if lexer.peekRuneIs(rune('-')) {
 			lexer.setToken(TtOpSub, pair{'-', TtOpDec})
 		} else {
 			lexer.setToken(TtOpSub)
 		}
-		lexer.setToken(TtOpSub)
 	case '*':
-		if lexer.peekRuneIs(rune(TtOpAssign)) {
-			lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
-		}
-		lexer.setToken(TtOpMul)
+		//TODO: *=
+		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
+		//lexer.setToken(TtOpMul)
 	case '/':
 		// TOOD: /=
 		lexer.setToken(TtOpDiv)
