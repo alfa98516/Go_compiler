@@ -1,6 +1,7 @@
 package handmade
 
 import (
+	"fmt"
 	"unicode"
 
 	. "Grobbit/common"
@@ -78,6 +79,7 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 		lexer.nextRune()
 		if !lexer.eoi {
 			for _, p := range pairs {
+				fmt.Println("here")
 				if lexer.ch == p.r {
 					lexer.token = Token{Type: p.t, Lexeme: string(startCh) + string(lexer.ch), Pos: startPos}
 					lexer.nextRune()
@@ -129,83 +131,87 @@ func (lexer *Lexer) NextToken() Token {
 		return lexer.token
 	}
 	switch lexer.ch {
-	//TODO: IDENT, INT,, FLOAT, CHAR, STRING, break, case,
-	//chan, const, continue, default, defer, else,
-	//fallthrough, for, func, go, goto, if, import,
-	//interface, map, package, range, return, select,
-	//struct, switch, type, var
+	// TODO: IDENT, INT,, FLOAT, CHAR, STRING, break, case,
+	// chan, const, continue, default, defer, else,
+	// fallthrough, for, func, go, goto, if, import,
+	// interface, map, package, range, return, select,
+	// struct, switch, type, var
 	case '+':
-		//TODO: ++
 		if lexer.peekRuneIs(rune(TtOpAssign)) {
 			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
+		} else if lexer.peekRuneIs(rune(TtOpAdd)) {
+			lexer.setToken(TtOpAdd, pair{'+', TtOpInc})
 		} else {
 			lexer.setToken(TtOpAdd)
 		}
 	case '-':
-		//TODO: -=,--
+		// TODO: -=,--
 		lexer.setToken(TtOpSub)
 	case '*':
-		//TODO: *=
+		if lexer.peekRuneIs(rune(TtOpAssign)) {
+			lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
+		} else if lexer.peekRuneIs(tt) {
+		}
 		lexer.setToken(TtOpMul)
 	case '/':
-		//TOOD: /=
+		// TOOD: /=
 		lexer.setToken(TtOpDiv)
 	case '%':
-		//TODO: %=
+		// TODO: %=
 		lexer.setToken(TtOpMod)
 	case '&':
-		//TODO: &^, &=, &^=, &&
+		// TODO: &^, &=, &^=, &&
 		lexer.setToken(TtOpBitAnd)
 	case '|':
-		//TODO: |=, ||
+		// TODO: |=, ||
 		lexer.setToken(TtOpBitOr)
 	case '^':
-		//TODO: ^=
+		// TODO: ^=
 		lexer.setToken(TtOpBitXor)
 	case '<':
-		//TODO: <<, <<=, <=
+		// TODO: <<, <<=, <=
 		lexer.setToken(TtOpLt)
 	case '>':
-		//TODO: >>, >>=, >=
+		// TODO: >>, >>=, >=
 		lexer.setToken(TtOpGt)
 	case '=':
-		//TODO: ==
+		// TODO: ==
 		lexer.setToken(TtOpAssign)
 	case '!':
-		//TODO: !=
+		// TODO: !=
 		lexer.setToken(TtOpNot)
 	case '(':
-		//DONE
+		// DONE
 		lexer.setToken(TtLParen)
 	case '[':
-		//DONE
+		// DONE
 		lexer.setToken(TtLBracket)
 	case '{':
-		//DONE
+		// DONE
 		lexer.setToken(TtLBrace)
 	case ',':
-		//DONE
+		// DONE
 		lexer.setToken(TtComma)
 	case '.':
-		//TODO: ...
+		// TODO: ...
 		lexer.setToken(TtPeriod)
 	case ')':
-		//DONE
+		// DONE
 		lexer.setToken(TtRParen)
 	case ']':
-		//DONE
+		// DONE
 		lexer.setToken(TtRBracket)
 	case '}':
-		//DONE
+		// DONE
 		lexer.setToken(TtRBrace)
 	case ';':
-		//DONE
+		// DONE
 		lexer.setToken(TtSemicolon)
 	case ':':
-		//TODO: :=
+		// TODO: :=
 		lexer.setToken(TtColon)
 	case '~':
-		//DONE
+		// DONE
 		lexer.setToken(TtTilde)
 	default:
 		lexer.setToken(TtUnknown)
