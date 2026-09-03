@@ -135,9 +135,9 @@ func (lexer *Lexer) NextToken() Token {
 	// interface, map, package, range, return, select,
 	// struct, switch, type, var
 	case '+':
-		if lexer.peekRuneIs(rune(TtOpAssign)) {
+		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
-		} else if lexer.peekRuneIs(rune(TtOpAdd)) {
+		} else if lexer.peekRuneIs(rune('+')) {
 			lexer.setToken(TtOpAdd, pair{'+', TtOpInc})
 		} else {
 			lexer.setToken(TtOpAdd)
@@ -151,7 +151,7 @@ func (lexer *Lexer) NextToken() Token {
 			lexer.setToken(TtOpSub)
 		}
 	case '*':
-		lexer.setToken(TtOpMul)
+		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
 	case '/':
 		// TODO: /= //
 		lexer.setToken(TtOpDiv)
@@ -160,6 +160,11 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
 	case '&':
 		// TODO: &^, &=, &^=, &&
+		if lexer.peekRuneIs(rune('^')) {
+			//pairs := [2]pair{pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign}}
+			lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot})
+			//lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign})
+		}
 		lexer.setToken(TtOpBitAnd)
 	case '|':
 		// TODO: |=, ||
