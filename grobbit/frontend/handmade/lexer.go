@@ -142,8 +142,16 @@ func (lexer *Lexer) NextToken() Token {
 	case '/':
 		lexer.setToken(TtOpDiv)
 	case '%':
+		if lexer.peekRuneIs(rune(TtOpBitXor)) {
+			lexer.setToken(TtOpBitAndNot, pair{'^', TtOpBitXor})
+		}
 		lexer.setToken(TtOpMod)
-	case ''
+	case '&':
+		lexer.setToken(TtOpBitAnd)
+	case '|':
+		lexer.setToken(TtOpBitOr)
+	case '^':
+		lexer.setToken(TtOpBitXor)
 	case '(':
 		lexer.setToken(TtLParen)
 	case ')':
