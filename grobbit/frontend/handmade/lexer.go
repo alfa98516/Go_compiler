@@ -1,7 +1,6 @@
 package handmade
 
 import (
-	"fmt"
 	"unicode"
 
 	. "Grobbit/common"
@@ -76,10 +75,8 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 		lexer.token.PosEnd = lexer.pos
 	} else {
 		startCh, startPos := lexer.ch, lexer.pos
-		lexer.nextRune()
 		if !lexer.eoi {
 			for _, p := range pairs {
-				fmt.Println("here")
 				if lexer.ch == p.r {
 					lexer.token = Token{Type: p.t, Lexeme: string(startCh) + string(lexer.ch), Pos: startPos}
 					lexer.nextRune()
@@ -145,7 +142,6 @@ func (lexer *Lexer) NextToken() Token {
 			lexer.setToken(TtOpAdd)
 		}
 	case '-':
-		// TODO: -=,--
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpSub, pair{'=', TtOpSubAssign})
 		} else if lexer.peekRuneIs('-') {
@@ -155,16 +151,14 @@ func (lexer *Lexer) NextToken() Token {
 		}
 		lexer.setToken(TtOpSub)
 	case '*':
-		if lexer.peekRuneIs(rune(TtOpAssign)) {
-			lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
-		}
+
 		lexer.setToken(TtOpMul)
 	case '/':
-		// TOOD: /=
+		// TODO: /= //
 		lexer.setToken(TtOpDiv)
 	case '%':
-		// TODO: %=
-		lexer.setToken(TtOpMod)
+		// DONE
+		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
 	case '&':
 		// TODO: &^, &=, &^=, &&
 		lexer.setToken(TtOpBitAnd)
@@ -172,8 +166,7 @@ func (lexer *Lexer) NextToken() Token {
 		// TODO: |=, ||
 		lexer.setToken(TtOpBitOr)
 	case '^':
-		// TODO: ^=
-		lexer.setToken(TtOpBitXor)
+		lexer.setToken(TtOpBitXor, pair{'=', TtOpBitXorAssign})
 	case '<':
 		// TODO: <<, <<=, <=
 		lexer.setToken(TtOpLt)
@@ -181,11 +174,15 @@ func (lexer *Lexer) NextToken() Token {
 		// TODO: >>, >>=, >=
 		lexer.setToken(TtOpGt)
 	case '=':
-		// TODO: ==
-		lexer.setToken(TtOpAssign)
+		// DONE
+		lexer.setToken(TtOpAssign, pair{'=', TtOpEq})
 	case '!':
-		// TODO: !=
-		lexer.setToken(TtOpNot)
+		// DONE
+		if lexer.peekRuneIs(rune('=')) {
+			lexer.setToken(TtOpNot, pair{'=', TtOpNe})
+		} else {
+			lexer.setToken(TtOpNot)
+		}
 	case '(':
 		// DONE
 		lexer.setToken(TtLParen)
