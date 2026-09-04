@@ -79,10 +79,14 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 		if !lexer.eoi {
 			for _, p := range pairs {
 				if lexer.ch == p.r {
-					lexer.token = Token{Type: p.t, Lexeme: string(startCh) + string(lexer.ch), Pos: startPos}
-					lexer.nextRune()
-					lexer.token.PosEnd = lexer.pos
-					return
+					if 
+				//	lexer.token = Token{Type: p.t, Lexeme: string(startCh) + string(lexer.ch), Pos: startPos}
+				//	lexer.nextRune()
+				//	lexer.token.PosEnd = lexer.pos
+				//	return
+				
+
+
 				}
 			}
 		}
@@ -154,7 +158,16 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
 	case '/':
 		// TODO: //
-		lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
+		if lexer.peekRuneIs(rune('/')) {
+			for lexer.ch != '\n' {
+				lexer.nextRune()
+			}
+			lexer.setToken(TtUnknown)
+			lexer.token.Lexeme = "Comment"
+
+		} else {
+			lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
+		}
 	case '%':
 		// DONE
 		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
