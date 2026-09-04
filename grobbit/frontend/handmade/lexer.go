@@ -153,30 +153,49 @@ func (lexer *Lexer) NextToken() Token {
 	case '*':
 		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
 	case '/':
-		// TODO: /= //
-		lexer.setToken(TtOpDiv)
+		// TODO: //
+		lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
 	case '%':
 		// DONE
 		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
 	case '&':
-		// TODO: &^, &=, &^=, &&
+		// TODO: &^, &^=
 		if lexer.peekRuneIs(rune('^')) {
-			//pairs := [2]pair{pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign}}
-			lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot})
-			//lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign})
+			//lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot})
+			lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign})
+		} else if lexer.peekRuneIs(rune('&')) {
+			lexer.setToken(TtOpBitAnd, pair{'&', TtOpAnd})
+		} else if lexer.peekRuneIs(rune('=')) {
+			lexer.setToken(TtOpBitAnd, pair{'=', TtOpBitAndAssign})
+		} else {
+			lexer.setToken(TtOpBitAnd)
 		}
-		lexer.setToken(TtOpBitAnd)
 	case '|':
-		// TODO: |=, ||
-		lexer.setToken(TtOpBitOr)
+		// DONE
+		if lexer.peekRuneIs(rune('=')) {
+			lexer.setToken(TtOpBitOr, pair{'=', TtOpBitOrAssign})
+		} else if lexer.peekRuneIs(rune('|')) {
+			lexer.setToken(TtOpBitOr, pair{'|', TtOpOr})
+		} else {
+			lexer.setToken(TtOpBitOr)
+		}
+
 	case '^':
 		lexer.setToken(TtOpBitXor, pair{'=', TtOpBitXorAssign})
 	case '<':
 		// TODO: <<, <<=, <=
-		lexer.setToken(TtOpLt)
+		if lexer.peekRuneIs(rune('=')) {
+			lexer.setToken(TtOpLt, pair{'=', TtOpLe})
+		} else {
+			lexer.setToken(TtOpLt)
+		}
 	case '>':
-		// TODO: >>, >>=, >=
-		lexer.setToken(TtOpGt)
+		// TODO: >>, >>=
+		if lexer.peekRuneIs(rune('=')) {
+			lexer.setToken(TtOpGt, pair{'=', TtOpGe})
+		} else {
+			lexer.setToken(TtOpGt)
+		}
 	case '=':
 		// DONE
 		lexer.setToken(TtOpAssign, pair{'=', TtOpEq})
@@ -215,7 +234,7 @@ func (lexer *Lexer) NextToken() Token {
 		// DONE
 		lexer.setToken(TtSemicolon)
 	case ':':
-		// TODO: :=
+		// DONE
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtColon, pair{'=', TtOpDefine})
 		} else {
