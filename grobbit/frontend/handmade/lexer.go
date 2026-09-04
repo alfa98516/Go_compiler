@@ -77,17 +77,17 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 		startCh, startPos := lexer.ch, lexer.pos
 		lexer.nextRune()
 		if !lexer.eoi {
-			for _, p := range pairs {
+			for i, p := range pairs {
 				if lexer.ch == p.r {
-					if 
-				//	lexer.token = Token{Type: p.t, Lexeme: string(startCh) + string(lexer.ch), Pos: startPos}
-				//	lexer.nextRune()
-				//	lexer.token.PosEnd = lexer.pos
-				//	return
-				
-
+					//if lexer.peekRuneIs(rune(pairs[i+1].r)) {
+					//}
+					lexer.token = Token{Type: p.t, Lexeme: string(startCh) + string(lexer.ch), Pos: startPos}
+					lexer.nextRune()
+					lexer.token.PosEnd = lexer.pos
+					return
 
 				}
+				i++
 			}
 		}
 		lexer.token = Token{Type: Tt, Lexeme: string(startCh), Pos: startPos, PosEnd: lexer.pos}
@@ -132,6 +132,20 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtEOI)
 		return lexer.token
 	}
+
+	for lexer.ch == '/' && lexer.peekRuneIs(rune('/')) {
+		// loop continuously until all consecutive comments are done
+		for lexer.ch != '\n' {
+			lexer.nextRune()
+		}
+		lexer.nextRune()
+	}
+
+	if lexer.eoi {
+		lexer.setToken(TtEOI)
+		return lexer.token
+	}
+
 	switch lexer.ch {
 	// TODO: IDENT, INT,, FLOAT, CHAR, STRING, break, case,
 	// chan, const, continue, default, defer, else,
@@ -158,16 +172,7 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
 	case '/':
 		// TODO: //
-		if lexer.peekRuneIs(rune('/')) {
-			for lexer.ch != '\n' {
-				lexer.nextRune()
-			}
-			lexer.setToken(TtUnknown)
-			lexer.token.Lexeme = "Comment"
-
-		} else {
-			lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
-		}
+		lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
 	case '%':
 		// DONE
 		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
