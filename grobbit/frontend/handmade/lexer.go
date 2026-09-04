@@ -74,23 +74,19 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 		lexer.nextRune()
 		lexer.token.PosEnd = lexer.pos
 	} else {
-		startCh, startPos := lexer.ch, lexer.pos
+		startChar, startPos := lexer.ch, lexer.pos
 		lexer.nextRune()
 		if !lexer.eoi {
-			for i, p := range pairs {
+			lexer.token = Token{Type: Tt, Lexeme: string(startChar), Pos: lexer.pos}
+			for _, p := range pairs {
 				if lexer.ch == p.r {
-					//if lexer.peekRuneIs(rune(pairs[i+1].r)) {
-					//}
-					lexer.token = Token{Type: p.t, Lexeme: string(startCh) + string(lexer.ch), Pos: startPos}
+					lexer.token = Token{Type: p.t, Lexeme: lexer.token.Lexeme + string(lexer.ch), Pos: startPos}
 					lexer.nextRune()
 					lexer.token.PosEnd = lexer.pos
-					return
-
+					continue
 				}
-				i++
 			}
 		}
-		lexer.token = Token{Type: Tt, Lexeme: string(startCh), Pos: startPos, PosEnd: lexer.pos}
 	}
 }
 
@@ -171,59 +167,51 @@ func (lexer *Lexer) NextToken() Token {
 	case '*':
 		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
 	case '/':
-		// TODO: //
+		// DONE
 		lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
 	case '%':
 		// DONE
 		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
 	case '&':
-		// TODO: &^, &^=
+		// DONE
 		if lexer.peekRuneIs(rune('^')) {
 			//lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot})
 			lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign})
 		} else if lexer.peekRuneIs(rune('&')) {
 			lexer.setToken(TtOpBitAnd, pair{'&', TtOpAnd})
-		} else if lexer.peekRuneIs(rune('=')) {
-			lexer.setToken(TtOpBitAnd, pair{'=', TtOpBitAndAssign})
 		} else {
-			lexer.setToken(TtOpBitAnd)
+			lexer.setToken(TtOpBitAnd, pair{'=', TtOpBitAndAssign})
 		}
 	case '|':
 		// DONE
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpBitOr, pair{'=', TtOpBitOrAssign})
-		} else if lexer.peekRuneIs(rune('|')) {
-			lexer.setToken(TtOpBitOr, pair{'|', TtOpOr})
 		} else {
-			lexer.setToken(TtOpBitOr)
+			lexer.setToken(TtOpBitOr, pair{'|', TtOpOr})
 		}
 
 	case '^':
+		// DONE
 		lexer.setToken(TtOpBitXor, pair{'=', TtOpBitXorAssign})
 	case '<':
-		// TODO: <<, <<=, <=
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpLt, pair{'=', TtOpLe})
 		} else {
-			lexer.setToken(TtOpLt)
+			lexer.setToken(TtOpLt, pair{'<', TtOpBitShl}, pair{'=', TtOpBitShlAssign})
 		}
 	case '>':
-		// TODO: >>, >>=
+		// DONE
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpGt, pair{'=', TtOpGe})
 		} else {
-			lexer.setToken(TtOpGt)
+			lexer.setToken(TtOpGt, pair{'>', TtOpBitShr}, pair{'=', TtOpBitShrAssign})
 		}
 	case '=':
 		// DONE
 		lexer.setToken(TtOpAssign, pair{'=', TtOpEq})
 	case '!':
 		// DONE
-		if lexer.peekRuneIs(rune('=')) {
-			lexer.setToken(TtOpNot, pair{'=', TtOpNe})
-		} else {
-			lexer.setToken(TtOpNot)
-		}
+		lexer.setToken(TtOpNot, pair{'=', TtOpNe})
 	case '(':
 		// DONE
 		lexer.setToken(TtLParen)
@@ -238,7 +226,7 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtComma)
 	case '.':
 		// TODO: ...
-		lexer.setToken(TtPeriod)
+		lexer.setToken(TtPeriod, pair{'.', TtPeriod}, pair{'.', TtOpEllipsis})
 	case ')':
 		// DONE
 		lexer.setToken(TtRParen)
@@ -253,11 +241,7 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtSemicolon)
 	case ':':
 		// DONE
-		if lexer.peekRuneIs(rune('=')) {
-			lexer.setToken(TtColon, pair{'=', TtOpDefine})
-		} else {
-			lexer.setToken(TtColon)
-		}
+		lexer.setToken(TtColon, pair{'=', TtOpDefine})
 	case '~':
 		// DONE
 		lexer.setToken(TtTilde)
