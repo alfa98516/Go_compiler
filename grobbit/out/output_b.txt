@@ -32,7 +32,8 @@
 (13 9)       IDENT           "s2"
 (13 12)      IDENT           "string"
 (13 19)      =               "="
-(13 21)      STRING          "\"he\""
+Error at (13 21): string literal not terminated
+(13 21)      STRING          "\"he"
 (14 5)       IDENT           "x"
 (14 7)       *=              "*="
 (14 10)      INT             "2"

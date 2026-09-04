@@ -95,9 +95,7 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 
 func (lexer *Lexer) identifier() string {
 	var builder strings.Builder
-
 	for {
-
 		builder.WriteRune(lexer.ch)
 		nextR, _ := lexer.peekRune()
 		if unicode.IsLetter(nextR) || nextR == '_' ||
@@ -110,7 +108,7 @@ func (lexer *Lexer) identifier() string {
 	return builder.String()
 }
 
-func (lexer *Lexer) buildFunc(ru rune, digit bool) (string, TokenType) {
+func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenType) {
 	ttype := TtString
 	builder := strings.Builder{}
 	floa := false
@@ -132,12 +130,18 @@ func (lexer *Lexer) buildFunc(ru rune, digit bool) (string, TokenType) {
 		return builder.String(), ttype
 	}
 	for !lexer.eoi && !lexer.peekRuneIs(ru) {
+		if lexer.peekRuneIs('\n') {
+			lexer.errorHandler(ps, "string literal not terminated")
+			break
+		}
 		builder.WriteRune(lexer.ch)
 		lexer.nextRune()
 	}
 	builder.WriteRune(lexer.ch)
 	lexer.nextRune()
-	builder.WriteRune(lexer.ch)
+	if lexer.ch != '\n' {
+		builder.WriteRune(lexer.ch)
+	}
 	lexer.nextRune()
 	return builder.String(), ttype
 }
@@ -321,22 +325,24 @@ func (lexer *Lexer) NextToken() Token {
 
 	case '"':
 		startPos := lexer.pos
-		builder, _ := lexer.buildFunc('"', false)
+		builder, _ := lexer.buildFunc('"', false, lexer.pos)
 		lexer.token = Token{Type: TtString, Lexeme: builder, Pos: startPos}
 
 	case '\'':
 		startPos := lexer.pos
-		builder, _ := lexer.buildFunc('\'', false)
+		builder, _ := lexer.buildFunc('\'', false, lexer.pos)
 		lexer.token = Token{Type: TtChar, Lexeme: builder, Pos: startPos}
 
 	default:
 		if unicode.IsLetter(lexer.ch) || lexer.ch == '_' {
+			ps := lexer.pos
 			lexeme := lexer.identifier()
 			lexer.setToken(Lookup(lexeme))
+			lexer.token.Pos = ps
 			lexer.token.Lexeme = lexeme
 		} else if unicode.IsDigit(lexer.ch) {
 			startPos := lexer.pos
-			builder, ttype := lexer.buildFunc(lexer.ch, true)
+			builder, ttype := lexer.buildFunc(lexer.ch, true, lexer.pos)
 			lexer.token = Token{Type: ttype, Lexeme: builder, Pos: startPos}
 		} else {
 			lexer.setToken(TtUnknown)
