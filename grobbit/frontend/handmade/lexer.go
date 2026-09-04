@@ -1,9 +1,10 @@
 package handmade
 
 import (
-	. "Grobbit/common"
 	"strings"
 	"unicode"
+
+	. "Grobbit/common"
 )
 
 type Lexer struct {
@@ -148,6 +149,9 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.nextRune()
 	}
 
+	for lexer.processWhiteSpaces() {
+	}
+
 	if lexer.eoi {
 		lexer.setToken(TtEOI)
 		return lexer.token
@@ -155,6 +159,7 @@ func (lexer *Lexer) NextToken() Token {
 
 	switch lexer.ch {
 	// TODO: INT,FLOAT, CHAR, STRING
+
 	case '+':
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
@@ -163,6 +168,7 @@ func (lexer *Lexer) NextToken() Token {
 		} else {
 			lexer.setToken(TtOpAdd)
 		}
+
 	case '-':
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpSub, pair{'=', TtOpSubAssign})
@@ -171,14 +177,18 @@ func (lexer *Lexer) NextToken() Token {
 		} else {
 			lexer.setToken(TtOpSub)
 		}
+
 	case '*':
 		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
+
 	case '/':
 		// DONE
 		lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
+
 	case '%':
 		// DONE
 		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
+
 	case '&':
 		// DONE
 		if lexer.peekRuneIs(rune('^')) {
@@ -189,6 +199,7 @@ func (lexer *Lexer) NextToken() Token {
 		} else {
 			lexer.setToken(TtOpBitAnd, pair{'=', TtOpBitAndAssign})
 		}
+
 	case '|':
 		// DONE
 		if lexer.peekRuneIs(rune('=')) {
@@ -200,12 +211,14 @@ func (lexer *Lexer) NextToken() Token {
 	case '^':
 		// DONE
 		lexer.setToken(TtOpBitXor, pair{'=', TtOpBitXorAssign})
+
 	case '<':
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpLt, pair{'=', TtOpLe})
 		} else {
 			lexer.setToken(TtOpLt, pair{'<', TtOpBitShl}, pair{'=', TtOpBitShlAssign})
 		}
+
 	case '>':
 		// DONE
 		if lexer.peekRuneIs(rune('=')) {
@@ -213,45 +226,60 @@ func (lexer *Lexer) NextToken() Token {
 		} else {
 			lexer.setToken(TtOpGt, pair{'>', TtOpBitShr}, pair{'=', TtOpBitShrAssign})
 		}
+
 	case '=':
 		// DONE
 		lexer.setToken(TtOpAssign, pair{'=', TtOpEq})
+
 	case '!':
 		// DONE
 		lexer.setToken(TtOpNot, pair{'=', TtOpNe})
+
 	case '(':
 		// DONE
 		lexer.setToken(TtLParen)
+
 	case '[':
 		// DONE
 		lexer.setToken(TtLBracket)
+
 	case '{':
 		// DONE
 		lexer.setToken(TtLBrace)
+
 	case ',':
 		// DONE
 		lexer.setToken(TtComma)
+
 	case '.':
 		// TODO: ...
+		// fuck this fucking case i hate this thing
 		lexer.setToken(TtPeriod, pair{'.', TtPeriod}, pair{'.', TtOpEllipsis})
+
 	case ')':
 		// DONE
 		lexer.setToken(TtRParen)
+
 	case ']':
 		// DONE
 		lexer.setToken(TtRBracket)
+
 	case '}':
 		// DONE
 		lexer.setToken(TtRBrace)
+
 	case ';':
 		// DONE
 		lexer.setToken(TtSemicolon)
+
 	case ':':
 		// DONE
 		lexer.setToken(TtColon, pair{'=', TtOpDefine})
+
 	case '~':
 		// DONE
 		lexer.setToken(TtTilde)
+
 	case '"':
 		builder := strings.Builder{}
 		startPos := lexer.pos
@@ -264,6 +292,7 @@ func (lexer *Lexer) NextToken() Token {
 		builder.WriteRune(lexer.ch)
 		lexer.nextRune()
 		lexer.token = Token{Type: TtString, Lexeme: builder.String(), Pos: startPos}
+
 	case '\'':
 		builder := strings.Builder{}
 		startPos := lexer.pos
