@@ -1,9 +1,9 @@
 package handmade
 
 import (
-	"unicode"
-
 	. "Grobbit/common"
+	"strings"
+	"unicode"
 )
 
 type Lexer struct {
@@ -90,6 +90,17 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 	}
 }
 
+func (lexer *Lexer) identifier() string {
+	var builder strings.Builder
+	builder.WriteRune(lexer.ch)
+	lexer.nextRune()
+	for unicode.IsLetter(lexer.ch) || lexer.ch == '_' || unicode.IsDigit(lexer.ch) {
+		builder.WriteRune(lexer.ch)
+		lexer.nextRune()
+	}
+	return builder.String()
+}
+
 func (lexer *Lexer) resetToken(Tt TokenType) {
 	lexer.token = Token{Type: Tt, Lexeme: lexer.token.Lexeme + string(lexer.ch), Pos: lexer.token.Pos}
 	lexer.nextRune()
@@ -143,11 +154,7 @@ func (lexer *Lexer) NextToken() Token {
 	}
 
 	switch lexer.ch {
-	// TODO: IDENT, INT,, FLOAT, CHAR, STRING, break, case,
-	// chan, const, continue, default, defer, else,
-	// fallthrough, for, func, go, goto, if, import,
-	// interface, map, package, range, return, select,
-	// struct, switch, type, var
+	// TODO: INT,FLOAT, CHAR, STRING
 	case '+':
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
@@ -245,8 +252,39 @@ func (lexer *Lexer) NextToken() Token {
 	case '~':
 		// DONE
 		lexer.setToken(TtTilde)
+	case '"':
+		builder := strings.Builder{}
+		startPos := lexer.pos
+		for !lexer.eoi && !lexer.peekRuneIs('"') {
+			builder.WriteRune(lexer.ch)
+			lexer.nextRune()
+		}
+		builder.WriteRune(lexer.ch)
+		lexer.nextRune()
+		builder.WriteRune(lexer.ch)
+		lexer.nextRune()
+		lexer.token = Token{Type: TtString, Lexeme: builder.String(), Pos: startPos}
+	case '\'':
+		builder := strings.Builder{}
+		startPos := lexer.pos
+		for !lexer.eoi && !lexer.peekRuneIs('\'') {
+			builder.WriteRune(lexer.ch)
+			lexer.nextRune()
+		}
+		builder.WriteRune(lexer.ch)
+		lexer.nextRune()
+		builder.WriteRune(lexer.ch)
+		lexer.nextRune()
+		lexer.token = Token{Type: TtChar, Lexeme: builder.String(), Pos: startPos}
+
 	default:
-		lexer.setToken(TtUnknown)
+		if unicode.IsLetter(lexer.ch) || lexer.ch == '_' {
+			lexeme := lexer.identifier()
+			lexer.setToken(Lookup(lexeme))
+			lexer.token.Lexeme = lexeme
+		} else {
+			lexer.setToken(TtUnknown)
+		}
 	}
 	return lexer.token
 }
