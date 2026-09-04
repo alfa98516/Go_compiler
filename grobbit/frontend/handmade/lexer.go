@@ -101,6 +101,40 @@ func (lexer *Lexer) identifier() string {
 	return builder.String()
 }
 
+func (lexer *Lexer) buildFunc(ru rune, digit bool) (string, TokenType) {
+
+	ttype := TtString
+	builder := strings.Builder{}
+	var floa = false
+	if digit {
+		ttype = TtInt
+		for !lexer.eoi && (unicode.IsDigit(lexer.ch) || (lexer.peekRuneIs('.') && !floa)) {
+
+			if lexer.peekRuneIs(rune('.')) && !floa {
+				builder.WriteRune(lexer.ch)
+				lexer.nextRune()
+				builder.WriteRune(lexer.ch)
+				lexer.nextRune()
+				floa = true
+				ttype = TtFloat
+			} else {
+				builder.WriteRune(lexer.ch)
+				lexer.nextRune()
+			}
+		}
+		return builder.String(), ttype
+	}
+	for !lexer.eoi && !lexer.peekRuneIs(ru) {
+		builder.WriteRune(lexer.ch)
+		lexer.nextRune()
+	}
+	builder.WriteRune(lexer.ch)
+	lexer.nextRune()
+	builder.WriteRune(lexer.ch)
+	lexer.nextRune()
+	return builder.String(), ttype
+}
+
 func (lexer *Lexer) resetToken(Tt TokenType) {
 	lexer.token = Token{Type: Tt, Lexeme: lexer.token.Lexeme + string(lexer.ch), Pos: lexer.token.Pos}
 	lexer.nextRune()
@@ -154,7 +188,7 @@ func (lexer *Lexer) NextToken() Token {
 	}
 
 	switch lexer.ch {
-	// TODO: INT,FLOAT, CHAR, STRING
+	// TODO: FLOAT
 	case '+':
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
@@ -253,35 +287,24 @@ func (lexer *Lexer) NextToken() Token {
 		// DONE
 		lexer.setToken(TtTilde)
 	case '"':
-		builder := strings.Builder{}
 		startPos := lexer.pos
-		for !lexer.eoi && !lexer.peekRuneIs('"') {
-			builder.WriteRune(lexer.ch)
-			lexer.nextRune()
-		}
-		builder.WriteRune(lexer.ch)
-		lexer.nextRune()
-		builder.WriteRune(lexer.ch)
-		lexer.nextRune()
-		lexer.token = Token{Type: TtString, Lexeme: builder.String(), Pos: startPos}
+		builder, _ := lexer.buildFunc('"', false)
+		lexer.token = Token{Type: TtString, Lexeme: builder, Pos: startPos}
+
 	case '\'':
-		builder := strings.Builder{}
 		startPos := lexer.pos
-		for !lexer.eoi && !lexer.peekRuneIs('\'') {
-			builder.WriteRune(lexer.ch)
-			lexer.nextRune()
-		}
-		builder.WriteRune(lexer.ch)
-		lexer.nextRune()
-		builder.WriteRune(lexer.ch)
-		lexer.nextRune()
-		lexer.token = Token{Type: TtChar, Lexeme: builder.String(), Pos: startPos}
+		builder, _ := lexer.buildFunc('\'', false)
+		lexer.token = Token{Type: TtChar, Lexeme: builder, Pos: startPos}
 
 	default:
 		if unicode.IsLetter(lexer.ch) || lexer.ch == '_' {
 			lexeme := lexer.identifier()
 			lexer.setToken(Lookup(lexeme))
 			lexer.token.Lexeme = lexeme
+		} else if unicode.IsDigit(lexer.ch) {
+			startPos := lexer.pos
+			builder, ttype := lexer.buildFunc(lexer.ch, true)
+			lexer.token = Token{Type: ttype, Lexeme: builder, Pos: startPos}
 		} else {
 			lexer.setToken(TtUnknown)
 		}
