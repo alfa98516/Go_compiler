@@ -95,11 +95,17 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 
 func (lexer *Lexer) identifier() string {
 	var builder strings.Builder
-	builder.WriteRune(lexer.ch)
-	lexer.nextRune()
-	for unicode.IsLetter(lexer.ch) || lexer.ch == '_' || unicode.IsDigit(lexer.ch) {
+
+	for {
+
 		builder.WriteRune(lexer.ch)
-		lexer.nextRune()
+		nextR, _ := lexer.peekRune()
+		if unicode.IsLetter(nextR) || nextR == '_' ||
+			unicode.IsDigit(nextR) {
+			lexer.nextRune()
+		} else {
+			break
+		}
 	}
 	return builder.String()
 }
