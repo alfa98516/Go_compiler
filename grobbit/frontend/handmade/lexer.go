@@ -114,6 +114,12 @@ func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenTy
 	floa := false
 	if digit {
 		ttype = TtInt
+		if lexer.ch == '.' {
+			floa = true
+			ttype = TtFloat
+			builder.WriteRune(lexer.ch)
+			lexer.nextRune()
+		}
 		for !lexer.eoi && (unicode.IsDigit(lexer.ch) || (lexer.peekRuneIs('.') && !floa)) {
 			if lexer.peekRuneIs(rune('.')) && !floa {
 				builder.WriteRune(lexer.ch)
@@ -295,6 +301,7 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtComma)
 
 	case '.':
+		nextRune, _ := lexer.peekRune()
 		if lexer.peekRuneIs('.') {
 			if lexer.eoi || lexer.i+2 >= lexer.n {
 				lexer.setToken(TtPeriod)
@@ -305,6 +312,10 @@ func (lexer *Lexer) NextToken() Token {
 					lexer.setToken(TtPeriod)
 				}
 			}
+		} else if unicode.IsDigit(nextRune) {
+			startPos := lexer.pos
+			builder, ttype := lexer.buildFunc(lexer.ch, true, lexer.pos)
+			lexer.token = Token{Type: ttype, Lexeme: builder, Pos: startPos}
 		} else {
 			lexer.setToken(TtPeriod)
 		}
