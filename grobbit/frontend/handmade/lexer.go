@@ -69,9 +69,18 @@ type pair struct {
 	t TokenType
 }
 
+/*
+ * @brief This function is my baby, I'm really proud of it
+ * The original given setToken function didnt work correctly, what this one does is it continuously makes a guess for what the current token is.
+ * if we get "&", and the next char is '^', we send setToken all possible outcomes from that token:
+ * setToken(TtOpBitXor, pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign})
+ * From this, the function checks what the next rune is, and continuously guesses what the token might be, until there's no doubt about what it is.
+ */
 func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 	lenpairs := len(pairs)
 	nextR, _ := lexer.peekRune()
+	// we check here if the next rune is actually equal to the first rune in the pairs.
+	// this is so we dont consume unnecessary tokens
 	if lenpairs == 0 || (lenpairs > 0 && (pairs[0].r != nextR)) {
 		lexer.token = Token{Type: Tt, Lexeme: string(lexer.ch), Pos: lexer.pos}
 		lexer.nextRune()
@@ -83,7 +92,7 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 			lexer.token = Token{Type: Tt, Lexeme: string(startChar), Pos: lexer.pos}
 			for _, p := range pairs {
 				if lexer.ch == p.r {
-					lexer.token = Token{Type: p.t, Lexeme: lexer.token.Lexeme + string(lexer.ch), Pos: startPos}
+					lexer.token = Token{Type: p.t, Lexeme: lexer.token.Lexeme + string(lexer.ch), Pos: startPos} // continueously concatinate the lexeme and current character.
 					lexer.nextRune()
 					lexer.token.PosEnd = lexer.pos
 					continue
@@ -95,7 +104,7 @@ func (lexer *Lexer) setToken(Tt TokenType, pairs ...pair) {
 
 func (lexer *Lexer) identifier() string {
 	var builder strings.Builder
-	for {
+	for { // not good practice to do this obviously, but i couldnt find a comfortable breaking point that could be calculated at start of loop
 		builder.WriteRune(lexer.ch)
 		nextR, _ := lexer.peekRune()
 		if unicode.IsLetter(nextR) || nextR == '_' ||
@@ -108,6 +117,10 @@ func (lexer *Lexer) identifier() string {
 	return builder.String()
 }
 
+/* @brief chimera of a function, do not do this.
+ * Handles floats, ints, exponents, imaginaries, runes and strings.
+ * This is too much load for one function and we would've done it differently if we had the chance
+ */
 func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenType) {
 	ttype := TtString
 	builder := strings.Builder{}
@@ -124,8 +137,15 @@ func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenTy
 		for !lexer.eoi && (unicode.IsDigit(lexer.ch) ||
 			(lexer.peekRuneIs('.') && !floa)) ||
 			(floa && (lexer.ch == 'E' || lexer.ch == 'e')) ||
-			((floa && exp) && lexer.ch == '+') {
+			((floa && exp) && lexer.ch == '+') || lexer.ch == 'i' {
 
+			if lexer.ch == 'i' {
+				builder.WriteRune(lexer.ch)
+				ttype = TtImag
+				lexer.nextRune()
+				return builder.String(), ttype
+
+			}
 			if lexer.ch == 'e' || lexer.ch == 'E' {
 				exp = true
 			}
@@ -134,6 +154,8 @@ func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenTy
 				lexer.nextRune()
 				builder.WriteRune(lexer.ch)
 				lexer.nextRune()
+				// the reason we consum and write so much is because if we dont, it writes not enough runes
+				// it makes no sense, but this works, i dont know why it does this, but consuming two more than seemingly necessary seems to work
 				floa = true
 				ttype = TtFloat
 			} else {
@@ -145,7 +167,7 @@ func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenTy
 	}
 	for !lexer.eoi && !lexer.peekRuneIs(ru) {
 		if lexer.peekRuneIs('\n') {
-			lexer.errorHandler(ps, "string literal not terminated")
+			lexer.errorHandler(ps, "string literal not terminated") // error message copied directly from builtin
 			break
 		}
 		builder.WriteRune(lexer.ch)
@@ -179,7 +201,8 @@ func (lexer *Lexer) processWhiteSpaces() bool {
 
 // Init function initialises the lexical analysis.
 func (lexer *Lexer) Init(src []byte, handler ErrorHandler) {
-	lexer.src, lexer.n, lexer.i = []rune(string(src)), len(src), -1
+	str := []rune(string(src))                               // Fix: cast to string
+	lexer.src, lexer.n, lexer.i = []rune(str), len(str), -1. // Fix: len of str
 	lexer.eoi = false
 	lexer.pos = Position{Line: 1, Col: 0}
 	lexer.errorHandler = handler
@@ -188,8 +211,6 @@ func (lexer *Lexer) Init(src []byte, handler ErrorHandler) {
 
 // NextToken reads and returns the next token.
 func (lexer *Lexer) NextToken() Token {
-	// TODO: Modify the code in here.
-
 	for lexer.processWhiteSpaces() {
 		// Nothing ...
 	}
@@ -216,7 +237,6 @@ func (lexer *Lexer) NextToken() Token {
 	}
 
 	switch lexer.ch {
-	// TODO: FLOAT
 	case '+':
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpAdd, pair{'=', TtOpAddAssign})
@@ -239,15 +259,12 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtOpMul, pair{'=', TtOpMulAssign})
 
 	case '/':
-		// DONE
 		lexer.setToken(TtOpDiv, pair{'=', TtOpDivAssign})
 
 	case '%':
-		// DONE
 		lexer.setToken(TtOpMod, pair{'%', TtOpModAssign})
 
 	case '&':
-		// DONE
 		if lexer.peekRuneIs(rune('^')) {
 			//lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot})
 			lexer.setToken(TtOpBitAnd, pair{'^', TtOpBitAndNot}, pair{'=', TtOpBitAndNotAssign})
@@ -258,7 +275,6 @@ func (lexer *Lexer) NextToken() Token {
 		}
 
 	case '|':
-		// DONE
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpBitOr, pair{'=', TtOpBitOrAssign})
 		} else {
@@ -266,7 +282,6 @@ func (lexer *Lexer) NextToken() Token {
 		}
 
 	case '^':
-		// DONE
 		lexer.setToken(TtOpBitXor, pair{'=', TtOpBitXorAssign})
 
 	case '<':
@@ -277,7 +292,6 @@ func (lexer *Lexer) NextToken() Token {
 		}
 
 	case '>':
-		// DONE
 		if lexer.peekRuneIs(rune('=')) {
 			lexer.setToken(TtOpGt, pair{'=', TtOpGe})
 		} else {
@@ -285,27 +299,21 @@ func (lexer *Lexer) NextToken() Token {
 		}
 
 	case '=':
-		// DONE
 		lexer.setToken(TtOpAssign, pair{'=', TtOpEq})
 
 	case '!':
-		// DONE
 		lexer.setToken(TtOpNot, pair{'=', TtOpNe})
 
 	case '(':
-		// DONE
 		lexer.setToken(TtLParen)
 
 	case '[':
-		// DONE
 		lexer.setToken(TtLBracket)
 
 	case '{':
-		// DONE
 		lexer.setToken(TtLBrace)
 
 	case ',':
-		// DONE
 		lexer.setToken(TtComma)
 
 	case '.':
@@ -329,27 +337,21 @@ func (lexer *Lexer) NextToken() Token {
 		}
 
 	case ')':
-		// DONE
 		lexer.setToken(TtRParen)
 
 	case ']':
-		// DONE
 		lexer.setToken(TtRBracket)
 
 	case '}':
-		// DONE
 		lexer.setToken(TtRBrace)
 
 	case ';':
-		// DONE
 		lexer.setToken(TtSemicolon)
 
 	case ':':
-		// DONE
 		lexer.setToken(TtColon, pair{'=', TtOpDefine})
 
 	case '~':
-		// DONE
 		lexer.setToken(TtTilde)
 
 	case '"':
@@ -360,6 +362,9 @@ func (lexer *Lexer) NextToken() Token {
 	case '\'':
 		startPos := lexer.pos
 		builder, _ := lexer.buildFunc('\'', false, lexer.pos)
+		if len(builder) != 3 {
+			lexer.errorHandler(startPos, "illegal rune literal")
+		}
 		lexer.token = Token{Type: TtChar, Lexeme: builder, Pos: startPos}
 
 	default:
