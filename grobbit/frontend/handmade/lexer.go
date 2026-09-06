@@ -295,9 +295,19 @@ func (lexer *Lexer) NextToken() Token {
 		lexer.setToken(TtComma)
 
 	case '.':
-		// TODO: ...
-		// fuck this fucking case i hate this thing
-		lexer.setToken(TtPeriod, pair{'.', TtPeriod}, pair{'.', TtOpEllipsis})
+		if lexer.peekRuneIs('.') {
+			if lexer.eoi || lexer.i+2 >= lexer.n {
+				lexer.setToken(TtPeriod)
+			} else {
+				if lexer.src[lexer.i+2] == '.' {
+					lexer.setToken(TtPeriod, pair{'.', TtPeriod}, pair{'.', TtOpEllipsis})
+				} else {
+					lexer.setToken(TtPeriod)
+				}
+			}
+		} else {
+			lexer.setToken(TtPeriod)
+		}
 
 	case ')':
 		// DONE
