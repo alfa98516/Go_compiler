@@ -112,6 +112,7 @@ func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenTy
 	ttype := TtString
 	builder := strings.Builder{}
 	floa := false
+	exp := false
 	if digit {
 		ttype = TtInt
 		if lexer.ch == '.' {
@@ -120,7 +121,14 @@ func (lexer *Lexer) buildFunc(ru rune, digit bool, ps Position) (string, TokenTy
 			builder.WriteRune(lexer.ch)
 			lexer.nextRune()
 		}
-		for !lexer.eoi && (unicode.IsDigit(lexer.ch) || (lexer.peekRuneIs('.') && !floa)) {
+		for !lexer.eoi && (unicode.IsDigit(lexer.ch) ||
+			(lexer.peekRuneIs('.') && !floa)) ||
+			(floa && (lexer.ch == 'E' || lexer.ch == 'e')) ||
+			((floa && exp) && lexer.ch == '+') {
+
+			if lexer.ch == 'e' || lexer.ch == 'E' {
+				exp = true
+			}
 			if lexer.peekRuneIs(rune('.')) && !floa {
 				builder.WriteRune(lexer.ch)
 				lexer.nextRune()
