@@ -1,0 +1,20 @@
+     0  *ast.File {
+     1  .  Doc: nil
+     2  .  Package: 1:1
+     3  .  Name: *ast.Ident {
+     4  .  .  NamePos: 1:9
+     5  .  .  Name: "farts"
+     6  .  .  Obj: nil
+     7  .  }
+     8  .  Decls: nil
+     9  .  FileStart: 1:1
+    10  .  FileEnd: 2:70
+    11  .  Scope: *ast.Scope {
+    12  .  .  Outer: nil
+    13  .  .  Objects: map[string]*ast.Object (len = 0) {}
+    14  .  }
+    15  .  Imports: nil
+    16  .  Unresolved: nil
+    17  .  Comments: nil
+    18  .  GoVersion: ""
+    19  }

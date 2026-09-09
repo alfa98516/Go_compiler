@@ -72,7 +72,6 @@ func (parser *Parser) Parse() Node {
 	}
 	for parser.oneOf(parser.token.Type, TtKwConst, TtKwVar, TtKwFunc) {
 		var decl DeclNode
-		FuncD := false
 		switch parser.token.Type {
 		case TtKwConst:
 			decl = parser.ConstDecl()
@@ -80,14 +79,11 @@ func (parser *Parser) Parse() Node {
 			decl = parser.VarDecl()
 		case TtKwFunc:
 			decl = parser.FuncDecl()
-			FuncD = true
 		default:
 			// do nothing (should not happen)
 		}
 		decls = append(decls, decl)
-		if !FuncD {
-			parser.match(TtSemicolon)
-		}
+		parser.match(TtSemicolon)
 	}
 	parser.match(TtEOI)
 	return &FileNode{Tok: token, Name: ident, Imports: imports, Decls: decls}
@@ -423,11 +419,6 @@ func (parser *Parser) BreakStatement() StmtNode {
 
 func (parser *Parser) IfStatement() StmtNode {
 	parser.match(TtKwIf)
-	if parser.matchIf(TtIdentifier) {
-		if parser.oneOf(parser.token.Type, TtLParen, TtPeriod, TtOpDefine, TtOpAssign) {
-			parser.SimpleStatement()
-		}
-	}
 	parser.Expression()
 	parser.BlockStatement()
 	if parser.matchIf(TtKwElse) {
@@ -442,9 +433,15 @@ func (parser *Parser) IfStatement() StmtNode {
 }
 
 func (parser *Parser) ExprAnd() ExprNode {
+	// TODO: ...
+
 	// This code is a place-holder, replace with your implementation.
 	var expr ExprNode = nil
-
+	if parser.token.Type == TtIdentifier {
+		expr = parser.Identifier()
+	} else {
+		expr = parser.BasicLiteral()
+	}
 	return expr
 }
 
