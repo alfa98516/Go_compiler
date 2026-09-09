@@ -376,13 +376,40 @@ func (parser *Parser) BasicLiteral() ExprNode {
 ////////////////// You implement the methods below (add methods as needed) ////////////////////
 
 func (parser *Parser) ConstDecl() DeclNode {
-	// TO DO ...
-	return nil
+	var (
+		spec  SpecNode
+		specs []SpecNode
+	)
+	token := parser.token
+	parser.match(TtKwConst)
+	if parser.matchIf(TtLParen) {
+		for parser.token.Type == TtIdentifier {
+			spec = parser.VarSpec()
+			specs = append(specs, spec)
+			parser.match(TtSemicolon)
+		}
+		parser.match(TtRParen)
+	} else {
+		spec = parser.ConstSpec()
+		specs = append(specs, spec)
+	}
+	return &GenDeclNode{Tok: token, Specs: specs}
 }
 
 func (parser *Parser) ConstSpec() *ValueSpecNode {
-	// TO DO ...
-	return nil
+	var exprs []ExprNode
+	token := parser.token
+	idents := parser.Identifiers()
+	typeExpr := parser.TypeName()
+	parser.match(TtOpAssign)
+	expr := parser.BasicLiteral()
+	exprs = append(exprs, expr)
+	for parser.matchIf(TtComma) {
+		expr = parser.BasicLiteral()
+		exprs = append(exprs, expr)
+	}
+
+	return &ValueSpecNode{Token: token, Names: idents, Type: typeExpr, Values: exprs}
 }
 
 func (parser *Parser) BreakStatement() StmtNode {
