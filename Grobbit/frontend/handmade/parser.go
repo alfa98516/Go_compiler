@@ -440,6 +440,30 @@ func (parser *Parser) IfStatement() StmtNode {
 
 	return nil
 }
+func (parser *Parser) ExprMult() ExprNode {
+	var expr ExprNode = nil
+	expr = parser.ExprUnary()
+	token := parser.token
+	for parser.oneOf(token.Type, TtOpMul, TtOpDiv, TtOpMod) { // TtOpOr has the lowest precedence (see Go specs)
+		rhs := parser.ExprUnary()
+		expr = &BinaryExprNode{Tok: token, Lhs: expr, Rhs: rhs}
+		token = parser.token
+	}
+	return expr
+}
+
+func (parser *Parser) ExprAdd() ExprNode {
+
+	var expr ExprNode = nil
+	expr = parser.ExprMult()
+	token := parser.token
+	for parser.oneOf(token.Type, TtOpAdd, TtOpSub) { // TtOpOr has the lowest precedence (see Go specs)
+		rhs := parser.ExprMult()
+		expr = &BinaryExprNode{Tok: token, Lhs: expr, Rhs: rhs}
+		token = parser.token
+	}
+	return expr
+}
 
 func (parser *Parser) ExprRel() ExprNode {
 	expr := parser.ExprMult()
@@ -463,9 +487,9 @@ func (parser *Parser) ExprAnd() ExprNode {
 	return expr
 }
 
-func (parser *Parser) ExprMult() ExprNode {}
-
-func (praser *Parser) ExprAdd() ExprNode {}
+func (parser *Parser) ExprUnary() ExprNode {
+	return nil
+}
 
 // Add functions as needed to parse expressions with the precedence (and associativity) of Grobbit operators correct
 // (same as in Go). Note that you need to rewrite the grammar for reflecting the correct operator precedence.
