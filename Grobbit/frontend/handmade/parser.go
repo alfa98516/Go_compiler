@@ -5,7 +5,6 @@ import (
 	"slices"
 
 	. "Grobbit/common"
-	"Grobbit/frontend/stub"
 )
 
 type Parser struct {
@@ -43,7 +42,7 @@ func (parser *Parser) matchIf(tt TokenType) bool {
 ///////////////////////////////////// Exported methods ///////////////////////////////////////
 
 func (parser *Parser) ParseSrc(src []byte, handler ErrorHandler) string {
-	var lex stub.Lexer // NOTE: You can change to your own lexer, if you like.
+	var lex Lexer // NOTE: You can change to your own lexer, if you like.
 	lex.Init(src, handler)
 	parser.Init(&lex)
 	astree := parser.Parse()
@@ -73,6 +72,7 @@ func (parser *Parser) Parse() Node {
 	}
 	for parser.oneOf(parser.token.Type, TtKwConst, TtKwVar, TtKwFunc) {
 		var decl DeclNode
+		FuncD := false
 		switch parser.token.Type {
 		case TtKwConst:
 			decl = parser.ConstDecl()
@@ -80,11 +80,14 @@ func (parser *Parser) Parse() Node {
 			decl = parser.VarDecl()
 		case TtKwFunc:
 			decl = parser.FuncDecl()
+			FuncD = true
 		default:
 			// do nothing (should not happen)
 		}
 		decls = append(decls, decl)
-		parser.match(TtSemicolon)
+		if !FuncD {
+			parser.match(TtSemicolon)
+		}
 	}
 	parser.match(TtEOI)
 	return &FileNode{Tok: token, Name: ident, Imports: imports, Decls: decls}
@@ -413,25 +416,35 @@ func (parser *Parser) ConstSpec() *ValueSpecNode {
 }
 
 func (parser *Parser) BreakStatement() StmtNode {
-	// TO DO ...
-	return nil
+	token := parser.token
+	parser.match(TtKwBreak)
+	return &BranchStmtNode{Tok: token}
 }
 
 func (parser *Parser) IfStatement() StmtNode {
-	// TO DO ...
+	parser.match(TtKwIf)
+	if parser.matchIf(TtIdentifier) {
+		if parser.oneOf(parser.token.Type, TtLParen, TtPeriod, TtOpDefine, TtOpAssign) {
+			parser.SimpleStatement()
+		}
+	}
+	parser.Expression()
+	parser.BlockStatement()
+	if parser.matchIf(TtKwElse) {
+		if parser.matchIf(TtLBrace) {
+			parser.BlockStatement()
+		} else {
+			parser.IfStatement()
+		}
+	}
+
 	return nil
 }
 
 func (parser *Parser) ExprAnd() ExprNode {
-	// TO DO ...
-
 	// This code is a place-holder, replace with your implementation.
 	var expr ExprNode = nil
-	if parser.token.Type == TtIdentifier {
-		expr = parser.Identifier()
-	} else {
-		expr = parser.BasicLiteral()
-	}
+
 	return expr
 }
 
