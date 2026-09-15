@@ -1,0 +1,19 @@
+. *common.FileNode {
+. . *common.IdentifierNode {
+. .   main
+. . }
+. . *common.GenDeclNode {
+. .   const
+. . . *common.ValueSpecNode {
+. . . . *common.IdentifierNode {
+. . . .   ææfæa
+. . . . }
+. . . . *common.IdentifierNode {
+. . . .   int
+. . . . }
+. . . . *common.LiteralNode {
+. . . .   3
+. . . . }
+. . . }
+. . }
+. }
