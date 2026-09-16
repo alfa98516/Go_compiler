@@ -42,17 +42,17 @@ func (parser *Parser) matchIf(tt TokenType) bool {
 ///////////////////////////////////// Exported methods ///////////////////////////////////////
 
 func (parser *Parser) ParseSrc(src []byte, handler ErrorHandler) string {
-	var lex_luthor Lexer // NOTE: You can change to your own lexer, if you like.
-	lex_luthor.Init(src, handler)
-	parser.Init(&lex_luthor)
+	var lex Lexer // NOTE: You can change to your own lexer, if you like.
+	lex.Init(src, handler)
+	parser.Init(&lex)
 	astree := parser.Parse()
 	var pv PrintVisitor
 	//ast.Print(nil, astree)  // For a more detailed printing.
 	return pv.Root(astree)
 }
 
-func (parser *Parser) Init(lex_luthor LexerInterface) {
-	parser.lexer = lex_luthor
+func (parser *Parser) Init(lex LexerInterface) {
+	parser.lexer = lex
 	parser.token = parser.lexer.NextToken()
 }
 
