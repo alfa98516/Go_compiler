@@ -254,7 +254,6 @@ func (parser *Parser) BlockStatement() *BlockStmtNode {
 	var stmts []StmtNode
 	token := parser.token
 	parser.match(TtLBrace)
-	fmt.Println("loop")
 	for parser.token.Type != TtRBrace {
 		stmt := parser.Statement()
 		stmts = append(stmts, stmt)
@@ -317,12 +316,14 @@ func (parser *Parser) SimpleStatement() StmtNode {
 	var stmt StmtNode = nil
 	var exprsLhs, exprsRhs []ExprNode
 	exprsLhs = parser.Expressions()
+
 	token := parser.token
+	fmt.Println(token)
 	if parser.oneOf(parser.token.Type, TtOpDefine, TtOpAssign) {
 		parser.match(parser.token.Type)
-		fmt.Println(token)
 		exprsRhs = parser.Expressions()
 		// We leave to it to semantic analysis to check that only identifier expressions on the left-hand-side
+
 		stmt = &AssignStmtNode{Tok: token, Lhs: exprsLhs, Rhs: exprsRhs}
 	} else {
 		if len(exprsLhs) != 1 {
@@ -424,13 +425,12 @@ func (parser *Parser) BreakStatement() StmtNode {
 }
 
 func (parser *Parser) IfStatement() StmtNode {
-	
-	
 	var stmt StmtNode = nil
 	parser.match(TtKwIf)
-	
-	
-	if parser.oneOf(, tts ...TokenType)
+	var init ExprNode = parser.SimpleStatement()
+
+	fmt.Println(init.Tok, stmt)
+
 	return nil
 }
 
@@ -441,7 +441,7 @@ func (parser *Parser) ExprUnary() ExprNode {
 		expr = parser.ExprUnary()
 		return &UnaryExprNode{Tok: token, Expr: expr}
 	}
-	// expr = parser.ExprPrimary()
+	expr = parser.ExprPrimary()
 	return expr
 }
 
@@ -517,7 +517,6 @@ func (parser *Parser) ExprPrimary() ExprNode {
 		}
 		return expr
 	}
-
 }
 
 // Add functions as needed to parse expressions with the precedence (and associativity) of Grobbit operators correct

@@ -1,0 +1,21 @@
+. *common.FileNode {
+. . *common.IdentifierNode {
+. .   main
+. . }
+. . *common.FuncDeclNode {
+. . . *common.IdentifierNode {
+. . .   main
+. . . }
+. .   (
+. .   )
+. .   (
+. . . *common.BlockStmtNode {
+. . . dispatcher called with <nil> node, should not happen
+. . . . *common.ExprStmtNode {
+. . . . dispatcher called with <nil> node, should not happen
+. . . . }
+. . . . *common.BlockStmtNode {
+. . . . }
+. . . }
+. . }
+. }
