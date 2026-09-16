@@ -4,17 +4,186 @@
 . . }
 . . *common.FuncDeclNode {
 . . . *common.IdentifierNode {
+<<<<<<< HEAD
+. . .   main
+=======
+. . .   foo
+>>>>>>> e44d202dd63ad08a5c16597edc7b275e42540969
+. . . }
+. .   (
+. .   )
+. .   (
+. . . *common.BlockStmtNode {
+<<<<<<< HEAD
+. . . dispatcher called with <nil> node, should not happen
+. . . . *common.ExprStmtNode {
+. . . . dispatcher called with <nil> node, should not happen
+. . . . }
+. . . . *common.BlockStmtNode {
+=======
+. . . . *common.ReturnStmtNode {
+. . . .   return
+. . . . }
+. . . }
+. . }
+. . *common.FuncDeclNode {
+. . . *common.IdentifierNode {
+. . .   add
+. . . }
+. .   (
+. . . *common.IdentifierNode {
+. . .   a
+. . . }
+. . . *common.IdentifierNode {
+. . .   int
+. . . }
+. . . *common.IdentifierNode {
+. . .   b
+. . . }
+. . . *common.IdentifierNode {
+. . .   int
+. . . }
+. .   )
+. .   (
+. . . *common.IdentifierNode {
+. . .   int
+. . . }
+. . . *common.BlockStmtNode {
+. . . . *common.ReturnStmtNode {
+. . . .   return
+. . . . . *common.BinaryExprNode {
+. . . . . . *common.IdentifierNode {
+. . . . . .   a
+. . . . . . }
+. . . . .   +
+. . . . . . *common.IdentifierNode {
+. . . . . .   b
+. . . . . . }
+. . . . . }
+. . . . }
+. . . }
+. . }
+. . *common.FuncDeclNode {
+. . . *common.IdentifierNode {
 . . .   main
 . . . }
 . .   (
 . .   )
 . .   (
 . . . *common.BlockStmtNode {
-. . . dispatcher called with <nil> node, should not happen
-. . . . *common.ExprStmtNode {
-. . . . dispatcher called with <nil> node, should not happen
+. . . . *common.DeclStmtNode {
+. . . . . *common.GenDeclNode {
+. . . . .   var
+. . . . . . *common.ValueSpecNode {
+. . . . . . . *common.IdentifierNode {
+. . . . . . .   x
+. . . . . . . }
+. . . . . . . *common.IdentifierNode {
+. . . . . . .   int
+. . . . . . . }
+. . . . . . . *common.LiteralNode {
+. . . . . . .   5
+. . . . . . . }
+. . . . . . }
+. . . . . }
 . . . . }
-. . . . *common.BlockStmtNode {
+. . . . *common.DeclStmtNode {
+. . . . . *common.GenDeclNode {
+. . . . .   var
+. . . . . . *common.ValueSpecNode {
+. . . . . . . *common.IdentifierNode {
+. . . . . . .   y
+. . . . . . . }
+. . . . . . . *common.IdentifierNode {
+. . . . . . .   int
+. . . . . . . }
+. . . . . . . *common.LiteralNode {
+. . . . . . .   10
+. . . . . . . }
+. . . . . . }
+. . . . . }
+. . . . }
+. . . . *common.AssignStmtNode {
+. . . . . *common.IdentifierNode {
+. . . . .   x
+. . . . . }
+. . . .   =
+. . . . . *common.LiteralNode {
+. . . . .   42
+. . . . . }
+. . . . }
+. . . . *common.AssignStmtNode {
+. . . . . *common.IdentifierNode {
+. . . . .   x
+. . . . . }
+. . . .   =
+. . . . . *common.IdentifierNode {
+. . . . .   y
+. . . . . }
+. . . . }
+. . . . *common.AssignStmtNode {
+. . . . . *common.IdentifierNode {
+. . . . .   x
+. . . . . }
+. . . .   =
+. . . . . *common.BinaryExprNode {
+. . . . . . *common.IdentifierNode {
+. . . . . .   y
+. . . . . . }
+. . . . .   +
+. . . . . . *common.LiteralNode {
+. . . . . .   5
+. . . . . . }
+. . . . . }
+. . . . }
+. . . . *common.ExprStmtNode {
+. . . . . *common.CallExprNode {
+. . . . . . *common.IdentifierNode {
+. . . . . .   foo
+. . . . . . }
+. . . . . }
+. . . . }
+. . . . *common.ExprStmtNode {
+. . . . . *common.CallExprNode {
+. . . . . . *common.IdentifierNode {
+. . . . . .   add
+. . . . . . }
+. . . . . . *common.IdentifierNode {
+. . . . . .   x
+. . . . . . }
+. . . . . . *common.IdentifierNode {
+. . . . . .   y
+. . . . . . }
+. . . . . }
+. . . . }
+. . . . *common.ExprStmtNode {
+. . . . . *common.CallExprNode {
+. . . . . . *common.IdentifierNode {
+. . . . . .   add
+. . . . . . }
+. . . . . . *common.BinaryExprNode {
+. . . . . . . *common.IdentifierNode {
+. . . . . . .   x
+. . . . . . . }
+. . . . . .   +
+. . . . . . . *common.LiteralNode {
+. . . . . . .   1
+. . . . . . . }
+. . . . . . }
+. . . . . . *common.BinaryExprNode {
+. . . . . . . *common.IdentifierNode {
+. . . . . . .   y
+. . . . . . . }
+. . . . . .   *
+. . . . . . . *common.LiteralNode {
+. . . . . . .   2
+. . . . . . . }
+. . . . . . }
+. . . . . }
+. . . . }
+. . . . *common.ReturnStmtNode {
+. . . .   return
+>>>>>>> e44d202dd63ad08a5c16597edc7b275e42540969
 . . . . }
 . . . }
 . . }

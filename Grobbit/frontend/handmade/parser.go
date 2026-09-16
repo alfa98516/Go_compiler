@@ -186,7 +186,7 @@ func (parser *Parser) ParamDecl() []*Field {
 	var fields []*Field
 	field := parser.ParamSpec()
 	fields = append(fields, field)
-	for parser.token.Type == TtComma {
+	for parser.matchIf(TtComma) {
 		field = parser.ParamSpec()
 		fields = append(fields, field)
 	}
@@ -438,6 +438,8 @@ func (parser *Parser) ExprUnary() ExprNode {
 	var expr ExprNode = nil
 	token := parser.token
 	if parser.oneOf(token.Type, TtOpAdd, TtOpSub, TtOpNot) {
+		parser.match(token.Type)
+
 		expr = parser.ExprUnary()
 		return &UnaryExprNode{Tok: token, Expr: expr}
 	}
@@ -450,6 +452,8 @@ func (parser *Parser) ExprMult() ExprNode {
 	expr = parser.ExprUnary()
 	token := parser.token
 	for parser.oneOf(token.Type, TtOpMul, TtOpDiv, TtOpMod) { // TtOpOr has the lowest precedence (see Go specs)
+		parser.match(token.Type)
+
 		rhs := parser.ExprUnary()
 		expr = &BinaryExprNode{Tok: token, Lhs: expr, Rhs: rhs}
 		token = parser.token
@@ -462,6 +466,7 @@ func (parser *Parser) ExprAdd() ExprNode {
 	expr = parser.ExprMult()
 	token := parser.token
 	for parser.oneOf(token.Type, TtOpAdd, TtOpSub) { // TtOpOr has the lowest precedence (see Go specs)
+		parser.match(token.Type)
 		rhs := parser.ExprMult()
 		expr = &BinaryExprNode{Tok: token, Lhs: expr, Rhs: rhs}
 		token = parser.token
@@ -473,11 +478,12 @@ func (parser *Parser) ExprRel() ExprNode {
 	expr := parser.ExprAdd()
 	token := parser.token
 	for parser.oneOf(token.Type, TtOpEq, TtOpNe, TtOpLt, TtOpLe, TtOpGt, TtOpGe) {
+		parser.match(token.Type)
 		rhs := parser.ExprAdd()
 		expr = &BinaryExprNode{Tok: token, Lhs: expr, Rhs: rhs}
 		token = parser.token
 	}
-	return nil
+	return expr
 }
 
 func (parser *Parser) ExprAnd() ExprNode {
