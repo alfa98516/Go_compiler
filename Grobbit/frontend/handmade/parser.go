@@ -299,6 +299,7 @@ func (parser *Parser) ForStatement() *ForStmtNode {
 		}
 	}
 	var condExpr ExprNode = nil
+
 	if cond != nil {
 		if tmp, isExpr := cond.(*ExprStmtNode); isExpr { // Ensure, condition is an ExpressionStmt
 			condExpr = tmp.Expr
@@ -308,6 +309,7 @@ func (parser *Parser) ForStatement() *ForStmtNode {
 			// terminates
 		}
 	}
+
 	block := parser.BlockStatement()
 	return &ForStmtNode{Tok: token, Init: init, Cond: condExpr, Post: post, Body: block}
 }
@@ -316,11 +318,14 @@ func (parser *Parser) SimpleStatement() StmtNode {
 	var stmt StmtNode = nil
 	var exprsLhs, exprsRhs []ExprNode
 	exprsLhs = parser.Expressions()
+
 	token := parser.token
+	fmt.Println(token)
 	if parser.oneOf(parser.token.Type, TtOpDefine, TtOpAssign) {
 		parser.match(parser.token.Type)
 		exprsRhs = parser.Expressions()
 		// We leave to it to semantic analysis to check that only identifier expressions on the left-hand-side
+
 		stmt = &AssignStmtNode{Tok: token, Lhs: exprsLhs, Rhs: exprsRhs}
 	} else {
 		if len(exprsLhs) != 1 {
@@ -422,23 +427,31 @@ func (parser *Parser) BreakStatement() StmtNode {
 }
 
 func (parser *Parser) IfStatement() StmtNode {
+	token := parser.token
 	parser.match(TtKwIf)
-	if parser.matchIf(TtIdentifier) {
-		if parser.oneOf(parser.token.Type, TtLParen, TtPeriod, TtOpDefine, TtOpAssign) {
-			parser.SimpleStatement()
+	init := parser.SimpleStatement()
+	var cond ExprNode = nil
+	if parser.matchIf(TtSemicolon) {
+		cond = parser.Expression()
+	} else {
+		exprStmt, ok := init.(*ExprStmtNode)
+		if !ok {
+			msg := fmt.Sprintf("If condition needs to be an expression at position %s", parser.token.Pos)
+			parser.matchError(msg)
 		}
+		cond = exprStmt.Expr
 	}
-	parser.Expression()
-	parser.BlockStatement()
+	body := parser.BlockStatement()
+	var elseStmt StmtNode = nil
 	if parser.matchIf(TtKwElse) {
-		if parser.matchIf(TtLBrace) {
-			parser.BlockStatement()
+		if parser.token.Type == TtKwIf {
+			elseStmt = parser.IfStatement()
 		} else {
-			parser.IfStatement()
+			elseStmt = parser.BlockStatement()
 		}
 	}
 
-	return nil
+	return &IfStmtNode{Tok: token, Init: init, Cond: cond, Body: body, Else: elseStmt}
 }
 
 func (parser *Parser) ExprUnary() ExprNode {
@@ -530,7 +543,6 @@ func (parser *Parser) ExprPrimary() ExprNode {
 		}
 		return expr
 	}
-
 }
 
 // Add functions as needed to parse expressions with the precedence (and associativity) of Grobbit operators correct

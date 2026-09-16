@@ -4,12 +4,23 @@
 . . }
 . . *common.FuncDeclNode {
 . . . *common.IdentifierNode {
+<<<<<<< HEAD
+. . .   main
+=======
 . . .   foo
+>>>>>>> e44d202dd63ad08a5c16597edc7b275e42540969
 . . . }
 . .   (
 . .   )
 . .   (
 . . . *common.BlockStmtNode {
+<<<<<<< HEAD
+. . . dispatcher called with <nil> node, should not happen
+. . . . *common.ExprStmtNode {
+. . . . dispatcher called with <nil> node, should not happen
+. . . . }
+. . . . *common.BlockStmtNode {
+=======
 . . . . *common.ReturnStmtNode {
 . . . .   return
 . . . . }
@@ -172,6 +183,7 @@
 . . . . }
 . . . . *common.ReturnStmtNode {
 . . . .   return
+>>>>>>> e44d202dd63ad08a5c16597edc7b275e42540969
 . . . . }
 . . . }
 . . }
