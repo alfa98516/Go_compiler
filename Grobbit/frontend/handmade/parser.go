@@ -498,5 +498,34 @@ func (parser *Parser) ExprAnd() ExprNode {
 	return expr
 }
 
+func (parser *Parser) ExprPrimary() ExprNode {
+	token := parser.token
+	if parser.oneOf(token.Type, TtInt, TtFloat) {
+		return parser.BasicLiteral()
+	} else if parser.matchIf(TtLParen) {
+		expr := parser.Expression()
+		parser.match(TtRParen)
+		return expr
+	} else {
+		// We now expect this to be an identifier with maybe some added stuff afterwards
+		var expr ExprNode = parser.Identifier()
+
+		if parser.matchIf(TtPeriod) {
+			rhs := parser.Identifier()
+			expr = &BinaryExprNode{Tok: token, Lhs: expr, Rhs: rhs}
+		}
+		if parser.matchIf(TtLParen) {
+			var args []ExprNode
+			if parser.token.Type != TtRParen {
+				args = parser.Expressions()
+			}
+			parser.match(TtRParen)
+			return &CallExprNode{Tok: token, Fun: expr, Args: args}
+		}
+		return expr
+	}
+
+}
+
 // Add functions as needed to parse expressions with the precedence (and associativity) of Grobbit operators correct
 // (same as in Go). Note that you need to rewrite the grammar for reflecting the correct operator precedence.
