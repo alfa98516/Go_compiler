@@ -8,11 +8,7 @@
      7  .  }
      8  .  Decls: nil
      9  .  FileStart: 1:1
-<<<<<<< HEAD
-    10  .  FileEnd: 3:45
-=======
-    10  .  FileEnd: 3:237
->>>>>>> e44d202dd63ad08a5c16597edc7b275e42540969
+    10  .  FileEnd: 3:44
     11  .  Scope: *ast.Scope {
     12  .  .  Outer: nil
     13  .  .  Objects: map[string]*ast.Object (len = 0) {}
