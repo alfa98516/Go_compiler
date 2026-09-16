@@ -299,6 +299,7 @@ func (parser *Parser) ForStatement() *ForStmtNode {
 		}
 	}
 	var condExpr ExprNode = nil
+
 	if cond != nil {
 		if tmp, isExpr := cond.(*ExprStmtNode); isExpr { // Ensure, condition is an ExpressionStmt
 			condExpr = tmp.Expr
@@ -308,6 +309,7 @@ func (parser *Parser) ForStatement() *ForStmtNode {
 			// terminates
 		}
 	}
+
 	block := parser.BlockStatement()
 	return &ForStmtNode{Tok: token, Init: init, Cond: condExpr, Post: post, Body: block}
 }
@@ -425,13 +427,31 @@ func (parser *Parser) BreakStatement() StmtNode {
 }
 
 func (parser *Parser) IfStatement() StmtNode {
-	var stmt StmtNode = nil
+	token := parser.token
 	parser.match(TtKwIf)
-	var init ExprNode = parser.SimpleStatement()
+	init := parser.SimpleStatement()
+	var cond ExprNode = nil
+	if parser.matchIf(TtSemicolon) {
+		cond = parser.Expression()
+	} else {
+		exprStmt, ok := init.(*ExprStmtNode)
+		if !ok {
+			msg := fmt.Sprintf("If condition needs to be an expression at position %s", parser.token.Pos)
+			parser.matchError(msg)
+		}
+		cond = exprStmt.Expr
+	}
+	body := parser.BlockStatement()
+	var elseStmt StmtNode = nil
+	if parser.matchIf(TtKwElse) {
+		if parser.token.Type == TtKwIf {
+			elseStmt = parser.IfStatement()
+		} else {
+			elseStmt = parser.BlockStatement()
+		}
+	}
 
-	fmt.Println(init.Tok, stmt)
-
-	return nil
+	return &IfStmtNode{Tok: token, Init: init, Cond: cond, Body: body, Else: elseStmt}
 }
 
 func (parser *Parser) ExprUnary() ExprNode {
