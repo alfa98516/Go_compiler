@@ -1,0 +1,21 @@
+package student;
+func Lhs() bool {
+    Print(100);
+    return true;
+};
+
+func Rhs() bool {
+    print(200);
+    return false;
+}; 
+
+func testLogicalOperators() {
+    a := Rhs() || Lhs();
+    Print(a);
+};
+
+func main() {
+    testLogicalOperators();
+}
+
+
