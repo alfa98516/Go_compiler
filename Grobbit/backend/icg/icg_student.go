@@ -72,8 +72,10 @@ Returns a llvm value (llvm.Operand) with the result.
 */
 func LogicalNotOp(v *IRVisitor, node *UnaryExprNode) llvm.Operand {
 	// TO DO: add your do here (replacing dummy placeholder below).
-	dummy := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, llvm.NewLiteral(llvm.I32, "0"), llvm.NewLiteral(llvm.I32, "0")))
-	return dummy
+	v.visit(node.Tok)
+	value := v.ir.exprOperand
+	not_operator := v.ir.activeBlock.Append((llvm.NewICmpInstr(llvm.Eq, value, llvm.NewLiteral(llvm.I32, "0"))))
+	return not_operator
 
 }
 
