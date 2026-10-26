@@ -74,7 +74,6 @@ func LogicalNotOp(v *IRVisitor, node *UnaryExprNode) llvm.Operand {
 	// TO DO: add your do here (replacing dummy placeholder below).
 	dummy := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, llvm.NewLiteral(llvm.I32, "0"), llvm.NewLiteral(llvm.I32, "0")))
 	return dummy
-
 }
 
 /*
@@ -85,7 +84,6 @@ func LogicalOrOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 	// TO DO: add your do here (replacing dummy placeholder below).
 	dummy := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, llvm.NewLiteral(llvm.I32, "0"), llvm.NewLiteral(llvm.I32, "0")))
 	return dummy
-
 }
 
 /*
@@ -96,7 +94,6 @@ func LogicalAndOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 	// TO DO: add your do here (replacing dummy placeholder below).
 	dummy := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, llvm.NewLiteral(llvm.I32, "0"), llvm.NewLiteral(llvm.I32, "0")))
 	return dummy
-
 }
 
 /*
