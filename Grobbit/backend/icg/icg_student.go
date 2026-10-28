@@ -67,7 +67,11 @@ func ComparisonOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 	v.visit(node.Rhs)
 	rhsOp := v.ir.exprOperand
 	var operand *llvm.Register
-	operand = v.ir.activeBlock.Append(llvm.NewICmpInstr(mapICmpOp[node.Tok.Type], lhsOp, rhsOp))
+	if node.GetType().String() == "float64" {
+		operand = v.ir.activeBlock.Append(llvm.NewFCmpInstr(mapFCmpOp[node.Tok.Type], lhsOp, rhsOp))
+	} else {
+		operand = v.ir.activeBlock.Append(llvm.NewICmpInstr(mapICmpOp[node.Tok.Type], lhsOp, rhsOp))
+	}
 
 	return operand
 }
