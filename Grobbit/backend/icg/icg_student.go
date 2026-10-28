@@ -172,4 +172,30 @@ func LogicalAndOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 */
 func ForStmt(v *IRVisitor, node *ForStmtNode) {
 	// TO DO: add your do here (replacing dummy placeholder below).
+
+	init_label, cond_label, post_label, body_label, end_label := llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel()
+	if !IsNil(node.Init) {
+		v.visit(node.Init)
+	}
+	block_init := v.ir.activeBlock.Get()
+	block_init.Close(llvm.NewBranchInstr(cond_label))
+	if !IsNil(node.Cond) {
+		v.visit(node.Cond)
+		cond_op := v.ir.exprOperand
+		block_cond := v.ir.function.Append(llvm.NewBlock(cond_label, "cond"))
+		block_cond.Close(llvm.NewBranchCondInstr(cond_op, body_label, end_label))
+	} else {
+		block_cond := v.ir.function.Append(llvm.NewBlock(cond_label, "cond"))
+		block_cond.Close(llvm.NewBranchInstr(body_label))
+	}
+	if !IsNil(node.Post) {
+		v.visit(node.Post)
+	}
+	block_post := v.ir.function.Append(llvm.NewBlock(post_label, "post"))
+	block_post = v.ir.activeBlock.Get()
+	block_post.Close(llvm.NewBranchInstr(cond_label))
+
+	v.visit(node.Body)
+	block_body := v.ir.function.Append(llvm.NewBlock(body_label, "block"))
+	block_body.Close((llvm.NewBranchInstr(cond_label)))
 }
