@@ -84,7 +84,7 @@ func LogicalNotOp(v *IRVisitor, node *UnaryExprNode) llvm.Operand {
 	v.visit(node.Expr)
 	value := v.ir.exprOperand
 	var not_operator *llvm.Register
-	not_operator = v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, value, llvm.NewLiteral(llvm.I32, "0")))
+	not_operator = v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, value, llvm.NewLiteral(llvm.I1, "0")))
 	return not_operator
 }
 
@@ -93,9 +93,26 @@ LogicalOrOp implements a short-circuit code for the logical or operator.
 Returns a llvm value (llvm.Operand) with the result.
 */
 func LogicalOrOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
-	// TO DO: add your do here (replacing dummy placeholder below).
-	dummy := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, llvm.NewLiteral(llvm.I32, "0"), llvm.NewLiteral(llvm.I32, "0")))
-	return dummy
+
+	merge_label, rhs_label := llvm.NewLabel(), llvm.NewLabel()
+	v.visit(node.Lhs)
+	lhsOp := v.ir.exprOperand
+	lhs_block := v.ir.activeBlock.Get()
+	lhs_block.Close(llvm.NewBranchCondInstr(lhsOp, merge_label, rhs_label))
+	rhs_block := v.ir.function.Append(llvm.NewBlock(rhs_label, "or_rhs"))
+	v.ir.activeBlock.Set(rhs_block)
+	v.visit(node.Rhs)
+	rhsOp := v.ir.exprOperand
+
+	rhs_block = v.ir.activeBlock.Get()
+	rhs_block.Close(llvm.NewBranchInstr(merge_label))
+
+	merge_block := v.ir.function.Append(llvm.NewBlock(merge_label, "or_end"))
+	v.ir.activeBlock.Set(merge_block)
+	var operator *llvm.Register
+	operator = merge_block.Append(llvm.NewPhiInstr(llvm.I1, llvm.ValueLabel{Op: llvm.NewLiteral(llvm.I1, "1"), Label: lhs_block.GetLabel()}, llvm.ValueLabel{Op: rhsOp, Label: rhs_block.GetLabel()}))
+
+	return operator
 }
 
 /*
@@ -103,9 +120,28 @@ LogicalAndOp implements a short-circuit code for the logical and operator.
 Returns a llvm value (llvm.Operand) with the result.
 */
 func LogicalAndOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
-	// TO DO: add your do here (replacing dummy placeholder below).
-	dummy := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, llvm.NewLiteral(llvm.I32, "0"), llvm.NewLiteral(llvm.I32, "0")))
-	return dummy
+	// TO DO: add your do here (replacing dummy placeholder below).merge_label, rhs_label := llvm.NewLabel(), llvm.NewLabel()
+
+	merge_label, rhs_label := llvm.NewLabel(), llvm.NewLabel()
+	v.visit(node.Lhs)
+	lhsOp := v.ir.exprOperand
+	lhs_block := v.ir.activeBlock.Get()
+	lhs_block.Close(llvm.NewBranchCondInstr(lhsOp, rhs_label, merge_label))
+	rhs_block := v.ir.function.Append(llvm.NewBlock(rhs_label, "and_rhs"))
+	v.ir.activeBlock.Set(rhs_block)
+	v.visit(node.Rhs)
+	rhsOp := v.ir.exprOperand
+
+	rhs_block = v.ir.activeBlock.Get()
+	rhs_block.Close(llvm.NewBranchInstr(merge_label))
+
+	merge_block := v.ir.function.Append(llvm.NewBlock(merge_label, "and_end"))
+	v.ir.activeBlock.Set(merge_block)
+	var operator *llvm.Register
+	operator = merge_block.Append(llvm.NewPhiInstr(llvm.I1, llvm.ValueLabel{Op: llvm.NewLiteral(llvm.I1, "0"), Label: lhs_block.GetLabel()}, llvm.ValueLabel{Op: rhsOp, Label: rhs_block.GetLabel()}))
+
+	return operator
+
 }
 
 /*

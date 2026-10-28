@@ -417,7 +417,13 @@ func NewCallInstr(typ IRType, name string, args ...Operand) *CallInstr {
 	if name == "PrintN" || name == "PrintN_F" {
 		prefix = "(i32, ...)"
 	}
-	return &CallInstr{instr_: instr_{op: Call, ret: NewRegister(typ)}, Typ: typ, Prefix: prefix, Name: name, Args: args}
+	var ret *Register
+
+	if typ != Void {
+		ret = NewRegister(typ)
+	}
+
+	return &CallInstr{instr_: instr_{op: Call, ret: ret}, Typ: typ, Prefix: prefix, Name: name, Args: args}
 }
 
 func (instr *PhiInstr) String() string {
