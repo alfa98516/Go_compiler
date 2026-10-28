@@ -29,91 +29,188 @@ define i32 @foo(i32 %0, i32 %1, i32 %2) {
   %11 = alloca i32
   %12 = alloca i32
   %13 = alloca i32
-  br label %14
-14:
+  %14 = alloca i32
+  %15 = alloca i32
+  %16 = alloca i32
+  br label %17
+17:
   store i32 0, i32* %4
   store i32 %0, i32* %5
   store i32 %1, i32* %6
   store i32 %2, i32* %7
   store i32 100, i32* %8
   store i32 1, i32* %9
-  br label %15
-15:
-  %16 = load i32, i32* %5
-  %17 = load i32, i32* %6
-  %18 = load i32, i32* %7
-  %19 = load i32, i32* %8
-  %20 = load i32, i32* %9
-  call void (i32, ...) @PrintN(i32 5, i32 %16, i32 %17, i32 %18, i32 %19, i32 %20)
+  br label %18
+18:
+  %19 = load i32, i32* %5
+  %20 = load i32, i32* %6
+  %21 = load i32, i32* %7
+  %22 = load i32, i32* %8
+  %23 = load i32, i32* %9
+  call void (i32, ...) @PrintN(i32 5, i32 %19, i32 %20, i32 %21, i32 %22, i32 %23)
   store i32 30, i32* %10
-  %21 = load i32, i32* %10
-  call void  @Print(i32 %21)
+  %24 = load i32, i32* %10
+  call void  @Print(i32 %24)
   store i32 40, i32* %10
-  %22 = load i32, i32* %10
-  call void  @Print(i32 %22)
+  %25 = load i32, i32* %10
+  call void  @Print(i32 %25)
   store i32 10, i32* %6
   store i32 20, i32* %7
   store i32 1, i32* %11
   store i32 2, i32* %12
-  %23 = load i32, i32* %6
-  %24 = load i32, i32* %7
-  %25 = load i32, i32* %11
-  %26 = load i32, i32* %12
-  call void (i32, ...) @PrintN(i32 4, i32 %23, i32 %24, i32 %25, i32 %26)
-  br label %27
-27:
-  ; cond
-  %28 = load i32, i32* %5
-  %29 = icmp sgt i32 %28, 10
-  br i1 %29, label %30, label %31
+  %26 = load i32, i32* %6
+  %27 = load i32, i32* %7
+  %28 = load i32, i32* %11
+  %29 = load i32, i32* %12
+  call void (i32, ...) @PrintN(i32 4, i32 %26, i32 %27, i32 %28, i32 %29)
+  br label %30
 30:
+  ; cond
+  %31 = load i32, i32* %5
+  %32 = icmp sgt i32 %31, 10
+  br i1 %32, label %33, label %34
+33:
   ; then
   store i32 20, i32* %5
-  br label %38
-31:
+  br label %41
+34:
   ; else
-  br label %32
-32:
-  ; cond
-  %33 = load i32, i32* %5
-  %34 = icmp sgt i32 %33, 20
-  br i1 %34, label %35, label %36
+  br label %35
 35:
+  ; cond
+  %36 = load i32, i32* %5
+  %37 = icmp sgt i32 %36, 20
+  br i1 %37, label %38, label %39
+38:
   ; then
   store i32 30, i32* %5
-  br label %37
-36:
+  br label %40
+39:
   ; else
   store i32 40, i32* %5
-  br label %37
-37:
-  ; end
-  br label %38
-38:
-  ; end
-  %39 = load i32, i32* %5
-  call void  @Print(i32 %39)
-  store i32 100, i32* %13
   br label %40
 40:
-  ; cond
-  %41 = load i32, i32* %13
-  %42 = icmp sgt i32 %41, 0
-  br i1 %42, label %43, label %45
-43:
-  ; then
-  %44 = load i32, i32* %13
-  call void  @Print(i32 %44)
-  br label %45
-45:
   ; end
-  %46 = load i32, i32* %5
-  call void  @Print(i32 %46)
+  br label %41
+41:
+  ; end
+  %42 = load i32, i32* %5
+  call void  @Print(i32 %42)
+  store i32 100, i32* %13
+  br label %43
+43:
+  ; cond
+  %44 = load i32, i32* %13
+  %45 = icmp sgt i32 %44, 0
+  br i1 %45, label %46, label %48
+46:
+  ; then
+  %47 = load i32, i32* %13
+  call void  @Print(i32 %47)
+  br label %48
+48:
+  ; end
+  %49 = load i32, i32* %5
+  call void  @Print(i32 %49)
+  store i32 0, i32* %14
+  br label %50
+50:
+  ; cond
+  %51 = load i32, i32* %14
+  %52 = icmp slt i32 %51, 5
+  br i1 %52, label %56, label %77
+53:
+  ; post
+  %54 = load i32, i32* %14
+  %55 = add i32 %54, 1
+  store i32 %55, i32* %14
+  br label %50
+56:
+  ; block
+  br label %57
+57:
+  ; cond
+  %58 = load i32, i32* %14
+  %59 = icmp eq i32 %58, 1
+  br i1 %59, label %60, label %61
+60:
+  ; then
+  br label %53
+61:
+  ; end
+  store i32 0, i32* %15
+  br label %62
+62:
+  ; cond
+  %63 = load i32, i32* %15
+  %64 = icmp slt i32 %63, 6
+  br i1 %64, label %68, label %76
+65:
+  ; post
+  %66 = load i32, i32* %15
+  %67 = add i32 %66, 1
+  store i32 %67, i32* %15
+  br label %62
+68:
+  ; block
+  %69 = load i32, i32* %14
+  %70 = load i32, i32* %15
+  call void (i32, ...) @PrintN(i32 2, i32 %69, i32 %70)
+  br label %71
+71:
+  ; cond
+  %72 = load i32, i32* %15
+  %73 = icmp eq i32 %72, 3
+  br i1 %73, label %74, label %75
+74:
+  ; then
+  br label %76
+75:
+  ; end
+  br label %65
+76:
+  ; end
+  br label %53
+77:
+  ; end
+  br label %78
+78:
+  ; cond
+  %79 = icmp ne i32 0, 1
+  br i1 %79, label %80, label %81
+80:
+  ; block
+  call void (i32, ...) @PrintN(i32 1, i32 1000)
+  br label %81
+81:
+  ; end
+  store i32 1, i32* %16
+  br label %82
+82:
+  ; cond
+  %83 = load i32, i32* %16
+  %84 = icmp slt i32 %83, 10
+  br i1 %84, label %88, label %92
+85:
+  ; post
+  %86 = load i32, i32* %16
+  %87 = add i32 %86, 1
+  store i32 %87, i32* %16
+  br label %82
+88:
+  ; block
+  %89 = load i32, i32* %16
+  %90 = load i32, i32* @g_c1
+  %91 = load i1, i1* @g_x
+  call void (i32, ...) @PrintN(i32 3, i32 %89, i32 %90, i1 %91)
+  br label %85
+92:
+  ; end
   store i32 1, i32* %4
-  br label %47
-47:
-  %48 = load i32, i32* %4
-  ret i32 %48
+  br label %93
+93:
+  %94 = load i32, i32* %4
+  ret i32 %94
 }
 
 @g_x1 = global i32 0
@@ -234,14 +331,126 @@ define void @TestFor() {
 0:
   %1 = alloca i32
   %2 = alloca i32
-  br label %3
-3:
+  %3 = alloca i32
+  %4 = alloca i32
+  %5 = alloca i32
+  br label %6
+6:
   store i32 1, i32* %1
   store i32 0, i32* %2
-  br label %4
-4:
-  br label %5
-5:
+  br label %7
+7:
+  br label %8
+8:
+  ; cond
+  %9 = load i32, i32* %1
+  %10 = icmp slt i32 %9, 5
+  br i1 %10, label %11, label %15
+11:
+  ; block
+  %12 = load i32, i32* %1
+  call void  @Print(i32 %12)
+  %13 = load i32, i32* %1
+  %14 = add i32 %13, 1
+  store i32 %14, i32* %1
+  br label %8
+15:
+  ; end
+  store i32 1, i32* %3
+  br label %16
+16:
+  ; cond
+  %17 = load i32, i32* %3
+  %18 = icmp slt i32 %17, 3
+  br i1 %18, label %22, label %28
+19:
+  ; post
+  %20 = load i32, i32* %3
+  %21 = add i32 %20, 2
+  store i32 %21, i32* %3
+  br label %16
+22:
+  ; block
+  %23 = load i32, i32* %2
+  %24 = load i32, i32* %3
+  %25 = add i32 %23, %24
+  store i32 %25, i32* %2
+  %26 = load i32, i32* %3
+  %27 = load i32, i32* %2
+  call void (i32, ...) @PrintN(i32 2, i32 %26, i32 %27)
+  br label %19
+28:
+  ; end
+  br label %29
+29:
+  ; block
+  call void  @Print(i32 0)
+  br label %30
+30:
+  ; end
+  store i32 0, i32* %4
+  br label %31
+31:
+  ; cond
+  %32 = load i32, i32* %4
+  %33 = icmp slt i32 %32, 5
+  br i1 %33, label %37, label %58
+34:
+  ; post
+  %35 = load i32, i32* %4
+  %36 = add i32 %35, 1
+  store i32 %36, i32* %4
+  br label %31
+37:
+  ; block
+  br label %38
+38:
+  ; cond
+  %39 = load i32, i32* %4
+  %40 = icmp eq i32 %39, 1
+  br i1 %40, label %41, label %42
+41:
+  ; then
+  br label %34
+42:
+  ; end
+  store i32 0, i32* %5
+  br label %43
+43:
+  ; cond
+  %44 = load i32, i32* %5
+  %45 = icmp slt i32 %44, 6
+  br i1 %45, label %49, label %57
+46:
+  ; post
+  %47 = load i32, i32* %5
+  %48 = add i32 %47, 1
+  store i32 %48, i32* %5
+  br label %43
+49:
+  ; block
+  %50 = load i32, i32* %4
+  %51 = load i32, i32* %5
+  call void (i32, ...) @PrintN(i32 2, i32 %50, i32 %51)
+  br label %52
+52:
+  ; cond
+  %53 = load i32, i32* %5
+  %54 = icmp eq i32 %53, 3
+  br i1 %54, label %55, label %56
+55:
+  ; then
+  br label %57
+56:
+  ; end
+  br label %46
+57:
+  ; end
+  br label %34
+58:
+  ; end
+  br label %59
+59:
   ret void 
 }
 
@@ -376,12 +585,31 @@ define i32 @FactorialI(i32 %0) {
   store i32 1, i32* %5
   br label %7
 7:
-  %8 = load i32, i32* %4
-  store i32 %8, i32* %2
-  br label %9
-9:
-  %10 = load i32, i32* %2
-  ret i32 %10
+  br label %8
+8:
+  ; cond
+  %9 = load i32, i32* %5
+  %10 = load i32, i32* %3
+  %11 = icmp sle i32 %9, %10
+  br i1 %11, label %12, label %18
+12:
+  ; block
+  %13 = load i32, i32* %4
+  %14 = load i32, i32* %5
+  %15 = mul i32 %13, %14
+  store i32 %15, i32* %4
+  %16 = load i32, i32* %5
+  %17 = add i32 %16, 1
+  store i32 %17, i32* %5
+  br label %8
+18:
+  ; end
+  %19 = load i32, i32* %4
+  store i32 %19, i32* %2
+  br label %20
+20:
+  %21 = load i32, i32* %2
+  ret i32 %21
 }
 
 define i32 @FactorialR(i32 %0) {
@@ -426,39 +654,67 @@ define void @main_Grobbit_16__() {
   %4 = alloca double
   %5 = alloca i1
   %6 = alloca i32
-  br label %7
-7:
+  %7 = alloca i32
+  br label %8
+8:
   store double 3.0, double* %1
   store double 1.0, double* %2
   store i32 1, i32* %3
   store i32 0, i32* %6
-  br label %8
-8:
-  %9 = load double, double* %1
-  %10 = load double, double* %2
-  %11 = fadd double %9, %10
-  store double %11, double* %4
-  %12 = load double, double* %1
-  %13 = load double, double* %2
-  %14 = icmp sgt double %12, %13
-  store i1 %14, i1* %5
-  %15 = load double, double* %1
-  %16 = load double, double* %2
-  %17 = load double, double* %4
-  call void (i32, ...) @PrintN_F(i32 3, double %15, double %16, double %17)
-  %18 = load i1, i1* %5
-  call void  @Print(i1 %18)
+  br label %9
+9:
+  %10 = load double, double* %1
+  %11 = load double, double* %2
+  %12 = fadd double %10, %11
+  store double %12, double* %4
+  %13 = load double, double* %1
+  %14 = load double, double* %2
+  %15 = fcmp ogt double %13, %14
+  store i1 %15, i1* %5
+  %16 = load double, double* %1
+  %17 = load double, double* %2
+  %18 = load double, double* %4
+  call void (i32, ...) @PrintN_F(i32 3, double %16, double %17, double %18)
+  %19 = load i1, i1* %5
+  call void  @Print(i1 %19)
   call void  @TestLogicalOp()
   call void  @TestFor()
-  %19 = call i32  @FactorialI(i32 5)
-  %20 = call i32  @FactorialR(i32 5)
-  call void (i32, ...) @PrintN(i32 2, i32 %19, i32 %20)
-  %21 = call i32  @foo(i32 1, i32 2, i32 3)
-  store i32 %21, i32* %6
-  %22 = load i32, i32* %6
-  call void  @Print(i32 %22)
-  br label %23
+  store i32 0, i32* %7
+  br label %20
+20:
+  ; cond
+  %21 = load i32, i32* %7
+  %22 = icmp slt i32 %21, 5
+  br i1 %22, label %26, label %34
 23:
+  ; post
+  %24 = load i32, i32* %7
+  %25 = add i32 %24, 1
+  store i32 %25, i32* %7
+  br label %20
+26:
+  ; block
+  %27 = load i32, i32* %7
+  %28 = mul i32 3, %27
+  %29 = add i32 %28, 1
+  %30 = load i32, i32* %7
+  %31 = add i32 %30, 2
+  %32 = call i32  @TestIf(i32 %29, i32 %31)
+  store i32 %32, i32* %6
+  %33 = load i32, i32* %6
+  call void  @Print(i32 %33)
+  br label %23
+34:
+  ; end
+  %35 = call i32  @FactorialI(i32 5)
+  %36 = call i32  @FactorialR(i32 5)
+  call void (i32, ...) @PrintN(i32 2, i32 %35, i32 %36)
+  %37 = call i32  @foo(i32 1, i32 2, i32 3)
+  store i32 %37, i32* %6
+  %38 = load i32, i32* %6
+  call void  @Print(i32 %38)
+  br label %39
+39:
   ret void 
 }
 

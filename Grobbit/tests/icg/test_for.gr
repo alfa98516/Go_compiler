@@ -1,7 +1,14 @@
 package main;
 
+
 func main() {
-    for i := 0; i < 3; i = i + 1 { 
-        Print(i);
+    i := 0;
+    for {
+        if i > 3 {
+            break};
+        i = i + 1;
     };
+
 };
+
+

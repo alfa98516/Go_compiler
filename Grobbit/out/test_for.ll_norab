@@ -7,30 +7,28 @@ declare void @PrintN_F(i32, ...)
 
 define void @main_Grobbit_16__() {
 1:
-  %9 = alloca i32
+  %5 = alloca i32
   br label %2
 2:
   br label %3
 3:
-  store i32 0, i32* %9
-  br label %5
-5:
-  ; cond
-  %10 = load i32, i32* %9
-  %11 = icmp slt i32 %10, 3
-  br i1 %11, label %7, label %8
-6:
-  ; post
-  br label %5
-7:
-  ; block
-  %12 = load i32, i32* %9
-  call void  @Print(i32 %12)
-  %13 = load i32, i32* %9
-  %14 = add i32 %13, 1
-  store i32 %14, i32* %9
-  br label %5
+  store i32 0, i32* %5
+  br label %8
 8:
+  ; block
+  br label %10
+10:
+  ; cond
+  %14 = load i32, i32* %5
+  %15 = icmp sgt i32 %14, 3
+  br i1 %15, label %11, label %13
+11:
+  ; then
+  br label %9
+13:
+  ; end
+  br label %8
+9:
   ; end
   br label %4
 4:
