@@ -1,0 +1,137 @@
+; Available external functions.
+declare void @Print(i32)
+declare void @PrintN(i32, ...)
+declare void @Print_F(double)
+declare void @PrintN_F(i32, ...)
+
+
+define void @main_Grobbit_16__() {
+1:
+  %5 = alloca i32
+  %6 = alloca i32
+  %55 = alloca i1
+  br label %2
+2:
+  br label %3
+3:
+  store i32 3, i32* %5
+  store i32 5, i32* %6
+  br label %7
+7:
+  ; cond
+  %11 = load i32, i32* %5
+  %12 = load i32, i32* %6
+  %13 = icmp eq i32 %11, %12
+  br i1 %13, label %8, label %9
+8:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 0)
+  br label %10
+9:
+  ; else
+  br label %15
+15:
+  ; cond
+  %19 = load i32, i32* %5
+  %20 = load i32, i32* %6
+  %21 = icmp sge i32 %19, %20
+  br i1 %21, label %16, label %17
+16:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 1)
+  br label %18
+17:
+  ; else
+  br label %23
+23:
+  ; cond
+  %27 = load i32, i32* %5
+  %28 = load i32, i32* %6
+  %29 = icmp sle i32 %27, %28
+  br i1 %29, label %24, label %26
+24:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 2)
+  br label %26
+26:
+  ; end
+  br label %18
+18:
+  ; end
+  br label %10
+10:
+  ; end
+  br label %31
+31:
+  ; cond
+  %35 = load i32, i32* %5
+  %36 = load i32, i32* %6
+  %37 = icmp ne i32 %35, %36
+  br i1 %37, label %32, label %34
+32:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 3)
+  br label %34
+34:
+  ; end
+  br label %39
+39:
+  ; cond
+  %43 = load i32, i32* %5
+  %44 = load i32, i32* %6
+  %45 = icmp slt i32 %43, %44
+  br i1 %45, label %40, label %41
+40:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 4)
+  br label %42
+41:
+  ; else
+  br label %47
+47:
+  ; cond
+  %51 = load i32, i32* %5
+  %52 = load i32, i32* %6
+  %53 = icmp sgt i32 %51, %52
+  br i1 %53, label %48, label %50
+48:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 5)
+  br label %50
+50:
+  ; end
+  br label %42
+42:
+  ; end
+  store i1 true, i1* %55
+  br label %56
+56:
+  ; cond
+  %60 = load i1, i1* %55
+  %61 = icmp eq i1 %60, 0
+  br i1 %61, label %57, label %58
+57:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 0)
+  br label %59
+58:
+  ; else
+  br label %63
+63:
+  ; cond
+  %67 = load i1, i1* %55
+  br i1 %67, label %64, label %66
+64:
+  ; then
+  call void (i32, ...) @PrintN(i32 1, i32 1)
+  br label %66
+66:
+  ; end
+  br label %59
+59:
+  ; end
+  br label %4
+4:
+  ret void 
+}
+

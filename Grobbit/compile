@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+mkdir -p out
+rm -f out/student_test.ll out/student_test
+
+go build -o grobbit .
+
+src="${1:-student_test.gr}"
+
+./grobbit "tests/icg/$src"
+
+clang "out/${src%.gr}.ll" out/main.c -o out/student_test
+
+./out/student_test

@@ -1,0 +1,10 @@
+package main;
+
+func main() {
+    z := true;
+    if (!z) {
+        PrintN(1, 0);
+    } else {
+        PrintN(1, 1);
+    };
+};
