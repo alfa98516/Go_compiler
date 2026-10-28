@@ -77,7 +77,7 @@ LogicalNotOp implements a code for the logical not operator.
 Returns a llvm value (llvm.Operand) with the result.
 */
 func LogicalNotOp(v *IRVisitor, node *UnaryExprNode) llvm.Operand {
-	v.visit(node.Tok)
+	v.visit(node.Expr)
 	value := v.ir.exprOperand
 	var not_operator *llvm.Register
 	not_operator = v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, value, llvm.NewLiteral(llvm.I32, "0")))
