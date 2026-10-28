@@ -62,8 +62,14 @@ Returns a llvm value (llvm.Operand) with the result.
 */
 func ComparisonOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 	// TO DO: add your do here (replacing dummy placeholder below).
-	dummy := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, llvm.NewLiteral(llvm.I32, "0"), llvm.NewLiteral(llvm.I32, "0")))
-	return dummy
+	v.visit(node.Lhs)
+	lhsOp := v.ir.exprOperand
+	v.visit(node.Rhs)
+	rhsOp := v.ir.exprOperand
+	var operand *llvm.Register
+	operand = v.ir.activeBlock.Append(llvm.NewICmpInstr(mapICmpOp[node.Tok.Type], lhsOp, rhsOp))
+
+	return operand
 }
 
 /*
@@ -73,7 +79,8 @@ Returns a llvm value (llvm.Operand) with the result.
 func LogicalNotOp(v *IRVisitor, node *UnaryExprNode) llvm.Operand {
 	v.visit(node.Tok)
 	value := v.ir.exprOperand
-	not_operator := v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, value, llvm.NewLiteral(llvm.I32, "0")))
+	var not_operator *llvm.Register
+	not_operator = v.ir.activeBlock.Append(llvm.NewICmpInstr(llvm.Eq, value, llvm.NewLiteral(llvm.I32, "0")))
 	return not_operator
 }
 
