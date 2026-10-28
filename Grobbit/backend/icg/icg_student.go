@@ -68,7 +68,7 @@ func ComparisonOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 	v.visit(node.Rhs)
 	rhsOp := v.ir.exprOperand
 	var operand *llvm.Register
-	if node.GetType().String() == "float64" {
+	if node.Rhs.GetType().String() == "float64" && node.Lhs.GetType().String() == "float64" {
 		operand = v.ir.activeBlock.Append(llvm.NewFCmpInstr(mapFCmpOp[node.Tok.Type], lhsOp, rhsOp))
 	} else {
 		operand = v.ir.activeBlock.Append(llvm.NewICmpInstr(mapICmpOp[node.Tok.Type], lhsOp, rhsOp))
@@ -173,12 +173,33 @@ func ForStmt(v *IRVisitor, node *ForStmtNode) {
 	// TO DO: add your do here (replacing dummy placeholder below).
 
 	cond_label, post_label, body_label, end_label := llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel()
+	var block_init *llvm.Block
+	hasCond := !IsNil(node.Cond)
+	hasPost := !IsNil(node.Post)
+
+	var top llvm.Label
+	var next llvm.Label
+	if hasCond {
+		top = cond_label
+	} else {
+		top = body_label
+	}
+
+	if hasPost {
+		next = post_label
+	} else if hasCond {
+		next = cond_label
+	} else {
+		next = body_label
+	}
+
 	if !IsNil(node.Init) {
 		v.visit(node.Init)
 	}
-	block_init := v.ir.activeBlock.Get()
-	block_init.Close(llvm.NewBranchInstr(cond_label))
-	if !IsNil(node.Cond) {
+
+	block_init = v.ir.activeBlock.Get()
+	block_init.Close(llvm.NewBranchInstr(top))
+	if hasCond {
 		block_cond := v.ir.function.Append(llvm.NewBlock(cond_label, "cond"))
 		v.ir.activeBlock.Set(block_cond)
 		v.flags |= InExpr
@@ -188,27 +209,29 @@ func ForStmt(v *IRVisitor, node *ForStmtNode) {
 		block_cond = v.ir.activeBlock.Get()
 		block_cond.Close(llvm.NewBranchCondInstr(cond_op, body_label, end_label))
 
-	} else {
-		block_init.Close(llvm.NewBranchInstr(body_label))
 	}
-	if !IsNil(node.Post) {
-		v.visit(node.Post)
-	}
-	block_post := v.ir.function.Append(llvm.NewBlock(post_label, "post"))
-	v.ir.activeBlock.Set(block_post)
 
-	if !IsNil(node.Cond) {
-		block_post.Close(llvm.NewBranchInstr(cond_label))
-	} else {
-		block_post.Close(llvm.NewBranchInstr(body_label))
+	if hasPost {
+		block_post := v.ir.function.Append(llvm.NewBlock(post_label, "post"))
+		v.ir.activeBlock.Set(block_post)
+		v.visit(node.Post)
+		block_post = v.ir.activeBlock.Get()
+
+		if hasCond {
+			block_post.Close(llvm.NewBranchInstr(cond_label))
+		} else {
+			block_post.Close(llvm.NewBranchInstr(body_label))
+		}
+
 	}
 
 	block_body := v.ir.function.Append(llvm.NewBlock(body_label, "block"))
+	v.ir.labelsBranch = append(v.ir.labelsBranch, LabelPair{labelContinue: next, labelBreak: end_label})
 	v.ir.activeBlock.Set(block_body)
 	v.visit(node.Body)
+	v.ir.labelsBranch = v.ir.labelsBranch[:len(v.ir.labelsBranch)-1]
 	block_body = v.ir.activeBlock.Get()
-	block_body.Close(llvm.NewBranchInstr(cond_label))
-
+	block_body.Close(llvm.NewBranchInstr(next))
 	block_end := v.ir.function.Append(llvm.NewBlock(end_label, "end"))
 	v.ir.activeBlock.Set(block_end)
 }
