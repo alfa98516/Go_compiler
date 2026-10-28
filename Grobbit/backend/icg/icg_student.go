@@ -2,6 +2,7 @@ package icg
 
 import (
 	"Grobbit/backend/icg/llvm"
+	. "Grobbit/backend/semana"
 	. "Grobbit/common"
 )
 
@@ -93,7 +94,6 @@ LogicalOrOp implements a short-circuit code for the logical or operator.
 Returns a llvm value (llvm.Operand) with the result.
 */
 func LogicalOrOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
-
 	merge_label, rhs_label := llvm.NewLabel(), llvm.NewLabel()
 	v.visit(node.Lhs)
 	lhsOp := v.ir.exprOperand
@@ -141,7 +141,6 @@ func LogicalAndOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 	operator = merge_block.Append(llvm.NewPhiInstr(llvm.I1, llvm.ValueLabel{Op: llvm.NewLiteral(llvm.I1, "0"), Label: lhs_block.GetLabel()}, llvm.ValueLabel{Op: rhsOp, Label: rhs_block.GetLabel()}))
 
 	return operator
-
 }
 
 /*
@@ -173,29 +172,43 @@ func LogicalAndOp(v *IRVisitor, node *BinaryExprNode) llvm.Operand {
 func ForStmt(v *IRVisitor, node *ForStmtNode) {
 	// TO DO: add your do here (replacing dummy placeholder below).
 
-	init_label, cond_label, post_label, body_label, end_label := llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel()
+	cond_label, post_label, body_label, end_label := llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel(), llvm.NewLabel()
 	if !IsNil(node.Init) {
 		v.visit(node.Init)
 	}
 	block_init := v.ir.activeBlock.Get()
 	block_init.Close(llvm.NewBranchInstr(cond_label))
 	if !IsNil(node.Cond) {
+		block_cond := v.ir.function.Append(llvm.NewBlock(cond_label, "cond"))
+		v.ir.activeBlock.Set(block_cond)
+		v.flags |= InExpr
 		v.visit(node.Cond)
+		v.flags &^= InExpr
 		cond_op := v.ir.exprOperand
-		block_cond := v.ir.function.Append(llvm.NewBlock(cond_label, "cond"))
+		block_cond = v.ir.activeBlock.Get()
 		block_cond.Close(llvm.NewBranchCondInstr(cond_op, body_label, end_label))
+
 	} else {
-		block_cond := v.ir.function.Append(llvm.NewBlock(cond_label, "cond"))
-		block_cond.Close(llvm.NewBranchInstr(body_label))
+		block_init.Close(llvm.NewBranchInstr(body_label))
 	}
 	if !IsNil(node.Post) {
 		v.visit(node.Post)
 	}
 	block_post := v.ir.function.Append(llvm.NewBlock(post_label, "post"))
-	block_post = v.ir.activeBlock.Get()
-	block_post.Close(llvm.NewBranchInstr(cond_label))
+	v.ir.activeBlock.Set(block_post)
 
-	v.visit(node.Body)
+	if !IsNil(node.Cond) {
+		block_post.Close(llvm.NewBranchInstr(cond_label))
+	} else {
+		block_post.Close(llvm.NewBranchInstr(body_label))
+	}
+
 	block_body := v.ir.function.Append(llvm.NewBlock(body_label, "block"))
-	block_body.Close((llvm.NewBranchInstr(cond_label)))
+	v.ir.activeBlock.Set(block_body)
+	v.visit(node.Body)
+	block_body = v.ir.activeBlock.Get()
+	block_body.Close(llvm.NewBranchInstr(cond_label))
+
+	block_end := v.ir.function.Append(llvm.NewBlock(end_label, "end"))
+	v.ir.activeBlock.Set(block_end)
 }
