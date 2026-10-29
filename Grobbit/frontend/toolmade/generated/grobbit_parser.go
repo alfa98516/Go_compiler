@@ -32,189 +32,194 @@ var GrobbitParserParserStaticData struct {
 func grobbitparserParserInit() {
 	staticData := &GrobbitParserParserStaticData
 	staticData.LiteralNames = []string{
-		"", "'('", "')'", "'{'", "'}'", "','", "'.'", "';'", "'+'", "'-'", "'*'",
-		"'/'", "'%'", "'='", "'&&'", "'||'", "'!'", "'=='", "'<'", "'>'", "'!='",
-		"'<='", "'>='", "':='", "'break'", "'case'", "'chan'", "'const'", "'continue'",
-		"'default'", "'defer'", "'else'", "'fallthrough'", "'for'", "'func'",
-		"'go'", "'goto'", "'if'", "'import'", "'interface'", "'map'", "'package'",
-		"'range'", "'return'", "'select'", "'struct'", "'switch'", "'type'",
-		"'var'",
+		"", "'('", "')'", "'{'", "'}'", "'['", "']'", "','", "'.'", "';'", "'+'",
+		"'-'", "'*'", "'/'", "'%'", "'='", "'&&'", "'||'", "'!'", "'=='", "'<'",
+		"'>'", "'!='", "'<='", "'>='", "':='", "'break'", "'case'", "'chan'",
+		"'const'", "'continue'", "'default'", "'defer'", "'else'", "'fallthrough'",
+		"'for'", "'func'", "'go'", "'goto'", "'if'", "'import'", "'interface'",
+		"'map'", "'package'", "'range'", "'return'", "'select'", "'struct'",
+		"'switch'", "'type'", "'var'",
 	}
 	staticData.SymbolicNames = []string{
-		"", "TtLParen", "TtRParen", "TtLBrace", "TtRBrace", "TtComma", "TtPeriod",
-		"TtSemicolon", "TtOpAdd", "TtOpSub", "TtOpMul", "TtOpDiv", "TtOpMod",
-		"TtOpAssign", "TtOpAnd", "TtOpOr", "TtOpNot", "TtOpEq", "TtOpLt", "TtOpGt",
-		"TtOpNe", "TtOpLe", "TtOpGe", "TtOpDefine", "TtKwBreak", "TtKwCase",
-		"TtKwChan", "TtKwConst", "TtKwContinue", "TtKwDefault", "TtKwDefer",
-		"TtKwElse", "TtKwFallthrough", "TtKwFor", "TtKwFunc", "TtKwGo", "TtKwGoto",
-		"TtKwIf", "TtKwImport", "TtKwInterface", "TtKwMap", "TtKwPackage", "TtKwRange",
-		"TtKwReturn", "TtKwSelect", "TtKwStruct", "TtKwSwitch", "TtKwType",
-		"TtKwVar", "TtBool", "TtIdentifier", "TtFloat", "TtInt", "TtString",
-		"TtChar", "WS", "BLOCK_COMMENT", "LINE_COMMENT", "TtUnknown",
+		"", "TtLParen", "TtRParen", "TtLBrace", "TtRBrace", "TtLBracket", "TtRBracket",
+		"TtComma", "TtPeriod", "TtSemicolon", "TtOpAdd", "TtOpSub", "TtOpMul",
+		"TtOpDiv", "TtOpMod", "TtOpAssign", "TtOpAnd", "TtOpOr", "TtOpNot",
+		"TtOpEq", "TtOpLt", "TtOpGt", "TtOpNe", "TtOpLe", "TtOpGe", "TtOpDefine",
+		"TtKwBreak", "TtKwCase", "TtKwChan", "TtKwConst", "TtKwContinue", "TtKwDefault",
+		"TtKwDefer", "TtKwElse", "TtKwFallthrough", "TtKwFor", "TtKwFunc", "TtKwGo",
+		"TtKwGoto", "TtKwIf", "TtKwImport", "TtKwInterface", "TtKwMap", "TtKwPackage",
+		"TtKwRange", "TtKwReturn", "TtKwSelect", "TtKwStruct", "TtKwSwitch",
+		"TtKwType", "TtKwVar", "TtBool", "TtIdentifier", "TtFloat", "TtInt",
+		"TtString", "TtChar", "WS", "BLOCK_COMMENT", "LINE_COMMENT", "TtUnknown",
 	}
 	staticData.RuleNames = []string{
 		"program", "top_decl", "pkg_name", "import_decl", "import_spec", "const_decl",
-		"const_spec", "var_decl", "var_spec", "basic_literals", "basic_literal",
-		"func_decl", "param_decl", "param_spec", "identifiers", "identifier",
-		"type", "block", "statement", "decl_stmt", "simple_stmt", "return_stmt",
-		"continue_stmt", "break_stmt", "if_stmt", "for_stmt", "for_clause",
-		"condition", "shortvar_decl", "assign_stmt", "expr_stmt", "expressions",
-		"expression", "unary_expr", "primary_expr", "call_expr",
+		"const_spec", "var_decl", "var_spec", "array_type", "basic_literals",
+		"basic_literal", "func_decl", "param_decl", "param_spec", "identifiers",
+		"identifier", "type", "block", "statement", "decl_stmt", "simple_stmt",
+		"return_stmt", "continue_stmt", "break_stmt", "if_stmt", "for_stmt",
+		"for_clause", "condition", "shortvar_decl", "assign_stmt", "expr_stmt",
+		"expressions", "expression", "unary_expr", "primary_expr", "call_expr",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 58, 349, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 60, 361, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
 		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 2, 26,
 		7, 26, 2, 27, 7, 27, 2, 28, 7, 28, 2, 29, 7, 29, 2, 30, 7, 30, 2, 31, 7,
-		31, 2, 32, 7, 32, 2, 33, 7, 33, 2, 34, 7, 34, 2, 35, 7, 35, 1, 0, 1, 0,
-		1, 0, 1, 0, 1, 0, 1, 0, 5, 0, 79, 8, 0, 10, 0, 12, 0, 82, 9, 0, 1, 0, 1,
-		0, 1, 0, 5, 0, 87, 8, 0, 10, 0, 12, 0, 90, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1,
-		1, 1, 3, 1, 97, 8, 1, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 5,
-		3, 107, 8, 3, 10, 3, 12, 3, 110, 9, 3, 1, 3, 3, 3, 113, 8, 3, 1, 4, 3,
-		4, 116, 8, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 5, 126,
-		8, 5, 10, 5, 12, 5, 129, 9, 5, 1, 5, 3, 5, 132, 8, 5, 1, 6, 1, 6, 1, 6,
-		1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5, 7, 145, 8, 7, 10, 7,
-		12, 7, 148, 9, 7, 1, 7, 3, 7, 151, 8, 7, 1, 8, 1, 8, 1, 8, 1, 8, 3, 8,
-		157, 8, 8, 1, 9, 1, 9, 1, 9, 5, 9, 162, 8, 9, 10, 9, 12, 9, 165, 9, 9,
-		1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1, 11, 3, 11, 173, 8, 11, 1, 11, 1,
-		11, 3, 11, 177, 8, 11, 1, 11, 1, 11, 1, 12, 1, 12, 1, 12, 5, 12, 184, 8,
-		12, 10, 12, 12, 12, 187, 9, 12, 1, 13, 1, 13, 1, 13, 1, 14, 1, 14, 1, 14,
-		5, 14, 195, 8, 14, 10, 14, 12, 14, 198, 9, 14, 1, 15, 1, 15, 1, 16, 1,
-		16, 1, 17, 1, 17, 1, 17, 1, 17, 5, 17, 208, 8, 17, 10, 17, 12, 17, 211,
-		9, 17, 1, 17, 1, 17, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1,
-		18, 3, 18, 223, 8, 18, 1, 19, 1, 19, 3, 19, 227, 8, 19, 1, 20, 1, 20, 1,
-		20, 3, 20, 232, 8, 20, 1, 21, 1, 21, 3, 21, 236, 8, 21, 1, 22, 1, 22, 1,
-		23, 1, 23, 1, 24, 1, 24, 1, 24, 1, 24, 3, 24, 246, 8, 24, 1, 24, 1, 24,
-		1, 24, 1, 24, 1, 24, 3, 24, 253, 8, 24, 3, 24, 255, 8, 24, 1, 25, 1, 25,
-		1, 25, 3, 25, 260, 8, 25, 1, 25, 1, 25, 1, 26, 3, 26, 265, 8, 26, 1, 26,
-		1, 26, 3, 26, 269, 8, 26, 1, 26, 1, 26, 3, 26, 273, 8, 26, 1, 27, 1, 27,
-		1, 28, 1, 28, 1, 28, 1, 28, 1, 29, 1, 29, 1, 29, 1, 29, 1, 30, 1, 30, 1,
-		31, 1, 31, 1, 31, 5, 31, 290, 8, 31, 10, 31, 12, 31, 293, 9, 31, 1, 32,
-		1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 1,
-		32, 1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 1, 32, 5, 32, 313, 8, 32, 10, 32,
-		12, 32, 316, 9, 32, 1, 33, 1, 33, 1, 33, 3, 33, 321, 8, 33, 1, 34, 1, 34,
-		1, 34, 1, 34, 3, 34, 327, 8, 34, 1, 34, 1, 34, 1, 34, 1, 34, 1, 34, 1,
-		34, 3, 34, 335, 8, 34, 1, 35, 1, 35, 1, 35, 3, 35, 340, 8, 35, 1, 35, 1,
-		35, 1, 35, 3, 35, 345, 8, 35, 1, 35, 1, 35, 1, 35, 0, 1, 64, 36, 0, 2,
-		4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
-		42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 0, 5, 2, 0,
-		49, 49, 51, 52, 1, 0, 10, 12, 1, 0, 8, 9, 1, 0, 17, 22, 2, 0, 8, 9, 16,
-		16, 362, 0, 72, 1, 0, 0, 0, 2, 96, 1, 0, 0, 0, 4, 98, 1, 0, 0, 0, 6, 100,
-		1, 0, 0, 0, 8, 115, 1, 0, 0, 0, 10, 119, 1, 0, 0, 0, 12, 133, 1, 0, 0,
-		0, 14, 138, 1, 0, 0, 0, 16, 152, 1, 0, 0, 0, 18, 158, 1, 0, 0, 0, 20, 166,
-		1, 0, 0, 0, 22, 168, 1, 0, 0, 0, 24, 180, 1, 0, 0, 0, 26, 188, 1, 0, 0,
-		0, 28, 191, 1, 0, 0, 0, 30, 199, 1, 0, 0, 0, 32, 201, 1, 0, 0, 0, 34, 203,
-		1, 0, 0, 0, 36, 222, 1, 0, 0, 0, 38, 226, 1, 0, 0, 0, 40, 231, 1, 0, 0,
-		0, 42, 233, 1, 0, 0, 0, 44, 237, 1, 0, 0, 0, 46, 239, 1, 0, 0, 0, 48, 241,
-		1, 0, 0, 0, 50, 256, 1, 0, 0, 0, 52, 264, 1, 0, 0, 0, 54, 274, 1, 0, 0,
-		0, 56, 276, 1, 0, 0, 0, 58, 280, 1, 0, 0, 0, 60, 284, 1, 0, 0, 0, 62, 286,
-		1, 0, 0, 0, 64, 294, 1, 0, 0, 0, 66, 320, 1, 0, 0, 0, 68, 334, 1, 0, 0,
-		0, 70, 339, 1, 0, 0, 0, 72, 73, 5, 41, 0, 0, 73, 74, 3, 4, 2, 0, 74, 80,
-		5, 7, 0, 0, 75, 76, 3, 6, 3, 0, 76, 77, 5, 7, 0, 0, 77, 79, 1, 0, 0, 0,
-		78, 75, 1, 0, 0, 0, 79, 82, 1, 0, 0, 0, 80, 78, 1, 0, 0, 0, 80, 81, 1,
-		0, 0, 0, 81, 88, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 83, 84, 3, 2, 1, 0, 84,
-		85, 5, 7, 0, 0, 85, 87, 1, 0, 0, 0, 86, 83, 1, 0, 0, 0, 87, 90, 1, 0, 0,
-		0, 88, 86, 1, 0, 0, 0, 88, 89, 1, 0, 0, 0, 89, 91, 1, 0, 0, 0, 90, 88,
-		1, 0, 0, 0, 91, 92, 5, 0, 0, 1, 92, 1, 1, 0, 0, 0, 93, 97, 3, 10, 5, 0,
-		94, 97, 3, 14, 7, 0, 95, 97, 3, 22, 11, 0, 96, 93, 1, 0, 0, 0, 96, 94,
-		1, 0, 0, 0, 96, 95, 1, 0, 0, 0, 97, 3, 1, 0, 0, 0, 98, 99, 3, 30, 15, 0,
-		99, 5, 1, 0, 0, 0, 100, 112, 5, 38, 0, 0, 101, 113, 3, 8, 4, 0, 102, 108,
-		5, 1, 0, 0, 103, 104, 3, 8, 4, 0, 104, 105, 5, 7, 0, 0, 105, 107, 1, 0,
-		0, 0, 106, 103, 1, 0, 0, 0, 107, 110, 1, 0, 0, 0, 108, 106, 1, 0, 0, 0,
-		108, 109, 1, 0, 0, 0, 109, 111, 1, 0, 0, 0, 110, 108, 1, 0, 0, 0, 111,
-		113, 5, 2, 0, 0, 112, 101, 1, 0, 0, 0, 112, 102, 1, 0, 0, 0, 113, 7, 1,
-		0, 0, 0, 114, 116, 3, 4, 2, 0, 115, 114, 1, 0, 0, 0, 115, 116, 1, 0, 0,
-		0, 116, 117, 1, 0, 0, 0, 117, 118, 5, 53, 0, 0, 118, 9, 1, 0, 0, 0, 119,
-		131, 5, 27, 0, 0, 120, 132, 3, 12, 6, 0, 121, 127, 5, 1, 0, 0, 122, 123,
-		3, 12, 6, 0, 123, 124, 5, 7, 0, 0, 124, 126, 1, 0, 0, 0, 125, 122, 1, 0,
-		0, 0, 126, 129, 1, 0, 0, 0, 127, 125, 1, 0, 0, 0, 127, 128, 1, 0, 0, 0,
-		128, 130, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 130, 132, 5, 2, 0, 0, 131,
-		120, 1, 0, 0, 0, 131, 121, 1, 0, 0, 0, 132, 11, 1, 0, 0, 0, 133, 134, 3,
-		28, 14, 0, 134, 135, 3, 32, 16, 0, 135, 136, 5, 13, 0, 0, 136, 137, 3,
-		18, 9, 0, 137, 13, 1, 0, 0, 0, 138, 150, 5, 48, 0, 0, 139, 151, 3, 16,
-		8, 0, 140, 146, 5, 1, 0, 0, 141, 142, 3, 16, 8, 0, 142, 143, 5, 7, 0, 0,
-		143, 145, 1, 0, 0, 0, 144, 141, 1, 0, 0, 0, 145, 148, 1, 0, 0, 0, 146,
-		144, 1, 0, 0, 0, 146, 147, 1, 0, 0, 0, 147, 149, 1, 0, 0, 0, 148, 146,
-		1, 0, 0, 0, 149, 151, 5, 2, 0, 0, 150, 139, 1, 0, 0, 0, 150, 140, 1, 0,
-		0, 0, 151, 15, 1, 0, 0, 0, 152, 153, 3, 28, 14, 0, 153, 156, 3, 32, 16,
-		0, 154, 155, 5, 13, 0, 0, 155, 157, 3, 18, 9, 0, 156, 154, 1, 0, 0, 0,
-		156, 157, 1, 0, 0, 0, 157, 17, 1, 0, 0, 0, 158, 163, 3, 20, 10, 0, 159,
-		160, 5, 5, 0, 0, 160, 162, 3, 20, 10, 0, 161, 159, 1, 0, 0, 0, 162, 165,
-		1, 0, 0, 0, 163, 161, 1, 0, 0, 0, 163, 164, 1, 0, 0, 0, 164, 19, 1, 0,
-		0, 0, 165, 163, 1, 0, 0, 0, 166, 167, 7, 0, 0, 0, 167, 21, 1, 0, 0, 0,
-		168, 169, 5, 34, 0, 0, 169, 170, 3, 30, 15, 0, 170, 172, 5, 1, 0, 0, 171,
-		173, 3, 24, 12, 0, 172, 171, 1, 0, 0, 0, 172, 173, 1, 0, 0, 0, 173, 174,
-		1, 0, 0, 0, 174, 176, 5, 2, 0, 0, 175, 177, 3, 32, 16, 0, 176, 175, 1,
-		0, 0, 0, 176, 177, 1, 0, 0, 0, 177, 178, 1, 0, 0, 0, 178, 179, 3, 34, 17,
-		0, 179, 23, 1, 0, 0, 0, 180, 185, 3, 26, 13, 0, 181, 182, 5, 5, 0, 0, 182,
-		184, 3, 26, 13, 0, 183, 181, 1, 0, 0, 0, 184, 187, 1, 0, 0, 0, 185, 183,
-		1, 0, 0, 0, 185, 186, 1, 0, 0, 0, 186, 25, 1, 0, 0, 0, 187, 185, 1, 0,
-		0, 0, 188, 189, 3, 28, 14, 0, 189, 190, 3, 32, 16, 0, 190, 27, 1, 0, 0,
-		0, 191, 196, 3, 30, 15, 0, 192, 193, 5, 5, 0, 0, 193, 195, 3, 30, 15, 0,
-		194, 192, 1, 0, 0, 0, 195, 198, 1, 0, 0, 0, 196, 194, 1, 0, 0, 0, 196,
-		197, 1, 0, 0, 0, 197, 29, 1, 0, 0, 0, 198, 196, 1, 0, 0, 0, 199, 200, 5,
-		50, 0, 0, 200, 31, 1, 0, 0, 0, 201, 202, 3, 30, 15, 0, 202, 33, 1, 0, 0,
-		0, 203, 209, 5, 3, 0, 0, 204, 205, 3, 36, 18, 0, 205, 206, 5, 7, 0, 0,
-		206, 208, 1, 0, 0, 0, 207, 204, 1, 0, 0, 0, 208, 211, 1, 0, 0, 0, 209,
-		207, 1, 0, 0, 0, 209, 210, 1, 0, 0, 0, 210, 212, 1, 0, 0, 0, 211, 209,
-		1, 0, 0, 0, 212, 213, 5, 4, 0, 0, 213, 35, 1, 0, 0, 0, 214, 223, 3, 38,
-		19, 0, 215, 223, 3, 40, 20, 0, 216, 223, 3, 42, 21, 0, 217, 223, 3, 46,
-		23, 0, 218, 223, 3, 44, 22, 0, 219, 223, 3, 34, 17, 0, 220, 223, 3, 48,
-		24, 0, 221, 223, 3, 50, 25, 0, 222, 214, 1, 0, 0, 0, 222, 215, 1, 0, 0,
-		0, 222, 216, 1, 0, 0, 0, 222, 217, 1, 0, 0, 0, 222, 218, 1, 0, 0, 0, 222,
-		219, 1, 0, 0, 0, 222, 220, 1, 0, 0, 0, 222, 221, 1, 0, 0, 0, 223, 37, 1,
-		0, 0, 0, 224, 227, 3, 10, 5, 0, 225, 227, 3, 14, 7, 0, 226, 224, 1, 0,
-		0, 0, 226, 225, 1, 0, 0, 0, 227, 39, 1, 0, 0, 0, 228, 232, 3, 60, 30, 0,
-		229, 232, 3, 58, 29, 0, 230, 232, 3, 56, 28, 0, 231, 228, 1, 0, 0, 0, 231,
-		229, 1, 0, 0, 0, 231, 230, 1, 0, 0, 0, 232, 41, 1, 0, 0, 0, 233, 235, 5,
-		43, 0, 0, 234, 236, 3, 64, 32, 0, 235, 234, 1, 0, 0, 0, 235, 236, 1, 0,
-		0, 0, 236, 43, 1, 0, 0, 0, 237, 238, 5, 28, 0, 0, 238, 45, 1, 0, 0, 0,
-		239, 240, 5, 24, 0, 0, 240, 47, 1, 0, 0, 0, 241, 245, 5, 37, 0, 0, 242,
-		243, 3, 40, 20, 0, 243, 244, 5, 7, 0, 0, 244, 246, 1, 0, 0, 0, 245, 242,
-		1, 0, 0, 0, 245, 246, 1, 0, 0, 0, 246, 247, 1, 0, 0, 0, 247, 248, 3, 54,
-		27, 0, 248, 254, 3, 34, 17, 0, 249, 252, 5, 31, 0, 0, 250, 253, 3, 48,
-		24, 0, 251, 253, 3, 34, 17, 0, 252, 250, 1, 0, 0, 0, 252, 251, 1, 0, 0,
-		0, 253, 255, 1, 0, 0, 0, 254, 249, 1, 0, 0, 0, 254, 255, 1, 0, 0, 0, 255,
-		49, 1, 0, 0, 0, 256, 259, 5, 33, 0, 0, 257, 260, 3, 54, 27, 0, 258, 260,
-		3, 52, 26, 0, 259, 257, 1, 0, 0, 0, 259, 258, 1, 0, 0, 0, 259, 260, 1,
-		0, 0, 0, 260, 261, 1, 0, 0, 0, 261, 262, 3, 34, 17, 0, 262, 51, 1, 0, 0,
-		0, 263, 265, 3, 40, 20, 0, 264, 263, 1, 0, 0, 0, 264, 265, 1, 0, 0, 0,
-		265, 266, 1, 0, 0, 0, 266, 268, 5, 7, 0, 0, 267, 269, 3, 54, 27, 0, 268,
-		267, 1, 0, 0, 0, 268, 269, 1, 0, 0, 0, 269, 270, 1, 0, 0, 0, 270, 272,
-		5, 7, 0, 0, 271, 273, 3, 40, 20, 0, 272, 271, 1, 0, 0, 0, 272, 273, 1,
-		0, 0, 0, 273, 53, 1, 0, 0, 0, 274, 275, 3, 64, 32, 0, 275, 55, 1, 0, 0,
-		0, 276, 277, 3, 28, 14, 0, 277, 278, 5, 23, 0, 0, 278, 279, 3, 62, 31,
-		0, 279, 57, 1, 0, 0, 0, 280, 281, 3, 28, 14, 0, 281, 282, 5, 13, 0, 0,
-		282, 283, 3, 62, 31, 0, 283, 59, 1, 0, 0, 0, 284, 285, 3, 70, 35, 0, 285,
-		61, 1, 0, 0, 0, 286, 291, 3, 64, 32, 0, 287, 288, 5, 5, 0, 0, 288, 290,
-		3, 64, 32, 0, 289, 287, 1, 0, 0, 0, 290, 293, 1, 0, 0, 0, 291, 289, 1,
-		0, 0, 0, 291, 292, 1, 0, 0, 0, 292, 63, 1, 0, 0, 0, 293, 291, 1, 0, 0,
-		0, 294, 295, 6, 32, -1, 0, 295, 296, 3, 66, 33, 0, 296, 314, 1, 0, 0, 0,
-		297, 298, 10, 5, 0, 0, 298, 299, 7, 1, 0, 0, 299, 313, 3, 64, 32, 6, 300,
-		301, 10, 4, 0, 0, 301, 302, 7, 2, 0, 0, 302, 313, 3, 64, 32, 5, 303, 304,
-		10, 3, 0, 0, 304, 305, 7, 3, 0, 0, 305, 313, 3, 64, 32, 4, 306, 307, 10,
-		2, 0, 0, 307, 308, 5, 14, 0, 0, 308, 313, 3, 64, 32, 3, 309, 310, 10, 1,
-		0, 0, 310, 311, 5, 15, 0, 0, 311, 313, 3, 64, 32, 2, 312, 297, 1, 0, 0,
-		0, 312, 300, 1, 0, 0, 0, 312, 303, 1, 0, 0, 0, 312, 306, 1, 0, 0, 0, 312,
-		309, 1, 0, 0, 0, 313, 316, 1, 0, 0, 0, 314, 312, 1, 0, 0, 0, 314, 315,
-		1, 0, 0, 0, 315, 65, 1, 0, 0, 0, 316, 314, 1, 0, 0, 0, 317, 321, 3, 68,
-		34, 0, 318, 319, 7, 4, 0, 0, 319, 321, 3, 66, 33, 0, 320, 317, 1, 0, 0,
-		0, 320, 318, 1, 0, 0, 0, 321, 67, 1, 0, 0, 0, 322, 335, 3, 20, 10, 0, 323,
-		324, 3, 4, 2, 0, 324, 325, 5, 6, 0, 0, 325, 327, 1, 0, 0, 0, 326, 323,
-		1, 0, 0, 0, 326, 327, 1, 0, 0, 0, 327, 328, 1, 0, 0, 0, 328, 335, 3, 30,
-		15, 0, 329, 335, 3, 70, 35, 0, 330, 331, 5, 1, 0, 0, 331, 332, 3, 64, 32,
-		0, 332, 333, 5, 2, 0, 0, 333, 335, 1, 0, 0, 0, 334, 322, 1, 0, 0, 0, 334,
-		326, 1, 0, 0, 0, 334, 329, 1, 0, 0, 0, 334, 330, 1, 0, 0, 0, 335, 69, 1,
-		0, 0, 0, 336, 337, 3, 4, 2, 0, 337, 338, 5, 6, 0, 0, 338, 340, 1, 0, 0,
-		0, 339, 336, 1, 0, 0, 0, 339, 340, 1, 0, 0, 0, 340, 341, 1, 0, 0, 0, 341,
-		342, 3, 30, 15, 0, 342, 344, 5, 1, 0, 0, 343, 345, 3, 62, 31, 0, 344, 343,
-		1, 0, 0, 0, 344, 345, 1, 0, 0, 0, 345, 346, 1, 0, 0, 0, 346, 347, 5, 2,
-		0, 0, 347, 71, 1, 0, 0, 0, 36, 80, 88, 96, 108, 112, 115, 127, 131, 146,
-		150, 156, 163, 172, 176, 185, 196, 209, 222, 226, 231, 235, 245, 252, 254,
-		259, 264, 268, 272, 291, 312, 314, 320, 326, 334, 339, 344,
+		31, 2, 32, 7, 32, 2, 33, 7, 33, 2, 34, 7, 34, 2, 35, 7, 35, 2, 36, 7, 36,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 5, 0, 81, 8, 0, 10, 0, 12, 0, 84, 9,
+		0, 1, 0, 1, 0, 1, 0, 5, 0, 89, 8, 0, 10, 0, 12, 0, 92, 9, 0, 1, 0, 1, 0,
+		1, 1, 1, 1, 1, 1, 3, 1, 99, 8, 1, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1,
+		3, 1, 3, 5, 3, 109, 8, 3, 10, 3, 12, 3, 112, 9, 3, 1, 3, 3, 3, 115, 8,
+		3, 1, 4, 3, 4, 118, 8, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1,
+		5, 5, 5, 128, 8, 5, 10, 5, 12, 5, 131, 9, 5, 1, 5, 3, 5, 134, 8, 5, 1,
+		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5, 7, 147,
+		8, 7, 10, 7, 12, 7, 150, 9, 7, 1, 7, 3, 7, 153, 8, 7, 1, 8, 1, 8, 1, 8,
+		1, 8, 3, 8, 159, 8, 8, 1, 8, 1, 8, 1, 8, 3, 8, 164, 8, 8, 1, 9, 1, 9, 1,
+		9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 5, 10, 174, 8, 10, 10, 10, 12, 10,
+		177, 9, 10, 1, 11, 1, 11, 1, 12, 1, 12, 1, 12, 1, 12, 3, 12, 185, 8, 12,
+		1, 12, 1, 12, 3, 12, 189, 8, 12, 1, 12, 1, 12, 1, 13, 1, 13, 1, 13, 5,
+		13, 196, 8, 13, 10, 13, 12, 13, 199, 9, 13, 1, 14, 1, 14, 1, 14, 1, 15,
+		1, 15, 1, 15, 5, 15, 207, 8, 15, 10, 15, 12, 15, 210, 9, 15, 1, 16, 1,
+		16, 1, 17, 1, 17, 1, 18, 1, 18, 1, 18, 1, 18, 5, 18, 220, 8, 18, 10, 18,
+		12, 18, 223, 9, 18, 1, 18, 1, 18, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1,
+		19, 1, 19, 1, 19, 3, 19, 235, 8, 19, 1, 20, 1, 20, 3, 20, 239, 8, 20, 1,
+		21, 1, 21, 1, 21, 3, 21, 244, 8, 21, 1, 22, 1, 22, 3, 22, 248, 8, 22, 1,
+		23, 1, 23, 1, 24, 1, 24, 1, 25, 1, 25, 1, 25, 1, 25, 3, 25, 258, 8, 25,
+		1, 25, 1, 25, 1, 25, 1, 25, 1, 25, 3, 25, 265, 8, 25, 3, 25, 267, 8, 25,
+		1, 26, 1, 26, 1, 26, 3, 26, 272, 8, 26, 1, 26, 1, 26, 1, 27, 3, 27, 277,
+		8, 27, 1, 27, 1, 27, 3, 27, 281, 8, 27, 1, 27, 1, 27, 3, 27, 285, 8, 27,
+		1, 28, 1, 28, 1, 29, 1, 29, 1, 29, 1, 29, 1, 30, 1, 30, 1, 30, 1, 30, 1,
+		31, 1, 31, 1, 32, 1, 32, 1, 32, 5, 32, 302, 8, 32, 10, 32, 12, 32, 305,
+		9, 32, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1,
+		33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 1, 33, 5, 33, 325,
+		8, 33, 10, 33, 12, 33, 328, 9, 33, 1, 34, 1, 34, 1, 34, 3, 34, 333, 8,
+		34, 1, 35, 1, 35, 1, 35, 1, 35, 3, 35, 339, 8, 35, 1, 35, 1, 35, 1, 35,
+		1, 35, 1, 35, 1, 35, 3, 35, 347, 8, 35, 1, 36, 1, 36, 1, 36, 3, 36, 352,
+		8, 36, 1, 36, 1, 36, 1, 36, 3, 36, 357, 8, 36, 1, 36, 1, 36, 1, 36, 0,
+		1, 66, 37, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
+		34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68,
+		70, 72, 0, 5, 2, 0, 51, 51, 53, 54, 1, 0, 12, 14, 1, 0, 10, 11, 1, 0, 19,
+		24, 2, 0, 10, 11, 18, 18, 374, 0, 74, 1, 0, 0, 0, 2, 98, 1, 0, 0, 0, 4,
+		100, 1, 0, 0, 0, 6, 102, 1, 0, 0, 0, 8, 117, 1, 0, 0, 0, 10, 121, 1, 0,
+		0, 0, 12, 135, 1, 0, 0, 0, 14, 140, 1, 0, 0, 0, 16, 163, 1, 0, 0, 0, 18,
+		165, 1, 0, 0, 0, 20, 170, 1, 0, 0, 0, 22, 178, 1, 0, 0, 0, 24, 180, 1,
+		0, 0, 0, 26, 192, 1, 0, 0, 0, 28, 200, 1, 0, 0, 0, 30, 203, 1, 0, 0, 0,
+		32, 211, 1, 0, 0, 0, 34, 213, 1, 0, 0, 0, 36, 215, 1, 0, 0, 0, 38, 234,
+		1, 0, 0, 0, 40, 238, 1, 0, 0, 0, 42, 243, 1, 0, 0, 0, 44, 245, 1, 0, 0,
+		0, 46, 249, 1, 0, 0, 0, 48, 251, 1, 0, 0, 0, 50, 253, 1, 0, 0, 0, 52, 268,
+		1, 0, 0, 0, 54, 276, 1, 0, 0, 0, 56, 286, 1, 0, 0, 0, 58, 288, 1, 0, 0,
+		0, 60, 292, 1, 0, 0, 0, 62, 296, 1, 0, 0, 0, 64, 298, 1, 0, 0, 0, 66, 306,
+		1, 0, 0, 0, 68, 332, 1, 0, 0, 0, 70, 346, 1, 0, 0, 0, 72, 351, 1, 0, 0,
+		0, 74, 75, 5, 43, 0, 0, 75, 76, 3, 4, 2, 0, 76, 82, 5, 9, 0, 0, 77, 78,
+		3, 6, 3, 0, 78, 79, 5, 9, 0, 0, 79, 81, 1, 0, 0, 0, 80, 77, 1, 0, 0, 0,
+		81, 84, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 82, 83, 1, 0, 0, 0, 83, 90, 1,
+		0, 0, 0, 84, 82, 1, 0, 0, 0, 85, 86, 3, 2, 1, 0, 86, 87, 5, 9, 0, 0, 87,
+		89, 1, 0, 0, 0, 88, 85, 1, 0, 0, 0, 89, 92, 1, 0, 0, 0, 90, 88, 1, 0, 0,
+		0, 90, 91, 1, 0, 0, 0, 91, 93, 1, 0, 0, 0, 92, 90, 1, 0, 0, 0, 93, 94,
+		5, 0, 0, 1, 94, 1, 1, 0, 0, 0, 95, 99, 3, 10, 5, 0, 96, 99, 3, 14, 7, 0,
+		97, 99, 3, 24, 12, 0, 98, 95, 1, 0, 0, 0, 98, 96, 1, 0, 0, 0, 98, 97, 1,
+		0, 0, 0, 99, 3, 1, 0, 0, 0, 100, 101, 3, 32, 16, 0, 101, 5, 1, 0, 0, 0,
+		102, 114, 5, 40, 0, 0, 103, 115, 3, 8, 4, 0, 104, 110, 5, 1, 0, 0, 105,
+		106, 3, 8, 4, 0, 106, 107, 5, 9, 0, 0, 107, 109, 1, 0, 0, 0, 108, 105,
+		1, 0, 0, 0, 109, 112, 1, 0, 0, 0, 110, 108, 1, 0, 0, 0, 110, 111, 1, 0,
+		0, 0, 111, 113, 1, 0, 0, 0, 112, 110, 1, 0, 0, 0, 113, 115, 5, 2, 0, 0,
+		114, 103, 1, 0, 0, 0, 114, 104, 1, 0, 0, 0, 115, 7, 1, 0, 0, 0, 116, 118,
+		3, 4, 2, 0, 117, 116, 1, 0, 0, 0, 117, 118, 1, 0, 0, 0, 118, 119, 1, 0,
+		0, 0, 119, 120, 5, 55, 0, 0, 120, 9, 1, 0, 0, 0, 121, 133, 5, 29, 0, 0,
+		122, 134, 3, 12, 6, 0, 123, 129, 5, 1, 0, 0, 124, 125, 3, 12, 6, 0, 125,
+		126, 5, 9, 0, 0, 126, 128, 1, 0, 0, 0, 127, 124, 1, 0, 0, 0, 128, 131,
+		1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 129, 130, 1, 0, 0, 0, 130, 132, 1, 0,
+		0, 0, 131, 129, 1, 0, 0, 0, 132, 134, 5, 2, 0, 0, 133, 122, 1, 0, 0, 0,
+		133, 123, 1, 0, 0, 0, 134, 11, 1, 0, 0, 0, 135, 136, 3, 30, 15, 0, 136,
+		137, 3, 34, 17, 0, 137, 138, 5, 15, 0, 0, 138, 139, 3, 20, 10, 0, 139,
+		13, 1, 0, 0, 0, 140, 152, 5, 50, 0, 0, 141, 153, 3, 16, 8, 0, 142, 148,
+		5, 1, 0, 0, 143, 144, 3, 16, 8, 0, 144, 145, 5, 9, 0, 0, 145, 147, 1, 0,
+		0, 0, 146, 143, 1, 0, 0, 0, 147, 150, 1, 0, 0, 0, 148, 146, 1, 0, 0, 0,
+		148, 149, 1, 0, 0, 0, 149, 151, 1, 0, 0, 0, 150, 148, 1, 0, 0, 0, 151,
+		153, 5, 2, 0, 0, 152, 141, 1, 0, 0, 0, 152, 142, 1, 0, 0, 0, 153, 15, 1,
+		0, 0, 0, 154, 155, 3, 30, 15, 0, 155, 158, 3, 34, 17, 0, 156, 157, 5, 15,
+		0, 0, 157, 159, 3, 20, 10, 0, 158, 156, 1, 0, 0, 0, 158, 159, 1, 0, 0,
+		0, 159, 164, 1, 0, 0, 0, 160, 161, 3, 30, 15, 0, 161, 162, 3, 18, 9, 0,
+		162, 164, 1, 0, 0, 0, 163, 154, 1, 0, 0, 0, 163, 160, 1, 0, 0, 0, 164,
+		17, 1, 0, 0, 0, 165, 166, 5, 5, 0, 0, 166, 167, 5, 54, 0, 0, 167, 168,
+		5, 6, 0, 0, 168, 169, 3, 32, 16, 0, 169, 19, 1, 0, 0, 0, 170, 175, 3, 22,
+		11, 0, 171, 172, 5, 7, 0, 0, 172, 174, 3, 22, 11, 0, 173, 171, 1, 0, 0,
+		0, 174, 177, 1, 0, 0, 0, 175, 173, 1, 0, 0, 0, 175, 176, 1, 0, 0, 0, 176,
+		21, 1, 0, 0, 0, 177, 175, 1, 0, 0, 0, 178, 179, 7, 0, 0, 0, 179, 23, 1,
+		0, 0, 0, 180, 181, 5, 36, 0, 0, 181, 182, 3, 32, 16, 0, 182, 184, 5, 1,
+		0, 0, 183, 185, 3, 26, 13, 0, 184, 183, 1, 0, 0, 0, 184, 185, 1, 0, 0,
+		0, 185, 186, 1, 0, 0, 0, 186, 188, 5, 2, 0, 0, 187, 189, 3, 34, 17, 0,
+		188, 187, 1, 0, 0, 0, 188, 189, 1, 0, 0, 0, 189, 190, 1, 0, 0, 0, 190,
+		191, 3, 36, 18, 0, 191, 25, 1, 0, 0, 0, 192, 197, 3, 28, 14, 0, 193, 194,
+		5, 7, 0, 0, 194, 196, 3, 28, 14, 0, 195, 193, 1, 0, 0, 0, 196, 199, 1,
+		0, 0, 0, 197, 195, 1, 0, 0, 0, 197, 198, 1, 0, 0, 0, 198, 27, 1, 0, 0,
+		0, 199, 197, 1, 0, 0, 0, 200, 201, 3, 30, 15, 0, 201, 202, 3, 34, 17, 0,
+		202, 29, 1, 0, 0, 0, 203, 208, 3, 32, 16, 0, 204, 205, 5, 7, 0, 0, 205,
+		207, 3, 32, 16, 0, 206, 204, 1, 0, 0, 0, 207, 210, 1, 0, 0, 0, 208, 206,
+		1, 0, 0, 0, 208, 209, 1, 0, 0, 0, 209, 31, 1, 0, 0, 0, 210, 208, 1, 0,
+		0, 0, 211, 212, 5, 52, 0, 0, 212, 33, 1, 0, 0, 0, 213, 214, 3, 32, 16,
+		0, 214, 35, 1, 0, 0, 0, 215, 221, 5, 3, 0, 0, 216, 217, 3, 38, 19, 0, 217,
+		218, 5, 9, 0, 0, 218, 220, 1, 0, 0, 0, 219, 216, 1, 0, 0, 0, 220, 223,
+		1, 0, 0, 0, 221, 219, 1, 0, 0, 0, 221, 222, 1, 0, 0, 0, 222, 224, 1, 0,
+		0, 0, 223, 221, 1, 0, 0, 0, 224, 225, 5, 4, 0, 0, 225, 37, 1, 0, 0, 0,
+		226, 235, 3, 40, 20, 0, 227, 235, 3, 42, 21, 0, 228, 235, 3, 44, 22, 0,
+		229, 235, 3, 48, 24, 0, 230, 235, 3, 46, 23, 0, 231, 235, 3, 36, 18, 0,
+		232, 235, 3, 50, 25, 0, 233, 235, 3, 52, 26, 0, 234, 226, 1, 0, 0, 0, 234,
+		227, 1, 0, 0, 0, 234, 228, 1, 0, 0, 0, 234, 229, 1, 0, 0, 0, 234, 230,
+		1, 0, 0, 0, 234, 231, 1, 0, 0, 0, 234, 232, 1, 0, 0, 0, 234, 233, 1, 0,
+		0, 0, 235, 39, 1, 0, 0, 0, 236, 239, 3, 10, 5, 0, 237, 239, 3, 14, 7, 0,
+		238, 236, 1, 0, 0, 0, 238, 237, 1, 0, 0, 0, 239, 41, 1, 0, 0, 0, 240, 244,
+		3, 62, 31, 0, 241, 244, 3, 60, 30, 0, 242, 244, 3, 58, 29, 0, 243, 240,
+		1, 0, 0, 0, 243, 241, 1, 0, 0, 0, 243, 242, 1, 0, 0, 0, 244, 43, 1, 0,
+		0, 0, 245, 247, 5, 45, 0, 0, 246, 248, 3, 66, 33, 0, 247, 246, 1, 0, 0,
+		0, 247, 248, 1, 0, 0, 0, 248, 45, 1, 0, 0, 0, 249, 250, 5, 30, 0, 0, 250,
+		47, 1, 0, 0, 0, 251, 252, 5, 26, 0, 0, 252, 49, 1, 0, 0, 0, 253, 257, 5,
+		39, 0, 0, 254, 255, 3, 42, 21, 0, 255, 256, 5, 9, 0, 0, 256, 258, 1, 0,
+		0, 0, 257, 254, 1, 0, 0, 0, 257, 258, 1, 0, 0, 0, 258, 259, 1, 0, 0, 0,
+		259, 260, 3, 56, 28, 0, 260, 266, 3, 36, 18, 0, 261, 264, 5, 33, 0, 0,
+		262, 265, 3, 50, 25, 0, 263, 265, 3, 36, 18, 0, 264, 262, 1, 0, 0, 0, 264,
+		263, 1, 0, 0, 0, 265, 267, 1, 0, 0, 0, 266, 261, 1, 0, 0, 0, 266, 267,
+		1, 0, 0, 0, 267, 51, 1, 0, 0, 0, 268, 271, 5, 35, 0, 0, 269, 272, 3, 56,
+		28, 0, 270, 272, 3, 54, 27, 0, 271, 269, 1, 0, 0, 0, 271, 270, 1, 0, 0,
+		0, 271, 272, 1, 0, 0, 0, 272, 273, 1, 0, 0, 0, 273, 274, 3, 36, 18, 0,
+		274, 53, 1, 0, 0, 0, 275, 277, 3, 42, 21, 0, 276, 275, 1, 0, 0, 0, 276,
+		277, 1, 0, 0, 0, 277, 278, 1, 0, 0, 0, 278, 280, 5, 9, 0, 0, 279, 281,
+		3, 56, 28, 0, 280, 279, 1, 0, 0, 0, 280, 281, 1, 0, 0, 0, 281, 282, 1,
+		0, 0, 0, 282, 284, 5, 9, 0, 0, 283, 285, 3, 42, 21, 0, 284, 283, 1, 0,
+		0, 0, 284, 285, 1, 0, 0, 0, 285, 55, 1, 0, 0, 0, 286, 287, 3, 66, 33, 0,
+		287, 57, 1, 0, 0, 0, 288, 289, 3, 30, 15, 0, 289, 290, 5, 25, 0, 0, 290,
+		291, 3, 64, 32, 0, 291, 59, 1, 0, 0, 0, 292, 293, 3, 30, 15, 0, 293, 294,
+		5, 15, 0, 0, 294, 295, 3, 64, 32, 0, 295, 61, 1, 0, 0, 0, 296, 297, 3,
+		72, 36, 0, 297, 63, 1, 0, 0, 0, 298, 303, 3, 66, 33, 0, 299, 300, 5, 7,
+		0, 0, 300, 302, 3, 66, 33, 0, 301, 299, 1, 0, 0, 0, 302, 305, 1, 0, 0,
+		0, 303, 301, 1, 0, 0, 0, 303, 304, 1, 0, 0, 0, 304, 65, 1, 0, 0, 0, 305,
+		303, 1, 0, 0, 0, 306, 307, 6, 33, -1, 0, 307, 308, 3, 68, 34, 0, 308, 326,
+		1, 0, 0, 0, 309, 310, 10, 5, 0, 0, 310, 311, 7, 1, 0, 0, 311, 325, 3, 66,
+		33, 6, 312, 313, 10, 4, 0, 0, 313, 314, 7, 2, 0, 0, 314, 325, 3, 66, 33,
+		5, 315, 316, 10, 3, 0, 0, 316, 317, 7, 3, 0, 0, 317, 325, 3, 66, 33, 4,
+		318, 319, 10, 2, 0, 0, 319, 320, 5, 16, 0, 0, 320, 325, 3, 66, 33, 3, 321,
+		322, 10, 1, 0, 0, 322, 323, 5, 17, 0, 0, 323, 325, 3, 66, 33, 2, 324, 309,
+		1, 0, 0, 0, 324, 312, 1, 0, 0, 0, 324, 315, 1, 0, 0, 0, 324, 318, 1, 0,
+		0, 0, 324, 321, 1, 0, 0, 0, 325, 328, 1, 0, 0, 0, 326, 324, 1, 0, 0, 0,
+		326, 327, 1, 0, 0, 0, 327, 67, 1, 0, 0, 0, 328, 326, 1, 0, 0, 0, 329, 333,
+		3, 70, 35, 0, 330, 331, 7, 4, 0, 0, 331, 333, 3, 68, 34, 0, 332, 329, 1,
+		0, 0, 0, 332, 330, 1, 0, 0, 0, 333, 69, 1, 0, 0, 0, 334, 347, 3, 22, 11,
+		0, 335, 336, 3, 4, 2, 0, 336, 337, 5, 8, 0, 0, 337, 339, 1, 0, 0, 0, 338,
+		335, 1, 0, 0, 0, 338, 339, 1, 0, 0, 0, 339, 340, 1, 0, 0, 0, 340, 347,
+		3, 32, 16, 0, 341, 347, 3, 72, 36, 0, 342, 343, 5, 1, 0, 0, 343, 344, 3,
+		66, 33, 0, 344, 345, 5, 2, 0, 0, 345, 347, 1, 0, 0, 0, 346, 334, 1, 0,
+		0, 0, 346, 338, 1, 0, 0, 0, 346, 341, 1, 0, 0, 0, 346, 342, 1, 0, 0, 0,
+		347, 71, 1, 0, 0, 0, 348, 349, 3, 4, 2, 0, 349, 350, 5, 8, 0, 0, 350, 352,
+		1, 0, 0, 0, 351, 348, 1, 0, 0, 0, 351, 352, 1, 0, 0, 0, 352, 353, 1, 0,
+		0, 0, 353, 354, 3, 32, 16, 0, 354, 356, 5, 1, 0, 0, 355, 357, 3, 64, 32,
+		0, 356, 355, 1, 0, 0, 0, 356, 357, 1, 0, 0, 0, 357, 358, 1, 0, 0, 0, 358,
+		359, 5, 2, 0, 0, 359, 73, 1, 0, 0, 0, 37, 82, 90, 98, 110, 114, 117, 129,
+		133, 148, 152, 158, 163, 175, 184, 188, 197, 208, 221, 234, 238, 243, 247,
+		257, 264, 266, 271, 276, 280, 284, 303, 324, 326, 332, 338, 346, 351, 356,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -257,60 +262,62 @@ const (
 	GrobbitParserTtRParen        = 2
 	GrobbitParserTtLBrace        = 3
 	GrobbitParserTtRBrace        = 4
-	GrobbitParserTtComma         = 5
-	GrobbitParserTtPeriod        = 6
-	GrobbitParserTtSemicolon     = 7
-	GrobbitParserTtOpAdd         = 8
-	GrobbitParserTtOpSub         = 9
-	GrobbitParserTtOpMul         = 10
-	GrobbitParserTtOpDiv         = 11
-	GrobbitParserTtOpMod         = 12
-	GrobbitParserTtOpAssign      = 13
-	GrobbitParserTtOpAnd         = 14
-	GrobbitParserTtOpOr          = 15
-	GrobbitParserTtOpNot         = 16
-	GrobbitParserTtOpEq          = 17
-	GrobbitParserTtOpLt          = 18
-	GrobbitParserTtOpGt          = 19
-	GrobbitParserTtOpNe          = 20
-	GrobbitParserTtOpLe          = 21
-	GrobbitParserTtOpGe          = 22
-	GrobbitParserTtOpDefine      = 23
-	GrobbitParserTtKwBreak       = 24
-	GrobbitParserTtKwCase        = 25
-	GrobbitParserTtKwChan        = 26
-	GrobbitParserTtKwConst       = 27
-	GrobbitParserTtKwContinue    = 28
-	GrobbitParserTtKwDefault     = 29
-	GrobbitParserTtKwDefer       = 30
-	GrobbitParserTtKwElse        = 31
-	GrobbitParserTtKwFallthrough = 32
-	GrobbitParserTtKwFor         = 33
-	GrobbitParserTtKwFunc        = 34
-	GrobbitParserTtKwGo          = 35
-	GrobbitParserTtKwGoto        = 36
-	GrobbitParserTtKwIf          = 37
-	GrobbitParserTtKwImport      = 38
-	GrobbitParserTtKwInterface   = 39
-	GrobbitParserTtKwMap         = 40
-	GrobbitParserTtKwPackage     = 41
-	GrobbitParserTtKwRange       = 42
-	GrobbitParserTtKwReturn      = 43
-	GrobbitParserTtKwSelect      = 44
-	GrobbitParserTtKwStruct      = 45
-	GrobbitParserTtKwSwitch      = 46
-	GrobbitParserTtKwType        = 47
-	GrobbitParserTtKwVar         = 48
-	GrobbitParserTtBool          = 49
-	GrobbitParserTtIdentifier    = 50
-	GrobbitParserTtFloat         = 51
-	GrobbitParserTtInt           = 52
-	GrobbitParserTtString        = 53
-	GrobbitParserTtChar          = 54
-	GrobbitParserWS              = 55
-	GrobbitParserBLOCK_COMMENT   = 56
-	GrobbitParserLINE_COMMENT    = 57
-	GrobbitParserTtUnknown       = 58
+	GrobbitParserTtLBracket      = 5
+	GrobbitParserTtRBracket      = 6
+	GrobbitParserTtComma         = 7
+	GrobbitParserTtPeriod        = 8
+	GrobbitParserTtSemicolon     = 9
+	GrobbitParserTtOpAdd         = 10
+	GrobbitParserTtOpSub         = 11
+	GrobbitParserTtOpMul         = 12
+	GrobbitParserTtOpDiv         = 13
+	GrobbitParserTtOpMod         = 14
+	GrobbitParserTtOpAssign      = 15
+	GrobbitParserTtOpAnd         = 16
+	GrobbitParserTtOpOr          = 17
+	GrobbitParserTtOpNot         = 18
+	GrobbitParserTtOpEq          = 19
+	GrobbitParserTtOpLt          = 20
+	GrobbitParserTtOpGt          = 21
+	GrobbitParserTtOpNe          = 22
+	GrobbitParserTtOpLe          = 23
+	GrobbitParserTtOpGe          = 24
+	GrobbitParserTtOpDefine      = 25
+	GrobbitParserTtKwBreak       = 26
+	GrobbitParserTtKwCase        = 27
+	GrobbitParserTtKwChan        = 28
+	GrobbitParserTtKwConst       = 29
+	GrobbitParserTtKwContinue    = 30
+	GrobbitParserTtKwDefault     = 31
+	GrobbitParserTtKwDefer       = 32
+	GrobbitParserTtKwElse        = 33
+	GrobbitParserTtKwFallthrough = 34
+	GrobbitParserTtKwFor         = 35
+	GrobbitParserTtKwFunc        = 36
+	GrobbitParserTtKwGo          = 37
+	GrobbitParserTtKwGoto        = 38
+	GrobbitParserTtKwIf          = 39
+	GrobbitParserTtKwImport      = 40
+	GrobbitParserTtKwInterface   = 41
+	GrobbitParserTtKwMap         = 42
+	GrobbitParserTtKwPackage     = 43
+	GrobbitParserTtKwRange       = 44
+	GrobbitParserTtKwReturn      = 45
+	GrobbitParserTtKwSelect      = 46
+	GrobbitParserTtKwStruct      = 47
+	GrobbitParserTtKwSwitch      = 48
+	GrobbitParserTtKwType        = 49
+	GrobbitParserTtKwVar         = 50
+	GrobbitParserTtBool          = 51
+	GrobbitParserTtIdentifier    = 52
+	GrobbitParserTtFloat         = 53
+	GrobbitParserTtInt           = 54
+	GrobbitParserTtString        = 55
+	GrobbitParserTtChar          = 56
+	GrobbitParserWS              = 57
+	GrobbitParserBLOCK_COMMENT   = 58
+	GrobbitParserLINE_COMMENT    = 59
+	GrobbitParserTtUnknown       = 60
 )
 
 // GrobbitParser rules.
@@ -324,33 +331,34 @@ const (
 	GrobbitParserRULE_const_spec     = 6
 	GrobbitParserRULE_var_decl       = 7
 	GrobbitParserRULE_var_spec       = 8
-	GrobbitParserRULE_basic_literals = 9
-	GrobbitParserRULE_basic_literal  = 10
-	GrobbitParserRULE_func_decl      = 11
-	GrobbitParserRULE_param_decl     = 12
-	GrobbitParserRULE_param_spec     = 13
-	GrobbitParserRULE_identifiers    = 14
-	GrobbitParserRULE_identifier     = 15
-	GrobbitParserRULE_type           = 16
-	GrobbitParserRULE_block          = 17
-	GrobbitParserRULE_statement      = 18
-	GrobbitParserRULE_decl_stmt      = 19
-	GrobbitParserRULE_simple_stmt    = 20
-	GrobbitParserRULE_return_stmt    = 21
-	GrobbitParserRULE_continue_stmt  = 22
-	GrobbitParserRULE_break_stmt     = 23
-	GrobbitParserRULE_if_stmt        = 24
-	GrobbitParserRULE_for_stmt       = 25
-	GrobbitParserRULE_for_clause     = 26
-	GrobbitParserRULE_condition      = 27
-	GrobbitParserRULE_shortvar_decl  = 28
-	GrobbitParserRULE_assign_stmt    = 29
-	GrobbitParserRULE_expr_stmt      = 30
-	GrobbitParserRULE_expressions    = 31
-	GrobbitParserRULE_expression     = 32
-	GrobbitParserRULE_unary_expr     = 33
-	GrobbitParserRULE_primary_expr   = 34
-	GrobbitParserRULE_call_expr      = 35
+	GrobbitParserRULE_array_type     = 9
+	GrobbitParserRULE_basic_literals = 10
+	GrobbitParserRULE_basic_literal  = 11
+	GrobbitParserRULE_func_decl      = 12
+	GrobbitParserRULE_param_decl     = 13
+	GrobbitParserRULE_param_spec     = 14
+	GrobbitParserRULE_identifiers    = 15
+	GrobbitParserRULE_identifier     = 16
+	GrobbitParserRULE_type           = 17
+	GrobbitParserRULE_block          = 18
+	GrobbitParserRULE_statement      = 19
+	GrobbitParserRULE_decl_stmt      = 20
+	GrobbitParserRULE_simple_stmt    = 21
+	GrobbitParserRULE_return_stmt    = 22
+	GrobbitParserRULE_continue_stmt  = 23
+	GrobbitParserRULE_break_stmt     = 24
+	GrobbitParserRULE_if_stmt        = 25
+	GrobbitParserRULE_for_stmt       = 26
+	GrobbitParserRULE_for_clause     = 27
+	GrobbitParserRULE_condition      = 28
+	GrobbitParserRULE_shortvar_decl  = 29
+	GrobbitParserRULE_assign_stmt    = 30
+	GrobbitParserRULE_expr_stmt      = 31
+	GrobbitParserRULE_expressions    = 32
+	GrobbitParserRULE_expression     = 33
+	GrobbitParserRULE_unary_expr     = 34
+	GrobbitParserRULE_primary_expr   = 35
+	GrobbitParserRULE_call_expr      = 36
 )
 
 // IProgramContext is an interface to support dynamic dispatch.
@@ -546,7 +554,7 @@ func (p *GrobbitParser) Program() (localctx IProgramContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(72)
+		p.SetState(74)
 		p.Match(GrobbitParserTtKwPackage)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -554,18 +562,18 @@ func (p *GrobbitParser) Program() (localctx IProgramContext) {
 		}
 	}
 	{
-		p.SetState(73)
+		p.SetState(75)
 		p.Pkg_name()
 	}
 	{
-		p.SetState(74)
+		p.SetState(76)
 		p.Match(GrobbitParserTtSemicolon)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(80)
+	p.SetState(82)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -574,11 +582,11 @@ func (p *GrobbitParser) Program() (localctx IProgramContext) {
 
 	for _la == GrobbitParserTtKwImport {
 		{
-			p.SetState(75)
+			p.SetState(77)
 			p.Import_decl()
 		}
 		{
-			p.SetState(76)
+			p.SetState(78)
 			p.Match(GrobbitParserTtSemicolon)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -586,27 +594,27 @@ func (p *GrobbitParser) Program() (localctx IProgramContext) {
 			}
 		}
 
-		p.SetState(82)
+		p.SetState(84)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(88)
+	p.SetState(90)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&281492290797568) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1125969163190272) != 0 {
 		{
-			p.SetState(83)
+			p.SetState(85)
 			p.Top_decl()
 		}
 		{
-			p.SetState(84)
+			p.SetState(86)
 			p.Match(GrobbitParserTtSemicolon)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -614,7 +622,7 @@ func (p *GrobbitParser) Program() (localctx IProgramContext) {
 			}
 		}
 
-		p.SetState(90)
+		p.SetState(92)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -622,7 +630,7 @@ func (p *GrobbitParser) Program() (localctx IProgramContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(91)
+		p.SetState(93)
 		p.Match(GrobbitParserEOF)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -760,7 +768,7 @@ func (s *Top_declContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 func (p *GrobbitParser) Top_decl() (localctx ITop_declContext) {
 	localctx = NewTop_declContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, GrobbitParserRULE_top_decl)
-	p.SetState(96)
+	p.SetState(98)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -770,21 +778,21 @@ func (p *GrobbitParser) Top_decl() (localctx ITop_declContext) {
 	case GrobbitParserTtKwConst:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(93)
+			p.SetState(95)
 			p.Const_decl()
 		}
 
 	case GrobbitParserTtKwVar:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(94)
+			p.SetState(96)
 			p.Var_decl()
 		}
 
 	case GrobbitParserTtKwFunc:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(95)
+			p.SetState(97)
 			p.Func_decl()
 		}
 
@@ -891,7 +899,7 @@ func (p *GrobbitParser) Pkg_name() (localctx IPkg_nameContext) {
 	p.EnterRule(localctx, 4, GrobbitParserRULE_pkg_name)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(98)
+		p.SetState(100)
 		p.Identifier()
 	}
 
@@ -1046,14 +1054,14 @@ func (p *GrobbitParser) Import_decl() (localctx IImport_declContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(100)
+		p.SetState(102)
 		p.Match(GrobbitParserTtKwImport)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(112)
+	p.SetState(114)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1062,20 +1070,20 @@ func (p *GrobbitParser) Import_decl() (localctx IImport_declContext) {
 	switch p.GetTokenStream().LA(1) {
 	case GrobbitParserTtIdentifier, GrobbitParserTtString:
 		{
-			p.SetState(101)
+			p.SetState(103)
 			p.Import_spec()
 		}
 
 	case GrobbitParserTtLParen:
 		{
-			p.SetState(102)
+			p.SetState(104)
 			p.Match(GrobbitParserTtLParen)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(108)
+		p.SetState(110)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1084,11 +1092,11 @@ func (p *GrobbitParser) Import_decl() (localctx IImport_declContext) {
 
 		for _la == GrobbitParserTtIdentifier || _la == GrobbitParserTtString {
 			{
-				p.SetState(103)
+				p.SetState(105)
 				p.Import_spec()
 			}
 			{
-				p.SetState(104)
+				p.SetState(106)
 				p.Match(GrobbitParserTtSemicolon)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1096,7 +1104,7 @@ func (p *GrobbitParser) Import_decl() (localctx IImport_declContext) {
 				}
 			}
 
-			p.SetState(110)
+			p.SetState(112)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -1104,7 +1112,7 @@ func (p *GrobbitParser) Import_decl() (localctx IImport_declContext) {
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(111)
+			p.SetState(113)
 			p.Match(GrobbitParserTtRParen)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1221,7 +1229,7 @@ func (p *GrobbitParser) Import_spec() (localctx IImport_specContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(115)
+	p.SetState(117)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1230,13 +1238,13 @@ func (p *GrobbitParser) Import_spec() (localctx IImport_specContext) {
 
 	if _la == GrobbitParserTtIdentifier {
 		{
-			p.SetState(114)
+			p.SetState(116)
 			p.Pkg_name()
 		}
 
 	}
 	{
-		p.SetState(117)
+		p.SetState(119)
 		p.Match(GrobbitParserTtString)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1395,14 +1403,14 @@ func (p *GrobbitParser) Const_decl() (localctx IConst_declContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(119)
+		p.SetState(121)
 		p.Match(GrobbitParserTtKwConst)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(131)
+	p.SetState(133)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1411,20 +1419,20 @@ func (p *GrobbitParser) Const_decl() (localctx IConst_declContext) {
 	switch p.GetTokenStream().LA(1) {
 	case GrobbitParserTtIdentifier:
 		{
-			p.SetState(120)
+			p.SetState(122)
 			p.Const_spec()
 		}
 
 	case GrobbitParserTtLParen:
 		{
-			p.SetState(121)
+			p.SetState(123)
 			p.Match(GrobbitParserTtLParen)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(127)
+		p.SetState(129)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1433,11 +1441,11 @@ func (p *GrobbitParser) Const_decl() (localctx IConst_declContext) {
 
 		for _la == GrobbitParserTtIdentifier {
 			{
-				p.SetState(122)
+				p.SetState(124)
 				p.Const_spec()
 			}
 			{
-				p.SetState(123)
+				p.SetState(125)
 				p.Match(GrobbitParserTtSemicolon)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1445,7 +1453,7 @@ func (p *GrobbitParser) Const_decl() (localctx IConst_declContext) {
 				}
 			}
 
-			p.SetState(129)
+			p.SetState(131)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -1453,7 +1461,7 @@ func (p *GrobbitParser) Const_decl() (localctx IConst_declContext) {
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(130)
+			p.SetState(132)
 			p.Match(GrobbitParserTtRParen)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1603,15 +1611,15 @@ func (p *GrobbitParser) Const_spec() (localctx IConst_specContext) {
 	p.EnterRule(localctx, 12, GrobbitParserRULE_const_spec)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(133)
+		p.SetState(135)
 		p.Identifiers()
 	}
 	{
-		p.SetState(134)
+		p.SetState(136)
 		p.Type_()
 	}
 	{
-		p.SetState(135)
+		p.SetState(137)
 		p.Match(GrobbitParserTtOpAssign)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1619,7 +1627,7 @@ func (p *GrobbitParser) Const_spec() (localctx IConst_specContext) {
 		}
 	}
 	{
-		p.SetState(136)
+		p.SetState(138)
 		p.Basic_literals()
 	}
 
@@ -1774,14 +1782,14 @@ func (p *GrobbitParser) Var_decl() (localctx IVar_declContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(138)
+		p.SetState(140)
 		p.Match(GrobbitParserTtKwVar)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(150)
+	p.SetState(152)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1790,20 +1798,20 @@ func (p *GrobbitParser) Var_decl() (localctx IVar_declContext) {
 	switch p.GetTokenStream().LA(1) {
 	case GrobbitParserTtIdentifier:
 		{
-			p.SetState(139)
+			p.SetState(141)
 			p.Var_spec()
 		}
 
 	case GrobbitParserTtLParen:
 		{
-			p.SetState(140)
+			p.SetState(142)
 			p.Match(GrobbitParserTtLParen)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(146)
+		p.SetState(148)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1812,11 +1820,11 @@ func (p *GrobbitParser) Var_decl() (localctx IVar_declContext) {
 
 		for _la == GrobbitParserTtIdentifier {
 			{
-				p.SetState(141)
+				p.SetState(143)
 				p.Var_spec()
 			}
 			{
-				p.SetState(142)
+				p.SetState(144)
 				p.Match(GrobbitParserTtSemicolon)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1824,7 +1832,7 @@ func (p *GrobbitParser) Var_decl() (localctx IVar_declContext) {
 				}
 			}
 
-			p.SetState(148)
+			p.SetState(150)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -1832,7 +1840,7 @@ func (p *GrobbitParser) Var_decl() (localctx IVar_declContext) {
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(149)
+			p.SetState(151)
 			p.Match(GrobbitParserTtRParen)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1870,6 +1878,7 @@ type IVar_specContext interface {
 	Type_() ITypeContext
 	TtOpAssign() antlr.TerminalNode
 	Basic_literals() IBasic_literalsContext
+	Array_type() IArray_typeContext
 
 	// IsVar_specContext differentiates from other interfaces.
 	IsVar_specContext()
@@ -1959,6 +1968,22 @@ func (s *Var_specContext) Basic_literals() IBasic_literalsContext {
 	return t.(IBasic_literalsContext)
 }
 
+func (s *Var_specContext) Array_type() IArray_typeContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IArray_typeContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IArray_typeContext)
+}
+
 func (s *Var_specContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1982,36 +2007,200 @@ func (p *GrobbitParser) Var_spec() (localctx IVar_specContext) {
 	p.EnterRule(localctx, 16, GrobbitParserRULE_var_spec)
 	var _la int
 
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(152)
-		p.Identifiers()
-	}
-	{
-		p.SetState(153)
-		p.Type_()
-	}
-	p.SetState(156)
+	p.SetState(163)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
-	_la = p.GetTokenStream().LA(1)
 
-	if _la == GrobbitParserTtOpAssign {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 11, p.GetParserRuleContext()) {
+	case 1:
+		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(154)
-			p.Match(GrobbitParserTtOpAssign)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
+			p.Identifiers()
 		}
 		{
 			p.SetState(155)
-			p.Basic_literals()
+			p.Type_()
+		}
+		p.SetState(158)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+
+		if _la == GrobbitParserTtOpAssign {
+			{
+				p.SetState(156)
+				p.Match(GrobbitParserTtOpAssign)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
+			}
+			{
+				p.SetState(157)
+				p.Basic_literals()
+			}
+
 		}
 
+	case 2:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(160)
+			p.Identifiers()
+		}
+		{
+			p.SetState(161)
+			p.Array_type()
+		}
+
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IArray_typeContext is an interface to support dynamic dispatch.
+type IArray_typeContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	TtLBracket() antlr.TerminalNode
+	TtInt() antlr.TerminalNode
+	TtRBracket() antlr.TerminalNode
+	Identifier() IIdentifierContext
+
+	// IsArray_typeContext differentiates from other interfaces.
+	IsArray_typeContext()
+}
+
+type Array_typeContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyArray_typeContext() *Array_typeContext {
+	var p = new(Array_typeContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = GrobbitParserRULE_array_type
+	return p
+}
+
+func InitEmptyArray_typeContext(p *Array_typeContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = GrobbitParserRULE_array_type
+}
+
+func (*Array_typeContext) IsArray_typeContext() {}
+
+func NewArray_typeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Array_typeContext {
+	var p = new(Array_typeContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrobbitParserRULE_array_type
+
+	return p
+}
+
+func (s *Array_typeContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Array_typeContext) TtLBracket() antlr.TerminalNode {
+	return s.GetToken(GrobbitParserTtLBracket, 0)
+}
+
+func (s *Array_typeContext) TtInt() antlr.TerminalNode {
+	return s.GetToken(GrobbitParserTtInt, 0)
+}
+
+func (s *Array_typeContext) TtRBracket() antlr.TerminalNode {
+	return s.GetToken(GrobbitParserTtRBracket, 0)
+}
+
+func (s *Array_typeContext) Identifier() IIdentifierContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIdentifierContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IIdentifierContext)
+}
+
+func (s *Array_typeContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Array_typeContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Array_typeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case GrobbitParserVisitor:
+		return t.VisitArray_type(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *GrobbitParser) Array_type() (localctx IArray_typeContext) {
+	localctx = NewArray_typeContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 18, GrobbitParserRULE_array_type)
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(165)
+		p.Match(GrobbitParserTtLBracket)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(166)
+		p.Match(GrobbitParserTtInt)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(167)
+		p.Match(GrobbitParserTtRBracket)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(168)
+		p.Identifier()
 	}
 
 errorExit:
@@ -2145,15 +2334,15 @@ func (s *Basic_literalsContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *GrobbitParser) Basic_literals() (localctx IBasic_literalsContext) {
 	localctx = NewBasic_literalsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, GrobbitParserRULE_basic_literals)
+	p.EnterRule(localctx, 20, GrobbitParserRULE_basic_literals)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(158)
+		p.SetState(170)
 		p.Basic_literal()
 	}
-	p.SetState(163)
+	p.SetState(175)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2162,7 +2351,7 @@ func (p *GrobbitParser) Basic_literals() (localctx IBasic_literalsContext) {
 
 	for _la == GrobbitParserTtComma {
 		{
-			p.SetState(159)
+			p.SetState(171)
 			p.Match(GrobbitParserTtComma)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2170,11 +2359,11 @@ func (p *GrobbitParser) Basic_literals() (localctx IBasic_literalsContext) {
 			}
 		}
 		{
-			p.SetState(160)
+			p.SetState(172)
 			p.Basic_literal()
 		}
 
-		p.SetState(165)
+		p.SetState(177)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2275,15 +2464,15 @@ func (s *Basic_literalContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *GrobbitParser) Basic_literal() (localctx IBasic_literalContext) {
 	localctx = NewBasic_literalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, GrobbitParserRULE_basic_literal)
+	p.EnterRule(localctx, 22, GrobbitParserRULE_basic_literal)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(166)
+		p.SetState(178)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7318349394477056) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&29273397577908224) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -2452,12 +2641,12 @@ func (s *Func_declContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Func_decl() (localctx IFunc_declContext) {
 	localctx = NewFunc_declContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, GrobbitParserRULE_func_decl)
+	p.EnterRule(localctx, 24, GrobbitParserRULE_func_decl)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(168)
+		p.SetState(180)
 		p.Match(GrobbitParserTtKwFunc)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2465,18 +2654,18 @@ func (p *GrobbitParser) Func_decl() (localctx IFunc_declContext) {
 		}
 	}
 	{
-		p.SetState(169)
+		p.SetState(181)
 		p.Identifier()
 	}
 	{
-		p.SetState(170)
+		p.SetState(182)
 		p.Match(GrobbitParserTtLParen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(172)
+	p.SetState(184)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2485,20 +2674,20 @@ func (p *GrobbitParser) Func_decl() (localctx IFunc_declContext) {
 
 	if _la == GrobbitParserTtIdentifier {
 		{
-			p.SetState(171)
+			p.SetState(183)
 			p.Param_decl()
 		}
 
 	}
 	{
-		p.SetState(174)
+		p.SetState(186)
 		p.Match(GrobbitParserTtRParen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(176)
+	p.SetState(188)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2507,13 +2696,13 @@ func (p *GrobbitParser) Func_decl() (localctx IFunc_declContext) {
 
 	if _la == GrobbitParserTtIdentifier {
 		{
-			p.SetState(175)
+			p.SetState(187)
 			p.Type_()
 		}
 
 	}
 	{
-		p.SetState(178)
+		p.SetState(190)
 		p.Block()
 	}
 
@@ -2648,15 +2837,15 @@ func (s *Param_declContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Param_decl() (localctx IParam_declContext) {
 	localctx = NewParam_declContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, GrobbitParserRULE_param_decl)
+	p.EnterRule(localctx, 26, GrobbitParserRULE_param_decl)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(180)
+		p.SetState(192)
 		p.Param_spec()
 	}
-	p.SetState(185)
+	p.SetState(197)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2665,7 +2854,7 @@ func (p *GrobbitParser) Param_decl() (localctx IParam_declContext) {
 
 	for _la == GrobbitParserTtComma {
 		{
-			p.SetState(181)
+			p.SetState(193)
 			p.Match(GrobbitParserTtComma)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2673,11 +2862,11 @@ func (p *GrobbitParser) Param_decl() (localctx IParam_declContext) {
 			}
 		}
 		{
-			p.SetState(182)
+			p.SetState(194)
 			p.Param_spec()
 		}
 
-		p.SetState(187)
+		p.SetState(199)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2797,14 +2986,14 @@ func (s *Param_specContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Param_spec() (localctx IParam_specContext) {
 	localctx = NewParam_specContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, GrobbitParserRULE_param_spec)
+	p.EnterRule(localctx, 28, GrobbitParserRULE_param_spec)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(188)
+		p.SetState(200)
 		p.Identifiers()
 	}
 	{
-		p.SetState(189)
+		p.SetState(201)
 		p.Type_()
 	}
 
@@ -2939,15 +3128,15 @@ func (s *IdentifiersContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *GrobbitParser) Identifiers() (localctx IIdentifiersContext) {
 	localctx = NewIdentifiersContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, GrobbitParserRULE_identifiers)
+	p.EnterRule(localctx, 30, GrobbitParserRULE_identifiers)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(191)
+		p.SetState(203)
 		p.Identifier()
 	}
-	p.SetState(196)
+	p.SetState(208)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2956,7 +3145,7 @@ func (p *GrobbitParser) Identifiers() (localctx IIdentifiersContext) {
 
 	for _la == GrobbitParserTtComma {
 		{
-			p.SetState(192)
+			p.SetState(204)
 			p.Match(GrobbitParserTtComma)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2964,11 +3153,11 @@ func (p *GrobbitParser) Identifiers() (localctx IIdentifiersContext) {
 			}
 		}
 		{
-			p.SetState(193)
+			p.SetState(205)
 			p.Identifier()
 		}
 
-		p.SetState(198)
+		p.SetState(210)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3059,10 +3248,10 @@ func (s *IdentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Identifier() (localctx IIdentifierContext) {
 	localctx = NewIdentifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, GrobbitParserRULE_identifier)
+	p.EnterRule(localctx, 32, GrobbitParserRULE_identifier)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(199)
+		p.SetState(211)
 		p.Match(GrobbitParserTtIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3165,10 +3354,10 @@ func (s *TypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Type_() (localctx ITypeContext) {
 	localctx = NewTypeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, GrobbitParserRULE_type)
+	p.EnterRule(localctx, 34, GrobbitParserRULE_type)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(201)
+		p.SetState(213)
 		p.Identifier()
 	}
 
@@ -3313,32 +3502,32 @@ func (s *BlockContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Block() (localctx IBlockContext) {
 	localctx = NewBlockContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, GrobbitParserRULE_block)
+	p.EnterRule(localctx, 36, GrobbitParserRULE_block)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(203)
+		p.SetState(215)
 		p.Match(GrobbitParserTtLBrace)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(209)
+	p.SetState(221)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1416317424893960) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&5665269699575816) != 0 {
 		{
-			p.SetState(204)
+			p.SetState(216)
 			p.Statement()
 		}
 		{
-			p.SetState(205)
+			p.SetState(217)
 			p.Match(GrobbitParserTtSemicolon)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3346,7 +3535,7 @@ func (p *GrobbitParser) Block() (localctx IBlockContext) {
 			}
 		}
 
-		p.SetState(211)
+		p.SetState(223)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3354,7 +3543,7 @@ func (p *GrobbitParser) Block() (localctx IBlockContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(212)
+		p.SetState(224)
 		p.Match(GrobbitParserTtRBrace)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3576,8 +3765,8 @@ func (s *StatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Statement() (localctx IStatementContext) {
 	localctx = NewStatementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, GrobbitParserRULE_statement)
-	p.SetState(222)
+	p.EnterRule(localctx, 38, GrobbitParserRULE_statement)
+	p.SetState(234)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3587,56 +3776,56 @@ func (p *GrobbitParser) Statement() (localctx IStatementContext) {
 	case GrobbitParserTtKwConst, GrobbitParserTtKwVar:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(214)
+			p.SetState(226)
 			p.Decl_stmt()
 		}
 
 	case GrobbitParserTtIdentifier:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(215)
+			p.SetState(227)
 			p.Simple_stmt()
 		}
 
 	case GrobbitParserTtKwReturn:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(216)
+			p.SetState(228)
 			p.Return_stmt()
 		}
 
 	case GrobbitParserTtKwBreak:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(217)
+			p.SetState(229)
 			p.Break_stmt()
 		}
 
 	case GrobbitParserTtKwContinue:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(218)
+			p.SetState(230)
 			p.Continue_stmt()
 		}
 
 	case GrobbitParserTtLBrace:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(219)
+			p.SetState(231)
 			p.Block()
 		}
 
 	case GrobbitParserTtKwIf:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(220)
+			p.SetState(232)
 			p.If_stmt()
 		}
 
 	case GrobbitParserTtKwFor:
 		p.EnterOuterAlt(localctx, 8)
 		{
-			p.SetState(221)
+			p.SetState(233)
 			p.For_stmt()
 		}
 
@@ -3757,8 +3946,8 @@ func (s *Decl_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Decl_stmt() (localctx IDecl_stmtContext) {
 	localctx = NewDecl_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, GrobbitParserRULE_decl_stmt)
-	p.SetState(226)
+	p.EnterRule(localctx, 40, GrobbitParserRULE_decl_stmt)
+	p.SetState(238)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3768,14 +3957,14 @@ func (p *GrobbitParser) Decl_stmt() (localctx IDecl_stmtContext) {
 	case GrobbitParserTtKwConst:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(224)
+			p.SetState(236)
 			p.Const_decl()
 		}
 
 	case GrobbitParserTtKwVar:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(225)
+			p.SetState(237)
 			p.Var_decl()
 		}
 
@@ -3913,32 +4102,32 @@ func (s *Simple_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *GrobbitParser) Simple_stmt() (localctx ISimple_stmtContext) {
 	localctx = NewSimple_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, GrobbitParserRULE_simple_stmt)
-	p.SetState(231)
+	p.EnterRule(localctx, 42, GrobbitParserRULE_simple_stmt)
+	p.SetState(243)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 19, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 20, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(228)
+			p.SetState(240)
 			p.Expr_stmt()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(229)
+			p.SetState(241)
 			p.Assign_stmt()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(230)
+			p.SetState(242)
 			p.Shortvar_decl()
 		}
 
@@ -4046,28 +4235,28 @@ func (s *Return_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *GrobbitParser) Return_stmt() (localctx IReturn_stmtContext) {
 	localctx = NewReturn_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, GrobbitParserRULE_return_stmt)
+	p.EnterRule(localctx, 44, GrobbitParserRULE_return_stmt)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(233)
+		p.SetState(245)
 		p.Match(GrobbitParserTtKwReturn)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(235)
+	p.SetState(247)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8444249301385986) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&33776997205543938) != 0 {
 		{
-			p.SetState(234)
+			p.SetState(246)
 			p.expression(0)
 		}
 
@@ -4156,10 +4345,10 @@ func (s *Continue_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *GrobbitParser) Continue_stmt() (localctx IContinue_stmtContext) {
 	localctx = NewContinue_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, GrobbitParserRULE_continue_stmt)
+	p.EnterRule(localctx, 46, GrobbitParserRULE_continue_stmt)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(237)
+		p.SetState(249)
 		p.Match(GrobbitParserTtKwContinue)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4250,10 +4439,10 @@ func (s *Break_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Break_stmt() (localctx IBreak_stmtContext) {
 	localctx = NewBreak_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, GrobbitParserRULE_break_stmt)
+	p.EnterRule(localctx, 48, GrobbitParserRULE_break_stmt)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(239)
+		p.SetState(251)
 		p.Match(GrobbitParserTtKwBreak)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4448,28 +4637,28 @@ func (s *If_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) If_stmt() (localctx IIf_stmtContext) {
 	localctx = NewIf_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, GrobbitParserRULE_if_stmt)
+	p.EnterRule(localctx, 50, GrobbitParserRULE_if_stmt)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(241)
+		p.SetState(253)
 		p.Match(GrobbitParserTtKwIf)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(245)
+	p.SetState(257)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 21, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 22, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(242)
+			p.SetState(254)
 			p.Simple_stmt()
 		}
 		{
-			p.SetState(243)
+			p.SetState(255)
 			p.Match(GrobbitParserTtSemicolon)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4481,14 +4670,14 @@ func (p *GrobbitParser) If_stmt() (localctx IIf_stmtContext) {
 		goto errorExit
 	}
 	{
-		p.SetState(247)
+		p.SetState(259)
 		p.Condition()
 	}
 	{
-		p.SetState(248)
+		p.SetState(260)
 		p.Block()
 	}
-	p.SetState(254)
+	p.SetState(266)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4497,14 +4686,14 @@ func (p *GrobbitParser) If_stmt() (localctx IIf_stmtContext) {
 
 	if _la == GrobbitParserTtKwElse {
 		{
-			p.SetState(249)
+			p.SetState(261)
 			p.Match(GrobbitParserTtKwElse)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(252)
+		p.SetState(264)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4513,13 +4702,13 @@ func (p *GrobbitParser) If_stmt() (localctx IIf_stmtContext) {
 		switch p.GetTokenStream().LA(1) {
 		case GrobbitParserTtKwIf:
 			{
-				p.SetState(250)
+				p.SetState(262)
 				p.If_stmt()
 			}
 
 		case GrobbitParserTtLBrace:
 			{
-				p.SetState(251)
+				p.SetState(263)
 				p.Block()
 			}
 
@@ -4664,30 +4853,30 @@ func (s *For_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) For_stmt() (localctx IFor_stmtContext) {
 	localctx = NewFor_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 50, GrobbitParserRULE_for_stmt)
+	p.EnterRule(localctx, 52, GrobbitParserRULE_for_stmt)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(256)
+		p.SetState(268)
 		p.Match(GrobbitParserTtKwFor)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(259)
+	p.SetState(271)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 24, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 25, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(257)
+			p.SetState(269)
 			p.Condition()
 		}
 
 	} else if p.HasError() { // JIM
 		goto errorExit
-	} else if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 24, p.GetParserRuleContext()) == 2 {
+	} else if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 25, p.GetParserRuleContext()) == 2 {
 		{
-			p.SetState(258)
+			p.SetState(270)
 			p.For_clause()
 		}
 
@@ -4695,7 +4884,7 @@ func (p *GrobbitParser) For_stmt() (localctx IFor_stmtContext) {
 		goto errorExit
 	}
 	{
-		p.SetState(261)
+		p.SetState(273)
 		p.Block()
 	}
 
@@ -4869,11 +5058,11 @@ func (s *For_clauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) For_clause() (localctx IFor_clauseContext) {
 	localctx = NewFor_clauseContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 52, GrobbitParserRULE_for_clause)
+	p.EnterRule(localctx, 54, GrobbitParserRULE_for_clause)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(264)
+	p.SetState(276)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4882,7 +5071,7 @@ func (p *GrobbitParser) For_clause() (localctx IFor_clauseContext) {
 
 	if _la == GrobbitParserTtIdentifier {
 		{
-			p.SetState(263)
+			p.SetState(275)
 
 			var _x = p.Simple_stmt()
 
@@ -4891,36 +5080,36 @@ func (p *GrobbitParser) For_clause() (localctx IFor_clauseContext) {
 
 	}
 	{
-		p.SetState(266)
+		p.SetState(278)
 		p.Match(GrobbitParserTtSemicolon)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(268)
+	p.SetState(280)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8444249301385986) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&33776997205543938) != 0 {
 		{
-			p.SetState(267)
+			p.SetState(279)
 			p.Condition()
 		}
 
 	}
 	{
-		p.SetState(270)
+		p.SetState(282)
 		p.Match(GrobbitParserTtSemicolon)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(272)
+	p.SetState(284)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4929,7 +5118,7 @@ func (p *GrobbitParser) For_clause() (localctx IFor_clauseContext) {
 
 	if _la == GrobbitParserTtIdentifier {
 		{
-			p.SetState(271)
+			p.SetState(283)
 
 			var _x = p.Simple_stmt()
 
@@ -5033,10 +5222,10 @@ func (s *ConditionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Condition() (localctx IConditionContext) {
 	localctx = NewConditionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 54, GrobbitParserRULE_condition)
+	p.EnterRule(localctx, 56, GrobbitParserRULE_condition)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(274)
+		p.SetState(286)
 		p.expression(0)
 	}
 
@@ -5157,14 +5346,14 @@ func (s *Shortvar_declContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *GrobbitParser) Shortvar_decl() (localctx IShortvar_declContext) {
 	localctx = NewShortvar_declContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 56, GrobbitParserRULE_shortvar_decl)
+	p.EnterRule(localctx, 58, GrobbitParserRULE_shortvar_decl)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(276)
+		p.SetState(288)
 		p.Identifiers()
 	}
 	{
-		p.SetState(277)
+		p.SetState(289)
 		p.Match(GrobbitParserTtOpDefine)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5172,7 +5361,7 @@ func (p *GrobbitParser) Shortvar_decl() (localctx IShortvar_declContext) {
 		}
 	}
 	{
-		p.SetState(278)
+		p.SetState(290)
 		p.Expressions()
 	}
 
@@ -5293,14 +5482,14 @@ func (s *Assign_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *GrobbitParser) Assign_stmt() (localctx IAssign_stmtContext) {
 	localctx = NewAssign_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 58, GrobbitParserRULE_assign_stmt)
+	p.EnterRule(localctx, 60, GrobbitParserRULE_assign_stmt)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(280)
+		p.SetState(292)
 		p.Identifiers()
 	}
 	{
-		p.SetState(281)
+		p.SetState(293)
 		p.Match(GrobbitParserTtOpAssign)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5308,7 +5497,7 @@ func (p *GrobbitParser) Assign_stmt() (localctx IAssign_stmtContext) {
 		}
 	}
 	{
-		p.SetState(282)
+		p.SetState(294)
 		p.Expressions()
 	}
 
@@ -5407,10 +5596,10 @@ func (s *Expr_stmtContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Expr_stmt() (localctx IExpr_stmtContext) {
 	localctx = NewExpr_stmtContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 60, GrobbitParserRULE_expr_stmt)
+	p.EnterRule(localctx, 62, GrobbitParserRULE_expr_stmt)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(284)
+		p.SetState(296)
 		p.Call_expr()
 	}
 
@@ -5545,15 +5734,15 @@ func (s *ExpressionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *GrobbitParser) Expressions() (localctx IExpressionsContext) {
 	localctx = NewExpressionsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 62, GrobbitParserRULE_expressions)
+	p.EnterRule(localctx, 64, GrobbitParserRULE_expressions)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(286)
+		p.SetState(298)
 		p.expression(0)
 	}
-	p.SetState(291)
+	p.SetState(303)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5562,7 +5751,7 @@ func (p *GrobbitParser) Expressions() (localctx IExpressionsContext) {
 
 	for _la == GrobbitParserTtComma {
 		{
-			p.SetState(287)
+			p.SetState(299)
 			p.Match(GrobbitParserTtComma)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5570,11 +5759,11 @@ func (p *GrobbitParser) Expressions() (localctx IExpressionsContext) {
 			}
 		}
 		{
-			p.SetState(288)
+			p.SetState(300)
 			p.expression(0)
 		}
 
-		p.SetState(293)
+		p.SetState(305)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -5805,25 +5994,25 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 	localctx = NewExpressionContext(p, p.GetParserRuleContext(), _parentState)
 	var _prevctx IExpressionContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 64
-	p.EnterRecursionRule(localctx, 64, GrobbitParserRULE_expression, _p)
+	_startState := 66
+	p.EnterRecursionRule(localctx, 66, GrobbitParserRULE_expression, _p)
 	var _la int
 
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(295)
+		p.SetState(307)
 		p.Unary_expr()
 	}
 
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(314)
+	p.SetState(326)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
-	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 30, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 31, p.GetParserRuleContext())
 	if p.HasError() {
 		goto errorExit
 	}
@@ -5833,24 +6022,24 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			p.SetState(312)
+			p.SetState(324)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
 			}
 
-			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 29, p.GetParserRuleContext()) {
+			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 30, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewExpressionContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, GrobbitParserRULE_expression)
-				p.SetState(297)
+				p.SetState(309)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(298)
+					p.SetState(310)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5858,7 +6047,7 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 
 					_la = p.GetTokenStream().LA(1)
 
-					if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7168) != 0) {
+					if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&28672) != 0) {
 						var _ri = p.GetErrorHandler().RecoverInline(p)
 
 						localctx.(*ExpressionContext).op = _ri
@@ -5868,21 +6057,21 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(299)
+					p.SetState(311)
 					p.expression(6)
 				}
 
 			case 2:
 				localctx = NewExpressionContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, GrobbitParserRULE_expression)
-				p.SetState(300)
+				p.SetState(312)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(301)
+					p.SetState(313)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5900,21 +6089,21 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(302)
+					p.SetState(314)
 					p.expression(5)
 				}
 
 			case 3:
 				localctx = NewExpressionContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, GrobbitParserRULE_expression)
-				p.SetState(303)
+				p.SetState(315)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(304)
+					p.SetState(316)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5922,7 +6111,7 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 
 					_la = p.GetTokenStream().LA(1)
 
-					if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8257536) != 0) {
+					if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&33030144) != 0) {
 						var _ri = p.GetErrorHandler().RecoverInline(p)
 
 						localctx.(*ExpressionContext).op = _ri
@@ -5932,21 +6121,21 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(305)
+					p.SetState(317)
 					p.expression(4)
 				}
 
 			case 4:
 				localctx = NewExpressionContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, GrobbitParserRULE_expression)
-				p.SetState(306)
+				p.SetState(318)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(307)
+					p.SetState(319)
 
 					var _m = p.Match(GrobbitParserTtOpAnd)
 
@@ -5957,21 +6146,21 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(308)
+					p.SetState(320)
 					p.expression(3)
 				}
 
 			case 5:
 				localctx = NewExpressionContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, GrobbitParserRULE_expression)
-				p.SetState(309)
+				p.SetState(321)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 1)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(310)
+					p.SetState(322)
 
 					var _m = p.Match(GrobbitParserTtOpOr)
 
@@ -5982,7 +6171,7 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(311)
+					p.SetState(323)
 					p.expression(2)
 				}
 
@@ -5991,12 +6180,12 @@ func (p *GrobbitParser) expression(_p int) (localctx IExpressionContext) {
 			}
 
 		}
-		p.SetState(316)
+		p.SetState(328)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
-		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 30, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 31, p.GetParserRuleContext())
 		if p.HasError() {
 			goto errorExit
 		}
@@ -6140,10 +6329,10 @@ func (s *Unary_exprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Unary_expr() (localctx IUnary_exprContext) {
 	localctx = NewUnary_exprContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 66, GrobbitParserRULE_unary_expr)
+	p.EnterRule(localctx, 68, GrobbitParserRULE_unary_expr)
 	var _la int
 
-	p.SetState(320)
+	p.SetState(332)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -6153,14 +6342,14 @@ func (p *GrobbitParser) Unary_expr() (localctx IUnary_exprContext) {
 	case GrobbitParserTtLParen, GrobbitParserTtBool, GrobbitParserTtIdentifier, GrobbitParserTtFloat, GrobbitParserTtInt:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(317)
+			p.SetState(329)
 			p.Primary_expr()
 		}
 
 	case GrobbitParserTtOpAdd, GrobbitParserTtOpSub, GrobbitParserTtOpNot:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(318)
+			p.SetState(330)
 
 			var _lt = p.GetTokenStream().LT(1)
 
@@ -6168,7 +6357,7 @@ func (p *GrobbitParser) Unary_expr() (localctx IUnary_exprContext) {
 
 			_la = p.GetTokenStream().LA(1)
 
-			if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&66304) != 0) {
+			if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&265216) != 0) {
 				var _ri = p.GetErrorHandler().RecoverInline(p)
 
 				localctx.(*Unary_exprContext).op = _ri
@@ -6178,7 +6367,7 @@ func (p *GrobbitParser) Unary_expr() (localctx IUnary_exprContext) {
 			}
 		}
 		{
-			p.SetState(319)
+			p.SetState(331)
 			p.Unary_expr()
 		}
 
@@ -6365,33 +6554,33 @@ func (s *Primary_exprContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *GrobbitParser) Primary_expr() (localctx IPrimary_exprContext) {
 	localctx = NewPrimary_exprContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 68, GrobbitParserRULE_primary_expr)
-	p.SetState(334)
+	p.EnterRule(localctx, 70, GrobbitParserRULE_primary_expr)
+	p.SetState(346)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 33, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 34, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(322)
+			p.SetState(334)
 			p.Basic_literal()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
-		p.SetState(326)
+		p.SetState(338)
 		p.GetErrorHandler().Sync(p)
 
-		if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 32, p.GetParserRuleContext()) == 1 {
+		if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 33, p.GetParserRuleContext()) == 1 {
 			{
-				p.SetState(323)
+				p.SetState(335)
 				p.Pkg_name()
 			}
 			{
-				p.SetState(324)
+				p.SetState(336)
 				p.Match(GrobbitParserTtPeriod)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -6403,21 +6592,21 @@ func (p *GrobbitParser) Primary_expr() (localctx IPrimary_exprContext) {
 			goto errorExit
 		}
 		{
-			p.SetState(328)
+			p.SetState(340)
 			p.Identifier()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(329)
+			p.SetState(341)
 			p.Call_expr()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(330)
+			p.SetState(342)
 			p.Match(GrobbitParserTtLParen)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -6425,11 +6614,11 @@ func (p *GrobbitParser) Primary_expr() (localctx IPrimary_exprContext) {
 			}
 		}
 		{
-			p.SetState(331)
+			p.SetState(343)
 			p.expression(0)
 		}
 		{
-			p.SetState(332)
+			p.SetState(344)
 			p.Match(GrobbitParserTtRParen)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -6585,20 +6774,20 @@ func (s *Call_exprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *GrobbitParser) Call_expr() (localctx ICall_exprContext) {
 	localctx = NewCall_exprContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 70, GrobbitParserRULE_call_expr)
+	p.EnterRule(localctx, 72, GrobbitParserRULE_call_expr)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(339)
+	p.SetState(351)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 34, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 35, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(336)
+			p.SetState(348)
 			p.Pkg_name()
 		}
 		{
-			p.SetState(337)
+			p.SetState(349)
 			p.Match(GrobbitParserTtPeriod)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -6610,33 +6799,33 @@ func (p *GrobbitParser) Call_expr() (localctx ICall_exprContext) {
 		goto errorExit
 	}
 	{
-		p.SetState(341)
+		p.SetState(353)
 		p.Identifier()
 	}
 	{
-		p.SetState(342)
+		p.SetState(354)
 		p.Match(GrobbitParserTtLParen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(344)
+	p.SetState(356)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8444249301385986) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&33776997205543938) != 0 {
 		{
-			p.SetState(343)
+			p.SetState(355)
 			p.Expressions()
 		}
 
 	}
 	{
-		p.SetState(346)
+		p.SetState(358)
 		p.Match(GrobbitParserTtRParen)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -6659,7 +6848,7 @@ errorExit:
 
 func (p *GrobbitParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
 	switch ruleIndex {
-	case 32:
+	case 33:
 		var t *ExpressionContext = nil
 		if localctx != nil {
 			t = localctx.(*ExpressionContext)

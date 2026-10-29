@@ -46,6 +46,21 @@ func (v *PrintVisitor) VisitIdentifierNode(node *IdentifierNode) {
 	v.out(node)
 }
 
+func (v *PrintVisitor) VisitArrayIndexNode(node *IndexExprNode) {
+	v.in(node)
+	v.visit(node.Arr)
+	v.printf("  %s\n", node.GetType().String())
+	v.visit(node.Index)
+}
+
+func (v *PrintVisitor) VisitArrayExprNode(node *ArrayTypeNode) {
+	v.in(node)
+	v.visit(node.Elt)
+	v.printf("  %s\n", node.GetType().String())
+	v.visit(node.Len)
+	v.out(node)
+}
+
 func (v *PrintVisitor) VisitLiteralNode(node *LiteralNode) {
 	v.in(node)
 	v.printf("  %s\n", node.Tok.Lexeme)
@@ -154,7 +169,7 @@ func (v *PrintVisitor) VisitForStmtNode(node *ForStmtNode) {
 func (v *PrintVisitor) VisitImportSpecNode(node *ImportSpecNode) {
 	v.in(node)
 	// v.visit(v, node.Name)  Always nil, Tok lexeme used instead to identify prefix.
-	var prefix = ""
+	prefix := ""
 	if node.Tok.Type != TtString {
 		prefix = node.Tok.Lexeme
 	}

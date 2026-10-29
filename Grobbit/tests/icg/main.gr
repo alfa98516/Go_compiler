@@ -1,4 +1,6 @@
-package main 
+package main;
 
 
-func 
+func hi() {
+    var a [4]int;
+};

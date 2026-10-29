@@ -106,6 +106,23 @@ type PointerType struct {
 	baseType Type
 }
 
+func NewArrayType(typ Type, len int) *ArrayType {
+	var name string
+	if IsNil(typ) {
+		name = "nil"
+	} else {
+		name = "[" + string(len) + "]" + typ.String()
+	}
+
+	return &ArrayType{typeStruct{name}, len, typ}
+}
+
+type ArrayType struct {
+	typeStruct
+	len      int
+	baseType Type
+}
+
 func (t *PointerType) GetBaseType() Type { return t.baseType }
 
 func NewPointerType(typ Type) *PointerType {

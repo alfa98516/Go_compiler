@@ -27,12 +27,14 @@ const_spec:     identifiers type TtOpAssign basic_literals
 var_decl:       TtKwVar (var_spec | TtLParen (var_spec TtSemicolon)* TtRParen)
                 ;
 
-var_spec:       identifiers type (TtOpAssign basic_literals)?
+var_spec:       identifiers type (TtOpAssign basic_literals)? | 
+                identifiers array_type 
                 ;
+
+array_type : TtLBracket TtInt TtRBracket identifier ;
 
 basic_literals: basic_literal (TtComma basic_literal)*
                 ;
-
 basic_literal:  TtInt | TtFloat | TtBool
                 ;
 
@@ -51,8 +53,7 @@ identifiers:    identifier (TtComma identifier)*
 identifier:     TtIdentifier
                 ;
 
-type:           identifier
-                ;
+type:           identifier ;
 
 block:           TtLBrace (statement TtSemicolon)* TtRBrace
                 ;

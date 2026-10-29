@@ -1,17 +1,18 @@
 package icg
 
 import (
+	"fmt"
+	"os"
+
 	. "Grobbit/backend/semana"
 	. "Grobbit/common"
 	"Grobbit/frontend/toolmade"
-	"fmt"
-	"os"
 )
 
 func TestLLVM(input []byte, filenameOut string) {
 	var lines []string
 
-	var errorHandler = func(pos Position, msg string) {
+	errorHandler := func(pos Position, msg string) {
 		var txt string
 		txt = fmt.Sprintf("Error: (%d %d): %s\n", pos.Line, pos.Col, msg)
 		lines = append(lines, txt)

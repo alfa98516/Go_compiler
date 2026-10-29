@@ -43,6 +43,10 @@ func (v *BaseGrobbitParserVisitor) VisitVar_spec(ctx *Var_specContext) interface
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseGrobbitParserVisitor) VisitArray_type(ctx *Array_typeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseGrobbitParserVisitor) VisitBasic_literals(ctx *Basic_literalsContext) interface{} {
 	return v.VisitChildren(ctx)
 }

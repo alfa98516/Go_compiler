@@ -10,6 +10,7 @@ import (
 
 func ToIRType(tstr string) llvm.IRType {
 	// Grobbit only works with int, bool, and void types.
+	// AND NOW ARRAYS !!!
 	var ty llvm.IRType
 	if tstr == "bool" {
 		ty = llvm.I1
@@ -17,7 +18,7 @@ func ToIRType(tstr string) llvm.IRType {
 		ty = llvm.I32
 	} else if tstr == "float64" {
 		ty = llvm.Float
-	} else {
+	} else if tstr =={
 		ty = llvm.Void
 	}
 	return ty

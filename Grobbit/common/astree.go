@@ -77,6 +77,20 @@ type (
 		Lhs ExprNode // left operand
 		Rhs ExprNode // right operand
 	}
+
+	ArrayTypeNode struct {
+		exprNode_
+		Tok Token
+		Len ExprNode
+		Elt ExprNode
+	}
+
+	IndexExprNode struct {
+		exprNode_
+		Tok   Token
+		Arr   ExprNode
+		Index ExprNode
+	}
 )
 
 func NewIdentifier(tt TokenType, name string) *IdentifierNode {
@@ -92,6 +106,8 @@ func (*SelectorExprNode) exprNode() {}
 func (*CallExprNode) exprNode()     {}
 func (*UnaryExprNode) exprNode()    {}
 func (*BinaryExprNode) exprNode()   {}
+func (*ArrayTypeNode) exprNode()    {}
+func (*IndexExprNode) exprNode()    {}
 
 //////////////////////////////////////////////////////////////////////////////////////
 

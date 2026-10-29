@@ -13,6 +13,8 @@ type Visitor interface {
 	VisitUnaryExprNode(*UnaryExprNode)
 	VisitBinaryExprNode(*BinaryExprNode)
 	VisitDeclStmtNode(*DeclStmtNode)
+	VisitArrayExprNode(*ArrayTypeNode)
+	VisitArrayIndexNode(*IndexExprNode)
 	VisitExprStmtNode(*ExprStmtNode)
 	VisitAssignStmtNode(*AssignStmtNode)
 	VisitReturnStmtNode(*ReturnStmtNode)
@@ -82,6 +84,10 @@ func (w *VisitorWalker) VisitDispatcher(visitor Visitor, node Node) error {
 		visitor.VisitFuncDeclNode(n)
 	case *FileNode:
 		visitor.VisitFileNode(n)
+	case *ArrayTypeNode:
+		visitor.VisitArrayExprNode(n)
+	case *IndexExprNode:
+		visitor.VisitArrayIndexNode(n)
 	default:
 		txt := fmt.Sprintf("unknown node type in dispatcher: %T, should not happen", node)
 		return errors.New(txt)

@@ -4,6 +4,8 @@ TtLParen:           '(';
 TtRParen:           ')';
 TtLBrace:           '{';
 TtRBrace:           '}';
+TtLBracket:         '[';
+TtRBracket:         ']';
 TtComma:            ',';
 TtPeriod:           '.';
 TtSemicolon:        ';';
@@ -53,7 +55,7 @@ TtKwVar:        'var';
 
 TtBool:         'false' | 'true';
 
-TtIdentifier:   [a-zA-Z_][a-zA-Z_0-9]*; // NOTE: unicode?
+TtIdentifier:   [a-zA-Z_][a-zA-Z_0-9]*; // NOTE: unicode? 
 
 TtFloat
     : DEC_DIGITS '.' DEC_DIGITS? EXPONENT?

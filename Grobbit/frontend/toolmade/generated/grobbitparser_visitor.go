@@ -34,6 +34,9 @@ type GrobbitParserVisitor interface {
 	// Visit a parse tree produced by GrobbitParser#var_spec.
 	VisitVar_spec(ctx *Var_specContext) interface{}
 
+	// Visit a parse tree produced by GrobbitParser#array_type.
+	VisitArray_type(ctx *Array_typeContext) interface{}
+
 	// Visit a parse tree produced by GrobbitParser#basic_literals.
 	VisitBasic_literals(ctx *Basic_literalsContext) interface{}
 
