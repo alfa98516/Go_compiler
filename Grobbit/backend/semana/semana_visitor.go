@@ -1,9 +1,10 @@
 package semana
 
 import (
-	. "Grobbit/common"
 	"fmt"
 	"strings"
+
+	. "Grobbit/common"
 )
 
 type SAFlags uint16
@@ -104,7 +105,6 @@ func (v *SAVisitor) VisitSelectorExprNode(node *SelectorExprNode) {
 }
 
 func (v *SAVisitor) VisitCallExprNode(node *CallExprNode) {
-
 	// Small hack ...
 	reportUndefinedError := true
 	if id, ok := node.Fun.(*IdentifierNode); ok {
@@ -177,7 +177,6 @@ func (v *SAVisitor) VisitUnaryExprNode(node *UnaryExprNode) {
 	default:
 		panic("unhandled unary expression operator: " + node.Tok.Lexeme)
 	}
-
 }
 
 func (v *SAVisitor) VisitBinaryExprNode(node *BinaryExprNode) {
@@ -214,7 +213,6 @@ func (v *SAVisitor) VisitBinaryExprNode(node *BinaryExprNode) {
 	default:
 		panic("unhandled binary expression operator: " + node.Tok.Lexeme)
 	}
-
 }
 
 func (v *SAVisitor) VisitDeclStmtNode(node *DeclStmtNode) {
@@ -262,6 +260,12 @@ func (v *SAVisitor) VisitAssignStmtNode(node *AssignStmtNode) {
 			}
 		}
 	}
+}
+
+func (v *SAVisitor) VisitArrayExprNode(node *ArrayTypeNode) {
+}
+
+func (v *SAVisitor) VisitArrayIndexNode(node *IndexExprNode) {
 }
 
 func (v *SAVisitor) VisitReturnStmtNode(node *ReturnStmtNode) {
@@ -365,7 +369,6 @@ func (v *SAVisitor) VisitValueSpecNode(node *ValueSpecNode) {
 	} else {
 		DeclareValueSpec(v, v.packageScope, PackageVar, node, v.flags)
 	}
-
 }
 
 func (v *SAVisitor) VisitGenDeclNode(node *GenDeclNode) {
